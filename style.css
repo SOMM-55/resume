@@ -66,6 +66,16 @@
   flex-direction: column;
   gap: 18px;
 }
+/* Single source of truth for the column content-area width.
+   Header, summary, section headings, jobs, projects, sidebar and the
+   colored sidebar box all size against this — keeps everything aligned. */
+.rv-docInner > .rv-header,
+.rv-docInner > .rv-section,
+.rv-docInner > .rv-grid {
+  /* No extra side padding; sit directly on .rv-docInner's content edges */
+  padding-inline: 0;
+  margin-inline: 0;
+}
 
 /* Header */
 .rv-header {
@@ -293,27 +303,53 @@
   .rv-name { font-size: 22px !important; }
   .rv-contact { gap: 5px 12px !important; font-size: 11px !important; }
   /* Compact timeline on narrow screens — smaller dots, less inset */
-  .rv-job { padding-inline-start: 18px !important; }
-  .rv-doc[dir="rtl"] .rv-job { padding-inline-start: 0 !important; padding-inline-end: 18px !important; }
+  .rv-expList { padding-inline-start: 18px !important; }
+  .rv-doc[dir="rtl"] .rv-expList { padding-inline-start: 0 !important; padding-inline-end: 18px !important; }
   .rv-job::before {
+    inset-inline-start: -18px !important;
     width: 9px !important;
     height: 9px !important;
     border-width: 2px !important;
     box-shadow: 0 0 0 2px #fff !important;
     top: 5px !important;
   }
+  .rv-doc[dir="rtl"] .rv-job::before { inset-inline-start: auto !important; inset-inline-end: -18px !important; }
   .rv-expList::before { inset-inline-start: 4px !important; }
   .rv-doc[dir="rtl"] .rv-expList::before { inset-inline-start: auto !important; inset-inline-end: 4px !important; }
 }
 .rv-main { display: flex; flex-direction: column; gap: 16px; }
+/* The Experience timeline section's heading must align with the
+   timeline-inset job content below it, not with the header above.
+   Scoped to #sec-experience so the Projects heading (no timeline)
+   keeps the original column alignment. */
+#sec-experience > .rv-h {
+  padding-inline-start: 22px;
+}
+.rv-doc[dir="rtl"] #sec-experience > .rv-h {
+  padding-inline-start: 0;
+  padding-inline-end: 22px;
+}
 .rv-side {
   display: flex;
   flex-direction: column;
   gap: 14px;
   background: var(--rv-tint);
-  padding: 20px 22px;
+  /* vertical padding for breathing room inside the colored box;
+     horizontal padding is 0 so the text aligns with the rest of the
+     document at the same column edge as .rv-main content. */
+  padding: 20px 0;
   border-radius: var(--rv-radius);
   border: 1px solid var(--rv-line);
+}
+/* An inner wrapper forces the colored box's background to span the
+   full column width while keeping its text on the same vertical line
+   as the rest of the document. Marked with a stable class so layout
+   doesn't depend on pseudo selectors. */
+.rv-sideInner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-inline: 22px;
 }
 /* RTL: sidebar sits on the left, same styling */
 .rv-doc[dir="rtl"] .rv-side {
@@ -652,6 +688,10 @@
 
 /* Job timeline rail (main column experience) */
 .rv-expList { position: relative; }
+/* Reserve space at the start so the rail+dot sit outside the text
+   flow and the text aligns with header/summary/sidebar text. */
+.rv-expList { padding-inline-start: 22px; }
+.rv-doc[dir="rtl"] .rv-expList { padding-inline-start: 0; padding-inline-end: 22px; }
 .rv-expList::before {
   content: "";
   position: absolute;
@@ -663,12 +703,13 @@
   border-radius: 2px;
 }
 .rv-doc[dir="rtl"] .rv-expList::before { inset-inline-start: auto; inset-inline-end: 5px; }
-.rv-job { position: relative; padding-inline-start: 22px; }
-.rv-doc[dir="rtl"] .rv-job { padding-inline-start: 0; padding-inline-end: 22px; }
+/* Each job lives inside the timeline list; no extra side padding
+   needed since .rv-expList already reserves the inset. */
+.rv-job { position: relative; }
 .rv-job::before {
   content: "";
   position: absolute;
-  inset-inline-start: 0;
+  inset-inline-start: -22px;
   top: 4px;
   width: 12px;
   height: 12px;
@@ -678,7 +719,7 @@
   box-shadow: 0 0 0 3px #fff;
   z-index: 1;
 }
-.rv-doc[dir="rtl"] .rv-job::before { inset-inline-start: auto; inset-inline-end: 0; }
+.rv-doc[dir="rtl"] .rv-job::before { inset-inline-start: auto; inset-inline-end: -22px; }
 
 /* Hover lifts */
 .rv-skillItem, .rv-tag, .rv-interest, .rv-pill { transition: transform .12s ease, background .12s ease, border-color .12s ease; }
@@ -766,6 +807,7 @@
     padding: 0 !important;
     border: none !important;
   }
+  .rv-sideInner { padding-inline: 0 !important; gap: 14px !important; }
   .rv-grid { gap: 14px !important; grid-template-columns: 1.5fr 1fr !important; }
   /* Print-safety: reset the gradient text-fill so the name is never invisible in PDF */
   .rv-name {

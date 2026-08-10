@@ -347,7 +347,7 @@ function renderMain(c) {
 }
 
 function renderSide(c) {
-  let html = '<aside class="rv-side">';
+  let html = '<aside class="rv-side"><div class="rv-sideInner">';
   html += '<section id="sec-skills" class="rv-section" aria-label="' + c.sections.skills + '"><h2 class="rv-h">' + icons.code + ' ' + c.sections.skills + '</h2>';
   html += c.skills.map(g => '<div class="rv-skillGroup"><div class="rv-skillLabel">' + g.label + '</div><div class="rv-skillItems">' + g.items.map(s => '<span class="rv-skillItem">' + s + '</span>').join("") + '</div></div>').join("");
   html += '</section>';
@@ -361,7 +361,7 @@ function renderSide(c) {
   html += c.languagesKnown.map(l => '<div class="rv-langRow"><span class="rv-langName">' + l.name + '</span><span class="rv-langLvl">' + l.level + '</span></div>').join("");
   html += '</section>';
   html += '<section id="sec-interests" class="rv-section" aria-label="' + c.sections.interests + '"><h2 class="rv-h">' + icons.heart + ' ' + c.sections.interests + '</h2><div class="rv-interestList">' + c.interests.map(it => '<span class="rv-interest">' + it + '</span>').join("") + '</div></section>';
-  html += '</aside>';
+  html += '</div></aside>';
   return html;
 }
 
