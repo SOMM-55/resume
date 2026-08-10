@@ -2,15 +2,19 @@
 
 A self-contained, print-friendly, ATS-friendly, multilingual resume.
 
-The final deliverable is a **single static HTML file** (`public/resume.html`)
-with no build step, no server, no dependencies. Open it in any browser,
-host it on GitHub Pages, or print it to PDF.
+The final deliverable is a **single static HTML file** — written both as
+`public/resume.html` and `public/index.html` (identical bytes) — with no
+build step, no server, no dependencies. Open either in any browser,
+host it on GitHub Pages, or print it to PDF. The `index.html` copy
+means the page is served automatically when a repository's Pages
+setting is "deploy from branch / root".
 
 ## Build the standalone HTML
 
 ```bash
 node scripts/build-standalone.js
 # → public/resume.html   (self-contained, 8 languages, dark/light/print)
+# → public/index.html    (identical copy, root-friendly)
 ```
 
 That is the entire toolchain. No `npm install`, no bundler, no framework.
@@ -22,10 +26,11 @@ That is the entire toolchain. No `npm install`, no bundler, no framework.
 ├── data/
 │   └── resume.ts          # Typed resume data (identity, languages, uiStrings, content × 8)
 ├── scripts/
-│   └── build-standalone.js  # Generates public/resume.html from data/style
+│   └── build-standalone.js  # Generates public/{resume,index}.html from data/style
 ├── style.css              # All resume CSS (light/dark/print, ~24 KB)
 └── public/
-    ├── resume.html        # Standalone output — the deliverable
+    ├── index.html         # Same content as resume.html; GitHub-Pages-friendly
+    ├── resume.html        # Standalone output
     └── logo.svg
 ```
 
@@ -35,7 +40,7 @@ That is the entire toolchain. No `npm install`, no bundler, no framework.
 2. Edit any field — `identity`, `languages`, `uiStrings`, or the `content` map
    (8 language sections: `en`, `fa`, `de`, `zh`, `ja`, `es`, `ru`, `ar`)
 3. Run `node scripts/build-standalone.js`
-4. Open `public/resume.html` in a browser
+4. Open either `public/index.html` or `public/resume.html` in a browser
 
 ## Editing style
 

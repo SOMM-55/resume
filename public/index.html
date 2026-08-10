@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sayyid Omid Mousavi Mehr — Senior Data Engineer · Agentic Systems</title>
+<meta name="description" content="Senior Data Engineer · Agentic Systems. 7+ years in data engineering, system architecture, ETL/ELT pipelines, Node.js, TypeScript, Python, PostgreSQL, and AI-agent / Spec-Driven Development workflows.">
+<meta name="author" content="Sayyid Omid Mousavi Mehr">
+<meta name="keywords" content="Full-Stack Developer, Data Engineer, Node.js, TypeScript, Python, PostgreSQL, Microservices, ETL, SDD, Agentic Development, Sayyid Omid Mousavi Mehr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================= */
+/*  RESUME — self-contained, ATS-friendly, print-ready           */
+/* ============================================================= */
+
+:root {
+  --rv-ink: #0f172a;        /* slate-900 — deeper, more authoritative */
+  --rv-accent: #0d9488;     /* teal-600 — refined, less saturated */
+  --rv-accent-soft: #f0fdfa;/* teal-50 — very subtle tint */
+  --rv-accent-line: #99f6e4;/* teal-200 — for borders */
+  --rv-body: #334155;       /* slate-700 (body text) */
+  --rv-muted: #64748b;      /* slate-500 (secondary) */
+  --rv-line: #e2e8f0;       /* slate-200 (borders) */
+  --rv-tint: #fafbfc;       /* near-white sidebar tint */
+  --rv-tint-2: #f1f5f9;     /* slate-100 */
+  --rv-radius: 10px;
+  --rv-shadow: 0 1px 3px rgba(15,23,42,.06), 0 8px 24px -12px rgba(15,23,42,.12);
+}
+
+/* App chrome behind the resume */
+.rv-app {
+  min-height: 100vh;
+  background: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem 3rem;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+/* All chrome elements share the exact same outer box width so the
+   toolbar, quicknav and the resume card are pixel-aligned. */
+.rv-toolbar, .rv-quicknav, .rv-doc { box-sizing: border-box; }
+
+/* Floating toolbar (hidden in print) */
+.rv-toolbar {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 50;
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--rv-radius);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--rv-line);
+  box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 12px -4px rgba(15,23,42,.08);
+}
+
+/* The resume "page" */
+.rv-doc {
+  width: 100%;
+  max-width: 820px;
+  background: #ffffff;
+  border-radius: var(--rv-radius);
+  box-shadow: var(--rv-shadow);
+  overflow: hidden;
+  color: var(--rv-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+  border: 1px solid var(--rv-line);
+}
+
+.rv-docInner {
+  padding: 32px 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* Single source of truth for the column content-area width.
+   Header, summary, section headings, jobs, projects, sidebar and the
+   colored sidebar box all size against this — keeps everything aligned. */
+.rv-docInner > .rv-header,
+.rv-docInner > .rv-section,
+.rv-docInner > .rv-grid {
+  /* No extra side padding; sit directly on .rv-docInner's content edges */
+  padding-inline: 0;
+  margin-inline: 0;
+}
+
+/* Header */
+.rv-header {
+  border-bottom: 2px solid var(--rv-ink);
+  padding-bottom: 16px;
+}
+.rv-name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--rv-ink);
+  line-height: 1.15;
+}
+.rv-title {
+  margin-top: 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--rv-accent);
+  letter-spacing: 0;
+}
+.rv-eyebrow {
+  margin-top: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--rv-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.rv-eyebrow::before {
+  content: "";
+  width: 24px; height: 1.5px;
+  background: var(--rv-accent);
+  display: inline-block;
+}
+.rv-contact {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 11.5px;
+  color: var(--rv-body);
+}
+.rv-contact a, .rv-contact span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+.rv-contact a:hover { color: var(--rv-accent); }
+/* Force LTR display for numerals and Latin-script fragments even
+   inside an RTL document (phone numbers, emails, urls). The dir="ltr"
+   attribute on the element alone isn't enough against the bidi
+   algorithm — unicode-bidi: isolate overrides the inherited rule. */
+.rv-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Section headings */
+.rv-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rv-ink);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rv-line);
+}
+.rv-h::after {
+  content: "";
+  flex: 1;
+}
+.rv-h svg { color: var(--rv-accent); flex: none; }
+
+/* Sections: scroll-margin so smooth-jump doesn't hide the heading under the sticky toolbar */
+.rv-section { scroll-margin-top: 90px; }
+
+/* ───────── Quick-jump section nav (screen only) ───────── */
+.rv-quicknav {
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--rv-line);
+  box-shadow: 0 4px 14px -8px rgba(15, 23, 42, 0.2);
+}
+.rv-app.rv-dark .rv-quicknav {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: #1e293b;
+}
+.rv-quickpill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--rv-muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.rv-quickpill svg { flex: none; }
+.rv-quickpill:hover {
+  background: var(--rv-tint-2);
+  color: var(--rv-accent);
+  border-color: var(--rv-line);
+}
+.rv-quickpill-active {
+  background: var(--rv-accent) !important;
+  color: #fff !important;
+  border-color: var(--rv-accent) !important;
+}
+.rv-quickpill-active svg { color: #fff; }
+.rv-app.rv-dark .rv-quickpill:hover { background: #1e293b; }
+
+/* ───────── Header layout (no monogram — cleaner, more senior) ───────── */
+.rv-header { display: block; }
+.rv-headerText { flex: 1; min-width: 200px; }
+.rv-name {
+  color: var(--rv-ink);
+}
+.rv-app.rv-dark .rv-name {
+  color: var(--rv-ink);
+}
+
+/* ───────── Print footer with page number ───────── */
+.rv-printFooter {
+  display: none; /* only visible in print */
+}
+/* Fixed print running footer — repeats on every printed page (browser print) */
+.rv-printRunning {
+  display: none; /* screen hidden */
+}
+@media print {
+  .rv-printFooter {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rv-line);
+    font-size: 8pt;
+    color: var(--rv-muted);
+  }
+  .rv-printFooter .rv-pfName { font-weight: 600; }
+  /* Running footer on every printed page: name left, "Page X" right via CSS counter */
+  .rv-printRunning {
+    display: flex !important;
+    position: fixed;
+    bottom: 4mm;
+    left: 12mm;
+    right: 12mm;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    color: var(--rv-muted);
+    border-top: 1px solid var(--rv-line);
+    padding-top: 2mm;
+    z-index: 999;
+  }
+  .rv-printRunning .rv-pfLeft { font-weight: 600; }
+  .rv-printRunning .rv-pfRight::before { content: counter(page); }
+  .rv-printRunning .rv-pfRight::after { content: " / " counter(pages); }
+}
+
+/* Summary */
+.rv-summary {
+  font-size: 13px;
+  color: var(--rv-body);
+  border-left: 3px solid var(--rv-accent);
+  padding: 2px 0 2px 12px;
+}
+.rv-summary[dir="rtl"] {
+  border-left: none;
+  border-right: 3px solid var(--rv-accent);
+  padding: 2px 12px 2px 0;
+}
+
+/* Two-column body grid */
+.rv-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 22px;
+}
+
+/* Mobile / narrow preview: single column — sidebar stacks below main content.
+   Breakpoint raised to 900px so preview panels and tablets also get a clean
+   single-column layout instead of a cramped two-column. */
+@media (max-width: 900px) {
+  .rv-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  /* Sidebar loses its tinted full-bleed background and becomes inline blocks */
+  .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-top: 2px solid var(--rv-line) !important;
+    padding-top: 18px !important;
+  }
+  .rv-doc[dir="rtl"] .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: 18px !important;
+    border: none !important;
+    border-top: 2px solid var(--rv-line) !important;
+  }
+  .rv-docInner { padding: 22px 20px 22px !important; gap: 14px !important; }
+  .rv-toolbar {
+    flex-wrap: wrap;
+    gap: 8px !important;
+    padding: 0.5rem 0.6rem !important;
+  }
+  .rv-name { font-size: 22px !important; }
+  .rv-contact { gap: 5px 12px !important; font-size: 11px !important; }
+  /* Compact timeline on narrow screens — smaller dots, less inset */
+  .rv-expList { padding-inline-start: 18px !important; }
+  .rv-doc[dir="rtl"] .rv-expList { padding-inline-start: 0 !important; padding-inline-end: 18px !important; }
+  .rv-job::before {
+    inset-inline-start: -18px !important;
+    width: 9px !important;
+    height: 9px !important;
+    border-width: 2px !important;
+    box-shadow: 0 0 0 2px #fff !important;
+    top: 5px !important;
+  }
+  .rv-doc[dir="rtl"] .rv-job::before { inset-inline-start: auto !important; inset-inline-end: -18px !important; }
+  .rv-expList::before { inset-inline-start: 4px !important; }
+  .rv-doc[dir="rtl"] .rv-expList::before { inset-inline-start: auto !important; inset-inline-end: 4px !important; }
+}
+.rv-main { display: flex; flex-direction: column; gap: 16px; }
+/* The Experience timeline section's heading must align with the
+   timeline-inset job content below it, not with the header above.
+   Scoped to #sec-experience so the Projects heading (no timeline)
+   keeps the original column alignment. */
+#sec-experience > .rv-h {
+  padding-inline-start: 22px;
+}
+.rv-doc[dir="rtl"] #sec-experience > .rv-h {
+  padding-inline-start: 0;
+  padding-inline-end: 22px;
+}
+.rv-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--rv-tint);
+  /* vertical padding for breathing room inside the colored box;
+     horizontal padding is 0 so the text aligns with the rest of the
+     document at the same column edge as .rv-main content. */
+  padding: 20px 0;
+  border-radius: var(--rv-radius);
+  border: 1px solid var(--rv-line);
+}
+/* An inner wrapper forces the colored box's background to span the
+   full column width while keeping its text on the same vertical line
+   as the rest of the document. Marked with a stable class so layout
+   doesn't depend on pseudo selectors. */
+.rv-sideInner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-inline: 22px;
+}
+/* RTL: sidebar sits on the left, same styling */
+.rv-doc[dir="rtl"] .rv-side {
+  border-left: 1px solid var(--rv-line);
+  border-right: 1px solid var(--rv-line);
+}
+
+/* Job entry */
+.rv-job { margin-bottom: 14px; }
+.rv-job:last-child { margin-bottom: 0; }
+.rv-jobHead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.rv-role { font-size: 14px; font-weight: 700; color: var(--rv-ink); }
+.rv-company { font-size: 13px; font-weight: 600; color: var(--rv-accent); }
+.rv-meta {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 11.5px;
+  color: var(--rv-muted);
+  margin-top: 2px;
+}
+.rv-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--rv-tint-2);
+  color: var(--rv-ink);
+  font-weight: 500;
+}
+.rv-overview { margin-top: 7px; font-size: 12.5px; }
+.rv-bullets { margin-top: 7px; padding-left: 16px; display: flex; flex-direction: column; gap: 5px; }
+.rv-doc[dir="rtl"] .rv-bullets { padding-left: 0; padding-right: 16px; }
+.rv-bullets li { font-size: 12.5px; color: var(--rv-body); position: relative; }
+.rv-bullets li::marker { color: var(--rv-accent); }
+.rv-tech {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.rv-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--rv-tint-2);
+  color: var(--rv-body);
+  border: 1px solid var(--rv-line);
+  letter-spacing: 0.01em;
+}
+
+/* Project entry */
+.rv-proj { padding: 10px 0; border-bottom: 1px solid var(--rv-line); }
+.rv-proj:last-child { border-bottom: none; padding-bottom: 0; }
+.rv-projName { font-size: 12.5px; font-weight: 700; color: var(--rv-ink); }
+.rv-projDesc { font-size: 12px; color: var(--rv-body); margin-top: 2px; line-height: 1.5; }
+.rv-projTech { font-size: 10.5px; color: var(--rv-muted); margin-top: 4px; font-weight: 500; }
+
+/* Skill group */
+.rv-skillGroup { margin-bottom: 12px; }
+.rv-skillGroup:last-child { margin-bottom: 0; }
+.rv-skillLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rv-muted);
+  margin-bottom: 6px;
+}
+.rv-skillItems { display: flex; flex-wrap: wrap; gap: 4px; }
+.rv-skillItem {
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--rv-tint-2);
+  border: 1px solid var(--rv-line);
+  color: var(--rv-body);
+  font-weight: 500;
+}
+
+/* Education */
+.rv-edu { margin-bottom: 10px; }
+.rv-edu:last-child { margin-bottom: 0; }
+.rv-eduDeg { font-size: 12.5px; font-weight: 700; color: var(--rv-ink); }
+.rv-eduInst { font-size: 12px; color: var(--rv-accent); font-weight: 600; }
+.rv-eduMeta { font-size: 11px; color: var(--rv-muted); margin-top: 1px; }
+.rv-eduGrade { font-size: 11px; color: var(--rv-body); margin-top: 2px; font-weight: 500; }
+.rv-eduThesis { font-size: 11px; color: var(--rv-muted); margin-top: 1px; font-style: italic; }
+
+/* Certificates */
+.rv-cert { margin-bottom: 6px; }
+.rv-cert:last-child { margin-bottom: 0; }
+.rv-certName { font-size: 12px; color: var(--rv-body); font-weight: 600; }
+.rv-certIssuer { font-size: 11px; color: var(--rv-muted); }
+
+/* Languages + interests inline lists */
+.rv-langRow { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px dotted var(--rv-line); }
+.rv-langRow:last-child { border-bottom: none; }
+.rv-langName { font-weight: 600; color: var(--rv-ink); }
+.rv-langLvl { color: var(--rv-muted); }
+
+.rv-interestList { display: flex; flex-wrap: wrap; gap: 6px; }
+.rv-interest {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--rv-line);
+  color: var(--rv-body);
+}
+
+/* Award callout */
+.rv-award {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+  border: 1px solid #fde68a;
+}
+.rv-award svg { color: #b45309; flex: none; margin-top: 1px; }
+.rv-awardText { font-size: 11.5px; color: #78350f; line-height: 1.4; }
+.rv-awardLabel { font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; color: #b45309; display: block; margin-bottom: 1px; }
+
+/* Lang dropdown button */
+.rv-langBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--rv-line);
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--rv-ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.rv-langBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+
+.rv-printBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 9px;
+  border: none;
+  background: var(--rv-accent);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 12px -4px rgba(15, 118, 110, 0.5);
+}
+.rv-printBtn:hover { background: #0d5f58; transform: translateY(-1px); }
+
+/* Custom scrollbar for long content on screen */
+.rv-doc::-webkit-scrollbar { width: 8px; }
+.rv-doc::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+
+/* RTL icon flip for directional icons */
+.rv-doc[dir="rtl"] .rv-flip { transform: scaleX(-1); }
+
+/* ============================================================= */
+/*  DARK MODE — applied via .rv-dark on .rv-app                  */
+/*  Print is always forced to light (see @media print).          */
+/* ============================================================= */
+.rv-app.rv-dark {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #0b3a36 0%, transparent 60%),
+    linear-gradient(180deg, #0f172a 0%, #020617 100%);
+}
+.rv-app.rv-dark .rv-toolbar {
+  background: rgba(15, 23, 42, 0.82);
+  border-color: #1e293b;
+  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.6);
+}
+.rv-app.rv-dark {
+  --rv-ink: #e2e8f0;
+  --rv-accent: #2dd4bf;
+  --rv-accent-soft: #134e4a;
+  --rv-body: #cbd5e1;
+  --rv-muted: #94a3b8;
+  --rv-line: #1e293b;
+  --rv-tint: #0f172a;
+  --rv-tint-2: #1e293b;
+}
+.rv-app.rv-dark .rv-doc {
+  background: #0b1220;
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7),
+              0 2px 6px -2px rgba(0, 0, 0, 0.4);
+}
+.rv-app.rv-dark .rv-header { border-bottom-color: #334155; }
+.rv-app.rv-dark .rv-h { color: var(--rv-ink); }
+.rv-app.rv-dark .rv-h::after { background: linear-gradient(90deg, var(--rv-accent), transparent); }
+.rv-app.rv-dark .rv-tag {
+  background: #134e4a;
+  color: #5eead4;
+  border-color: #0f766e;
+}
+.rv-app.rv-dark .rv-skillItem {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+.rv-app.rv-dark .rv-pill {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+.rv-app.rv-dark .rv-interest {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+.rv-app.rv-dark .rv-side { background: #0a0f1d; border-left-color: #1e293b; }
+.rv-app.rv-dark .rv-doc[dir="rtl"] .rv-side { border-right-color: #1e293b; }
+.rv-app.rv-dark .rv-award {
+  background: linear-gradient(135deg, #422006 0%, #451a03 100%);
+  border-color: #78350f;
+}
+.rv-app.rv-dark .rv-awardText { color: #fbbf24; }
+.rv-app.rv-dark .rv-awardLabel { color: #f59e0b; }
+.rv-app.rv-dark .rv-langBtn { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+.rv-app.rv-dark .rv-langBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-app.rv-dark .rv-iconBtn { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+.rv-app.rv-dark .rv-iconBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-app.rv-dark .rv-menu { background: #0f172a; border-color: #334155; }
+.rv-app.rv-dark .rv-menu button:hover { background: #134e4a !important; color: #5eead4 !important; }
+.rv-app.rv-dark .rv-atsBadge {
+  background: #134e4a;
+  color: #5eead4;
+  border-color: #0f766e;
+}
+.rv-app.rv-dark .rv-kbd { background: #1e293b; border-color: #334155; color: #94a3b8; }
+
+/* ============================================================= */
+/*  New controls: icon buttons, ATS badge, zoom, kbd hint        */
+/* ============================================================= */
+.rv-iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--rv-line);
+  background: #fff;
+  color: var(--rv-ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.rv-iconBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); transform: translateY(-1px); }
+.rv-iconBtn:active { transform: translateY(0); }
+.rv-iconBtn[aria-pressed="true"] { background: var(--rv-accent); color: #fff; border-color: var(--rv-accent); }
+
+.rv-atsBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--rv-accent-soft);
+  color: #115e59;
+  border: 1px solid #5eead4;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rv-zoomReadout {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--rv-muted);
+  min-width: 34px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.rv-kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  border: 1px solid var(--rv-line);
+  border-bottom-width: 2px;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: var(--rv-muted);
+  line-height: 1.2;
+}
+.rv-hintBar {
+  font-size: 10.5px;
+  color: var(--rv-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Print overlay */
+.rv-printOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 10px;
+  animation: rv-fade 0.18s ease;
+}
+@keyframes rv-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rv-spin { to { transform: rotate(360deg); } }
+.rv-spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: rv-spin 0.7s linear infinite;
+}
+
+/* ============================================================= */
+/*  Styling refinements: timeline, hover lifts, accents          */
+/* ============================================================= */
+
+/* Job timeline rail (main column experience) */
+.rv-expList { position: relative; }
+/* Reserve space at the start so the rail+dot sit outside the text
+   flow and the text aligns with header/summary/sidebar text. */
+.rv-expList { padding-inline-start: 22px; }
+.rv-doc[dir="rtl"] .rv-expList { padding-inline-start: 0; padding-inline-end: 22px; }
+.rv-expList::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  inset-inline-start: 5px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--rv-accent), var(--rv-line));
+  border-radius: 2px;
+}
+.rv-doc[dir="rtl"] .rv-expList::before { inset-inline-start: auto; inset-inline-end: 5px; }
+/* Each job lives inside the timeline list; no extra side padding
+   needed since .rv-expList already reserves the inset. */
+.rv-job { position: relative; }
+.rv-job::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -22px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid var(--rv-accent);
+  box-shadow: 0 0 0 3px #fff;
+  z-index: 1;
+}
+.rv-doc[dir="rtl"] .rv-job::before { inset-inline-start: auto; inset-inline-end: -22px; }
+
+/* Hover lifts */
+.rv-skillItem, .rv-tag, .rv-interest, .rv-pill { transition: transform .12s ease, background .12s ease, border-color .12s ease; }
+.rv-skillItem:hover { transform: translateY(-1px); border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-tag:hover { transform: translateY(-1px); }
+.rv-interest:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-proj { transition: background .12s ease, padding .12s ease; border-radius: 6px; padding-inline: 6px; }
+.rv-proj:hover { background: var(--rv-tint-2); }
+.rv-contact a { transition: color .12s ease; }
+.rv-edu, .rv-cert { transition: transform .12s ease; }
+.rv-edu:hover, .rv-cert:hover { transform: translateX(2px); }
+.rv-doc[dir="rtl"] .rv-edu:hover, .rv-doc[dir="rtl"] .rv-cert:hover { transform: translateX(-2px); }
+
+/* Skill group accent bar */
+.rv-skillLabel { display: flex; align-items: center; gap: 6px; }
+.rv-skillLabel::before {
+  content: "";
+  width: 3px; height: 11px;
+  border-radius: 2px;
+  background: var(--rv-accent);
+  display: inline-block;
+}
+
+/* Focus ring for accessibility on all interactive controls */
+.rv-iconBtn:focus-visible, .rv-langBtn:focus-visible, .rv-printBtn:focus-visible, .rv-menu button:focus-visible {
+  outline: 2px solid var(--rv-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================================= */
+/*  PRINT — A4, controlled page breaks, colors preserved         */
+/* ============================================================= */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm 12mm 12mm 12mm;
+  }
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .rv-app {
+    background: none !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    display: block !important;
+  }
+  .rv-toolbar, .rv-hintBar, .rv-printOverlay { display: none !important; }
+  /* Always print in light mode for ATS cleanliness */
+  .rv-app.rv-dark {
+    background: none !important;
+    --rv-ink: #1e293b !important;
+    --rv-accent: #0f766e !important;
+    --rv-accent-soft: #ccfbf1 !important;
+    --rv-body: #334155 !important;
+    --rv-muted: #64748b !important;
+    --rv-line: #e2e8f0 !important;
+    --rv-tint: #f8fafc !important;
+    --rv-tint-2: #f1f5f9 !important;
+  }
+  .rv-app.rv-dark .rv-doc { background: #fff !important; }
+  .rv-app.rv-dark .rv-side { background: transparent !important; }
+  .rv-app.rv-dark .rv-tag { background: #ccfbf1 !important; color: #115e59 !important; border-color: #99f6e4 !important; }
+  .rv-app.rv-dark .rv-skillItem, .rv-app.rv-dark .rv-pill, .rv-app.rv-dark .rv-interest { background: #fff !important; color: #334155 !important; border-color: #e2e8f0 !important; }
+  .rv-app.rv-dark .rv-award { background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%) !important; border-color: #fde68a !important; }
+  .rv-app.rv-dark .rv-awardText { color: #78350f !important; }
+  .rv-app.rv-dark .rv-awardLabel { color: #b45309 !important; }
+  .rv-doc {
+    max-width: none !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-size: 10.2pt !important;
+  }
+  .rv-docInner { padding: 0 !important; gap: 10px !important; }
+  .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  .rv-doc[dir="rtl"] .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  .rv-sideInner { padding-inline: 0 !important; gap: 14px !important; }
+  .rv-grid { gap: 14px !important; grid-template-columns: 1.5fr 1fr !important; }
+  /* Print-safety: reset the gradient text-fill so the name is never invisible in PDF */
+  .rv-name {
+    font-size: 19pt !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--rv-ink) !important;
+    color: var(--rv-ink) !important;
+  }
+  .rv-title { font-size: 11pt !important; }
+  .rv-eyebrow { font-size: 8.5pt !important; }
+  .rv-h { font-size: 9.5pt !important; margin-bottom: 5px !important; }
+  .rv-summary { font-size: 9.6pt !important; }
+  .rv-role { font-size: 10.5pt !important; }
+  .rv-company { font-size: 9.8pt !important; }
+  .rv-overview, .rv-bullets li { font-size: 9.4pt !important; }
+  .rv-tag, .rv-skillItem, .rv-pill, .rv-interest { font-size: 9pt !important; }
+
+  /* keep entries together, avoid awkward breaks */
+  .rv-job, .rv-edu, .rv-proj, .rv-skillGroup, .rv-award {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .rv-h { break-after: avoid; page-break-after: avoid; }
+  .rv-side, .rv-main { break-inside: auto; }
+
+  /* force background colors to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+
+/* ───────── Font system ───────── */
+:root {
+  --rv-font-latin: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --rv-font-fa: "Vazirmatn", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --rv-font-zh: "Noto Sans SC", "Inter", -apple-system, sans-serif;
+  --rv-font-ja: "Noto Sans JP", "Inter", -apple-system, sans-serif;
+  --rv-font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
+}
+html, body {
+  font-family: var(--rv-font-latin);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+/* Persian & Arabic → Vazirmatn */
+html[lang="fa"], html[lang="ar"] { font-family: var(--rv-font-fa); }
+html[lang="fa"] body, html[lang="ar"] body { font-family: var(--rv-font-fa); }
+/* Chinese → Noto Sans SC */
+html[lang="zh"] body { font-family: var(--rv-font-zh); }
+/* Japanese → Noto Sans JP */
+html[lang="ja"] body { font-family: var(--rv-font-ja); }
+.rv-doc, .rv-docInner, .rv-toolbar, .rv-quicknav, .rv-helpDialog {
+  font-family: inherit;
+}
+.rv-name, .rv-role, .rv-eduDeg, .rv-h, .rv-skillLabel {
+  letter-spacing: -0.005em;
+}
+.rv-monogram { font-family: var(--rv-font-mono); }
+.rv-kbd { font-family: var(--rv-font-mono); }
+
+/* ───────── Reading progress bar ───────── */
+.rv-progress {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; background: transparent; z-index: 100;
+}
+.rv-progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rv-accent), #2dd4bf);
+  transition: width 0.1s ease;
+  box-shadow: 0 0 8px rgba(15, 118, 110, 0.5);
+}
+
+/* ───────── Back to top button ───────── */
+.rv-topBtn {
+  position: fixed; bottom: 24px; inset-inline-end: 24px;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: none; background: var(--rv-accent); color: #fff;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px -4px rgba(15, 118, 110, 0.5);
+  opacity: 0; transform: translateY(10px); pointer-events: none;
+  transition: all 0.2s ease; z-index: 90;
+}
+.rv-topBtn.rv-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.rv-topBtn:hover { background: #0d5f58; transform: translateY(-2px); }
+
+/* ───────── Help dialog ───────── */
+.rv-helpOverlay {
+  position: fixed; inset: 0; z-index: 110;
+  background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  animation: rv-fade 0.18s ease;
+}
+.rv-helpDialog {
+  position: relative; background: #fff; border-radius: 14px;
+  box-shadow: 0 30px 80px -20px rgba(15,23,42,.5);
+  max-width: 420px; width: 100%; padding: 24px; color: var(--rv-body);
+}
+.rv-app.rv-dark .rv-helpDialog { background: #0f172a; }
+.rv-helpTitle { font-size: 16px; font-weight: 700; color: var(--rv-ink); margin: 0 0 4px; display: flex; align-items: center; gap: 8px; }
+.rv-helpSub { font-size: 12px; color: var(--rv-muted); margin-bottom: 16px; }
+.rv-helpList { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.rv-helpItem { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--rv-body); }
+.rv-helpKeys { display: flex; gap: 4px; }
+.rv-helpClose {
+  position: absolute; top: 14px; inset-inline-end: 14px;
+  width: 30px; height: 30px; border-radius: 8px;
+  border: 1px solid var(--rv-line); background: #fff; color: var(--rv-ink);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.rv-app.rv-dark .rv-helpClose { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+.rv-helpClose:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+
+@media print {
+  .rv-progress, .rv-topBtn, .rv-helpOverlay, .rv-quicknav, .rv-helpBtn { display: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="rv-app" id="app">
+  <div class="rv-progress" aria-hidden="true"><div class="rv-progressFill" id="progressFill" style="width:0%"></div></div>
+
+  <div class="rv-toolbar" role="toolbar" aria-label="Resume controls">
+    <div style="display:flex;align-items:center;gap:10px;min-width:0">
+      <span class="rv-atsBadge" id="atsBadge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg> <span id="atsBadgeText">ATS-READY</span></span>
+      <button type="button" class="rv-iconBtn rv-helpBtn" id="helpBtn" title="Keyboard shortcuts"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></button>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <button type="button" class="rv-iconBtn" id="darkBtn" aria-pressed="false" title="Dark mode"><svg id="darkIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+      <button type="button" class="rv-iconBtn" id="copyBtn" title="Copy plain text"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
+      <button type="button" class="rv-iconBtn" id="downloadBtn" title="Download HTML"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+      <span style="width:1px;height:22px;background:var(--rv-line);margin:0 4px"></span>
+      <div style="position:relative" id="langWrap">
+        <button type="button" class="rv-langBtn" id="langBtn" aria-haspopup="listbox" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> <span id="langLabel">English</span> <svg id="langChevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .15s"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <ul role="listbox" class="rv-menu" id="langMenu" style="display:none;position:absolute;top:calc(100% + 6px);inset-inline-end:0;min-width:150px;list-style:none;margin:0;padding:6px;background:var(--rv-tint);border:1px solid var(--rv-line);border-radius:10px;box-shadow:0 16px 40px -16px rgba(15,23,42,.35);z-index:60"></ul>
+      </div>
+      <button type="button" class="rv-printBtn" id="printBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg> <span id="printText">Print / Save as PDF</span></button>
+    </div>
+  </div>
+
+  <nav class="rv-quicknav" id="quicknav" aria-label="Jump to section"></nav>
+
+  <article class="rv-doc" id="doc" dir="ltr" lang="en" itemscope itemtype="https://schema.org/Person">
+    <div class="rv-docInner" id="docInner"></div>
+  </article>
+
+  <div class="rv-printRunning" aria-hidden="true"><span class="rv-pfLeft" id="pfLeft"></span><span class="rv-pfRight"></span></div>
+
+  <button type="button" class="rv-topBtn" id="topBtn" title="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <div class="rv-helpOverlay" id="helpOverlay" style="display:none">
+    <div class="rv-helpDialog">
+      <button type="button" class="rv-helpClose" id="helpClose"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+      <h2 class="rv-helpTitle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M6 8h.001"/><path d="M10 8h.001"/><path d="M14 8h.001"/><path d="M18 8h.001"/><path d="M8 12h.001"/><path d="M12 12h.001"/><path d="M16 12h.001"/><path d="M7 16h10"/></svg> <span id="helpTitleText">Keyboard Shortcuts</span></h2>
+      <p class="rv-helpSub" id="helpSubText">Press a key to trigger an action. Escape closes this dialog.</p>
+      <ul class="rv-helpList" id="helpList"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {"identity":{"name":"Sayyid Omid Mousavi Mehr","nameLocalized":{"fa":"سید امید موسوی‌مهر"},"email":"s.omid.m.mehr@gmail.com","phone":"+98 915 911 3904","phoneHref":"+989159113904","location":"Mashhad, Iran","linkedin":"linkedin.com/in/sommehr","linkedinHref":"https://linkedin.com/in/sommehr","github":"github.com/SOMM-55","githubHref":"https://github.com/SOMM-55"},"languages":[{"code":"en","label":"English"},{"code":"fa","label":"فارسی"},{"code":"de","label":"Deutsch"},{"code":"zh","label":"中文"},{"code":"ja","label":"日本語"},{"code":"es","label":"Español"},{"code":"ru","label":"Русский"},{"code":"ar","label":"العربية"}],"uiStrings":{"en":{"darkMode":"Dark mode","lightMode":"Light mode","download":"Download HTML","downloadTitle":"Download a self-contained HTML copy of this resume","zoomIn":"Increase text size","zoomOut":"Decrease text size","reset":"Reset","atsBadge":"ATS-ready","atsBadgeTitle":"Semantic HTML · schema.org microdata · print-friendly","preparing":"Preparing print…","keyboardHint":"Shortcuts: P print · D download · +/- zoom","copyText":"Copy text","copyTextTitle":"Copy a plain-text version of this resume for pasting into ATS web-forms","copied":"Copied!","copyFailed":"Copy failed","quickJump":"Jump to section","proficiency":"Proficiency"},"fa":{"darkMode":"حالت تاریک","lightMode":"حالت روشن","download":"دانلود HTML","downloadTitle":"دانلود یک نسخه HTML مستقل از این رزومه","zoomIn":"بزرگ‌نمایی متن","zoomOut":"کوچک‌نمایی متن","reset":"بازنشانی","atsBadge":"آماده برای ATS","atsBadgeTitle":"HTML معنایی · میکرودیتای schema.org · مناسب چاپ","preparing":"آماده‌سازی چاپ…","keyboardHint":"میانبرها: P چاپ · D دانلود · +/- بزرگ‌نمایی","copyText":"کپی متن","copyTextTitle":"کپی نسخه متنی ساده رزومه برای جای‌گذاری در فرم‌های ATS","copied":"کپی شد!","copyFailed":"کپی ناموفق","quickJump":"پرش به بخش","proficiency":"سطح تسلط"},"de":{"darkMode":"Dunkelmodus","lightMode":"Hellmodus","download":"HTML herunterladen","downloadTitle":"Eigenständige HTML-Kopie dieses Lebenslaufs herunterladen","zoomIn":"Schrift vergrößern","zoomOut":"Schrift verkleinern","reset":"Zurücksetzen","atsBadge":"ATS-bereit","atsBadgeTitle":"Semantisches HTML · schema.org Microdata · druckfreundlich","preparing":"Druck wird vorbereitet …","keyboardHint":"Tastenkürzel: P drucken · D herunterladen · +/- Zoom","copyText":"Text kopieren","copyTextTitle":"Klartext-Version des Lebenslaufs kopieren (zum Einfügen in ATS-Webformulare)","copied":"Kopiert!","copyFailed":"Kopieren fehlgeschlagen","quickJump":"Zum Abschnitt springen","proficiency":"Kenntnisstand"},"zh":{"darkMode":"深色模式","lightMode":"浅色模式","download":"下载 HTML","downloadTitle":"下载本简历的独立 HTML 副本","zoomIn":"放大文字","zoomOut":"缩小文字","reset":"重置","atsBadge":"ATS 就绪","atsBadgeTitle":"语义化 HTML · schema.org 微数据 · 适合打印","preparing":"正在准备打印…","keyboardHint":"快捷键：P 打印 · D 下载 · +/- 缩放","copyText":"复制文本","copyTextTitle":"复制本简历的纯文本版本，便于粘贴到 ATS 网页表单","copied":"已复制！","copyFailed":"复制失败","quickJump":"跳转到章节","proficiency":"熟练度"},"ja":{"darkMode":"ダークモード","lightMode":"ライトモード","download":"HTMLをダウンロード","downloadTitle":"この履歴書の自己完結型HTMLコピーをダウンロード","zoomIn":"文字を拡大","zoomOut":"文字を縮小","reset":"リセット","atsBadge":"ATS対応","atsBadgeTitle":"セマンティックHTML · schema.orgマイクロデータ · 印刷向け","preparing":"印刷を準備中…","keyboardHint":"ショートカット：P 印刷 · D ダウンロード · +/- ズーム","copyText":"テキストをコピー","copyTextTitle":"ATSのWebフォームに貼り付けるためのプレーンテキスト版をコピー","copied":"コピー済み！","copyFailed":"コピー失敗","quickJump":"セクションへジャンプ","proficiency":"習熟度"},"es":{"darkMode":"Modo oscuro","lightMode":"Modo claro","download":"Descargar HTML","downloadTitle":"Descargar una copia HTML autocontenida de este currículum","zoomIn":"Aumentar texto","zoomOut":"Disminuir texto","reset":"Restablecer","atsBadge":"Listo para ATS","atsBadgeTitle":"HTML semántico · microdatos schema.org · apto para imprimir","preparing":"Preparando impresión…","keyboardHint":"Atajos: P imprimir · D descargar · +/- zoom","copyText":"Copiar texto","copyTextTitle":"Copia una versión en texto plano del currículum para pegar en formularios ATS","copied":"¡Copiado!","copyFailed":"Copia fallida","quickJump":"Ir a la sección","proficiency":"Nivel"},"ru":{"darkMode":"Тёмная тема","lightMode":"Светлая тема","download":"Скачать HTML","downloadTitle":"Скачать автономную HTML-копию этого резюме","zoomIn":"Увеличить текст","zoomOut":"Уменьшить текст","reset":"Сбросить","atsBadge":"Готово для ATS","atsBadgeTitle":"Семантический HTML · микроданные schema.org · для печати","preparing":"Подготовка печати…","keyboardHint":"Горячие клавиши: P печать · D скачать · +/- масштаб","copyText":"Копировать текст","copyTextTitle":"Копировать текстовую версию резюме для вставки в ATS-формы","copied":"Скопировано!","copyFailed":"Не удалось скопировать","quickJump":"Перейти к разделу","proficiency":"Уровень владения"},"ar":{"darkMode":"الوضع الداكن","lightMode":"الوضع الفاتح","download":"تنزيل HTML","downloadTitle":"تنزيل نسخة HTML مستقلة من هذه السيرة الذاتية","zoomIn":"تكبير النص","zoomOut":"تصغير النص","reset":"إعادة ضبط","atsBadge":"جاهز لـ ATS","atsBadgeTitle":"HTML دلالي · بيانات schema.org · مناسب للطباعة","preparing":"جارٍ تجهيز الطباعة…","keyboardHint":"اختصارات: P طباعة · D تنزيل · +/- تكبير","copyText":"نسخ النص","copyTextTitle":"نسخ نسخة نصية بسيطة من السيرة الذاتية للصقها في نماذج ATS","copied":"تم النسخ!","copyFailed":"فشل النسخ","quickJump":"الانتقال إلى القسم","proficiency":"مستوى الإتقان"}},"content":{"en":{"dir":"ltr","langName":"English","title":"Senior Data Engineer · Agentic Systems","eyebrow":"7+ yrs · Data Pipelines · AI-Agent Workflows","ui":{"print":"Print / Save","language":"Language","present":"Present","awardLabel":"Award","gpaNote":"German scale approx.","native":"Native","working":"Working Proficiency","thesis":"Thesis","techLabel":"Technologies"},"contact":{"email":"Email","phone":"Phone","location":"Location","linkedin":"LinkedIn","github":"GitHub"},"sections":{"summary":"Professional Summary","experience":"Professional Experience","projects":"Projects","skills":"Technical Skills","education":"Education","certificates":"Certificates","languages":"Languages","interests":"Interests"},"summary":"Full-Stack Developer with 7+ years of experience in data engineering and system architecture. Strong in Node.js, TypeScript, Python, and PostgreSQL, with hands-on work in microservices, ETL/ELT pipelines, and clean architecture. Recently I've been writing specs and having AI agents implement them — a workflow that cut typical multi-week builds down to days. Open to relocation across Germany, the Netherlands, and Scandinavia; visa sponsorship required.","jobs":[{"role":"AI-Native / Agentic Systems Engineer","company":"Part Software Group","location":"Mashhad, Iran","period":"Mar 2026 – Present","typeLabel":"Full-time","modelLabel":"On-site","overview":"Solo-architecting and shipping a commercial-scale production system using an agent-driven development workflow — writing specifications, orchestrating AI agents through implementation, and owning verification/release myself end-to-end.","achievements":["Shipped a mechanized document-registration MVP in 10 days for a platform serving Iran’s Document Registration Organization — spec written, agent-implemented, reviewed before release; the MVP secured official licensing.","Built two side projects (file-sharing app, todo list) in 2 days each to benchmark the spec-driven workflow against real CRUD and stateful use cases.","Built security and usability audit agents that produce a pre-release checklist — caught issues before they reached production."],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"Data Engineer","company":"Part Software Group","location":"Mashhad, Iran","period":"Sep 2022 – Mar 2026","typeLabel":"Full-time","modelLabel":"On-site","overview":"Designed and maintained data processing pipelines for reporting and aggregate datasets across the database and backend layers, handling hundreds of gigabytes of data. Applied the microkernel architecture pattern to build “Delta”, a data-processing server and client communicating over HTTP and gRPC.","achievements":["Built scalable data processing pipelines in Node.js and Python for reporting and aggregate data at hundreds-of-GB scale.","Applied the microkernel architecture pattern to Delta, enabling versatile data acquisition and processing over HTTP and gRPC.","Secured 2nd place in the company’s Data Date Challenge."],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"Full-Stack Developer","company":"TCI — Telecommunication Company of Iran","location":"Mashhad, Iran","period":"Jan 2015 – Apr 2023","typeLabel":"Full-time","modelLabel":"On-site","overview":"Designed, developed, and deployed a web-based workflow management system (mini-ERP) for the technical-support ISP branch, used daily by 80+ employees and managers and replacing thousands of paper forms per month. Combined solo development with a 2-person team, leading the project while completing the M.Sc. on a flexible night-shift schedule.","achievements":["Designed and built a web-based workflow management system (mini-ERP) for the ISP technical-support branch, adopted by 80+ daily users.","Streamlined operations with 20+ modules (Notifications, Archives, Employee Evaluation, Work-Shift Management), reducing manual work and errors.","Implemented granular access control with 80+ permission groups for tailored, secure module access.","Cut paper usage by thousands of forms per month, contributing to a more efficient and eco-friendly workplace.","Led the project within a 2-person team while studying for the M.Sc., working flexible night shifts to balance both."],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"File-Sharing App","description":"Chunked upload, resumable downloads, and a minimal auth layer. Built in 2 days CRUD-heavy benchmark for the spec-driven workflow.","tech":"Next.js, Node.js, TypeScript, Docker"},{"name":"Todo List","description":"Optimistic UI updates, keyboard-driven navigation, and localStorage persistence. Built in 2 days to test the workflow on stateful UI patterns.","tech":"Next.js, Node.js, TypeScript, Docker"}],"skills":[{"label":"Data Engineering","items":["ETL / ELT Pipelines","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","Gigabyte-scale Data"]},{"label":"AI-Agent Engineering","items":["Spec-Driven Development (SDD)","Harness Engineering","Agentic Frameworks"]},{"label":"Programming Languages","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"Frameworks & Libraries","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps & Infrastructure","items":["Linux (kernel tools)","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"Architecture & Methodologies","items":["Clean Architecture","Microservices","Microkernel","MVC / MTV","Saga","Event-Driven","REST API Design","TDD","Agile"]},{"label":"Familiar With","items":["Kubernetes"]}],"education":[{"degree":"M.Sc. Computer Software Engineering","institution":"Imam Reza International University","location":"Mashhad, Iran","period":"Oct 2015 – Sep 2018","grade":"GPA: 17.06/20 (≈ 1.7 German scale)","thesis":"Context-aware Recommendation Systems"},{"degree":"B.Sc. Computer Software Engineering","institution":"Imam Reza International University","location":"Mashhad, Iran","period":"Oct 2010 – Sep 2014","grade":"GPA: 16.50/20 (≈ 2.3 German scale)"}],"certificates":[{"name":"Professional Project-oriented Course: Back-end Development with Django","issuer":"Quera.org"},{"name":"Professional Project-oriented Course: Front-end Development with React","issuer":"Quera.org"}],"languagesKnown":[{"name":"Persian","level":"Native"},{"name":"English","level":"Working Proficiency"}],"interests":["Gaming","Miniature wooden structure building","Piano"],"award":"2nd place — Part Software Group Data Date Challenge"},"fa":{"dir":"rtl","langName":"فارسی","title":"مهندس ارشد داده · سیستم‌های Agentic","eyebrow":"۷+ سال · پایپ‌لاین داده · گردش‌کار AI-Agent","ui":{"print":"چاپ / ذخیره به‌صورت PDF","language":"زبان","present":"اکنون","awardLabel":"جایزه","gpaNote":"تقریبی بر اساس مقیاس آلمانی","native":"زبان مادری","working":"سطح کاری","thesis":"پایان‌نامه","techLabel":"تکنولوژی‌ها"},"contact":{"email":"ایمیل","phone":"تلفن","location":"محل سکونت","linkedin":"لینکدین","github":"گیت‌هاب"},"sections":{"summary":"خلاصه حرفه‌ای","experience":"سوابق شغلی","projects":"پروژه‌ها","skills":"مهارت‌های فنی","education":"تحصیلات","certificates":"گواهی‌نامه‌ها","languages":"زبان‌ها","interests":"علاقه‌مندی‌ها"},"summary":"توسعه‌دهنده فول‌استک با بیش از ۷ سال تجربه در مهندسی داده و معماری سیستم. مسلط به Node.js، TypeScript، Python و PostgreSQL، با تجربه دستی در معماری مایکروسرویس، پایپ‌لاین‌های ETL/ELT و معماری تمیز. اخیراً مشخصه می‌نویسم و پیاده‌سازی را به agentهای هوش مصنوعی می‌سپارم — رویکردی که ساخت پروژه‌های معمول چند هفته‌ای را به چند روز رسانده است. آماده مهاجرت به آلمان، هلند و اسکاندیناوی؛ نیازمند اسپانسرشیپ ویزا.","jobs":[{"role":"مهندس سیستم‌های AI-Native / Agentic","company":"Part Software Group","location":"مشهد، ایران","period":"مارس ۲۰۲۶ – اکنون","typeLabel":"تمام‌وقت","modelLabel":"حضوری","overview":"معماری مستقل و تحویل یک سیستم تولیدی تجاری‌مقیاس با گردش‌کار توسعه مبتنی بر agent — نوشتن مشخصه‌ها، هدایت agentهای هوش مصنوعی در پیاده‌سازی، و مالکیت کامل تأیید و انتشار از ابتدا تا انتها.","achievements":["تحویل MVP ثبت مکانیزه اسناد در ۱۰ روز برای پلتفرمی در خدمت سازمان ثبت اسناد ایران — مشخصه نوشته شد، توسط agent پیاده‌سازی شد، قبل از انتشار بازبینی شد؛ این MVP مجوز رسمی را کسب کرد.","ساخت دو پروژه جانبی (اپ اشتراک فایل، todolist) هر کدام در ۲ روز برای راستی‌آزمایی گردش‌کار مشخصه‌محور در کاربردهای واقعی CRUD و stateful.","ساخت agentهای ممیزی امنیتی و کاربری که یک چک‌لیست پیش از انتشار تولید می‌کنند — مشکلات را قبل از رسیدن به تولید شناسایی کردند."],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"مهندس داده","company":"Part Software Group","location":"مشهد، ایران","period":"سپتامبر ۲۰۲۲ – مارس ۲۰۲۶","typeLabel":"تمام‌وقت","modelLabel":"حضوری","overview":"طراحی و نگهداری پایپ‌لاین‌های پردازش داده برای داده‌های گزارش‌گیری و تجمیعی در لایه‌های دیتابیس و بک‌اند، با پردازش صدها گیگابایت داده. به‌کارگیری الگوی معماری میکروکرنل برای ساخت «Delta»، یک سرور و کلاینت پردازش داده با ارتباط روی HTTP و gRPC.","achievements":["ساخت پایپ‌لاین‌های مقیاس‌پذیر پردازش داده با Node.js و Python برای داده‌های گزارش‌گیری و تجمیعی در مقیاس صدها گیگابایت.","به‌کارگیری الگوی معماری میکروکرنل در Delta برای جمع‌آوری و پردازش همه‌منظوره داده روی HTTP و gRPC.","کسب مقام دوم در Data Date Challenge شرکت."],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"توسعه‌دهنده فول‌استک","company":"شرکت مخابرات ایران (TCI)","location":"مشهد، ایران","period":"ژانویه ۲۰۱۵ – آوریل ۲۰۲۳","typeLabel":"تمام‌وقت","modelLabel":"حضوری","overview":"طراحی، توسعه و استقرار سیستم مبتنی بر وب مدیریت گردش‌کار (mini-ERP) برای شعبه پشتیبانی فنی ISP، با استفاده روزانه بیش از ۸۰ کارمند و مدیر و جایگزینی هزاران فرم کاغذی در ماه. ترکیب توسعه انفرادی با تیم دو نفره و رهبری پروژه در کنار تحصیل در مقطع ارشد با ساعت کاری شناور (شب‌کار).","achievements":["طراحی و ساخت سیستم مبتنی بر وب مدیریت گردش‌کار (mini-ERP) برای شعبه پشتیبانی فنی ISP، با پذیرش بیش از ۸۰ کاربر روزانه.","بهینه‌سازی فرایندها با ۲۰+ ماژول (اعلان‌ها، آرشیو، ارزیابی کارکنان، مدیریت شیفت) و کاهش کار دستی و خطاها.","پیاده‌سازی کنترل دسترسی ریزدانه با ۸۰+ گروه دسترسی برای دسترسی امن و سفارشی به ماژول‌ها.","کاهش مصرف کاغذ به‌اندازه هزاران فرم در ماه و کمک به محیط‌کاری کارآمدتر و دوست‌دار محیط‌زیست.","رهبری پروژه در تیم دو نفره در کنار تحصیل در مقطع ارشد با شیفت‌های شبانه انعطاف‌پذیر برای توازن هر دو."],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"اپ اشتراک‌گذاری فایل","description":"آپلود تکه‌ای، دانلود قابل‌ادامه و لایه احراز هویت مینیمال. ساخته‌شده در ۲ روز به‌عنوان معیار CRUD-محور برای گردش‌کار مشخصه‌محور.","tech":"Next.js، Node.js، TypeScript، Docker"},{"name":"فهرست کارها (Todo List)","description":"به‌روزرسانی خوش‌بینانه رابط، ناوبری کیبوردمحور و ماندگاری در localStorage. ساخته‌شده در ۲ روز برای آزمایش گردش‌کار روی الگوهای رابط stateful.","tech":"Next.js، Node.js، TypeScript، Docker"}],"skills":[{"label":"مهندسی داده","items":["پایپ‌لاین‌های ETL/ELT","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","داده در مقیاس گیگابایت"]},{"label":"مهندسی AI-Agent","items":["SDD (توسعه مبتنی بر مشخصه)","Harness Engineering","چارچوب‌های Agentic"]},{"label":"زبان‌های برنامه‌نویسی","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"فریم‌ورک‌ها و کتابخانه‌ها","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps و زیرساخت","items":["Linux (ابزارهای کرنل)","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"معماری و متدولوژی","items":["معماری تمیز","مایکروسرویس","میکروکرنل","MVC / MTV","Saga","Event-Driven","طراحی REST API","TDD","Agile"]},{"label":"آشنا با","items":["Kubernetes"]}],"education":[{"degree":"کارشناسی ارشد مهندسی نرم‌افزار کامپیوتر","institution":"دانشگاه بین‌المللی امام رضا","location":"مشهد، ایران","period":"اکتبر ۲۰۱۵ – سپتامبر ۲۰۱۸","grade":"معدل: ۱۷.۰۶/۲۰ (≈ ۱.۷ مقیاس آلمانی)","thesis":"سیستم‌های توصیه‌گر context-aware"},{"degree":"کارشناسی مهندسی نرم‌افزار کامپیوتر","institution":"دانشگاه بین‌المللی امام رضا","location":"مشهد، ایران","period":"اکتبر ۲۰۱۰ – سپتامبر ۲۰۱۴","grade":"معدل: ۱۶.۵۰/۲۰ (≈ ۲.۳ مقیاس آلمانی)"}],"certificates":[{"name":"دوره پروژه‌محور حرفه‌ای: توسعه بک‌اند با Django","issuer":"Quera.org"},{"name":"دوره پروژه‌محور حرفه‌ای: توسعه فرانت‌اند با React","issuer":"Quera.org"}],"languagesKnown":[{"name":"فارسی","level":"زبان مادری"},{"name":"انگلیسی","level":"سطح کاری"}],"interests":["گیمینگ","ساخت سازه‌های چوبی مینیاتوری","پیانو"],"award":"مقام دوم — Data Date Challenge شرکت Part Software Group"},"de":{"dir":"ltr","langName":"Deutsch","title":"Senior Data Engineer · Agentic Systems","eyebrow":"7+ Jahre · Daten-Pipelines · AI-Agent-Workflows","ui":{"print":"Drucken / Als PDF speichern","language":"Sprache","present":"heute","awardLabel":"Auszeichnung","gpaNote":"ungefähr deutsche Skala","native":"Muttersprache","working":"Arbeitsniveau","thesis":"Abschlussarbeit","techLabel":"Technologien"},"contact":{"email":"E-Mail","phone":"Telefon","location":"Wohnort","linkedin":"LinkedIn","github":"GitHub"},"sections":{"summary":"Berufliches Profil","experience":"Berufserfahrung","projects":"Projekte","skills":"Technische Fähigkeiten","education":"Ausbildung","certificates":"Zertifikate","languages":"Sprachen","interests":"Interessen"},"summary":"Full-Stack Developer mit über 7 Jahren Erfahrung in Data Engineering und Systemarchitektur. Sicher in Node.js, TypeScript, Python und PostgreSQL, mit praktischer Arbeit in Microservices, ETL/ELT-Pipelines und Clean Architecture. In letzter Zeit schreibe ich Specs und lasse sie von KI-Agenten umsetzen — ein Workflow, der typische mehrwöchige Builds auf Tage reduziert hat. Offen für Umzug nach Deutschland, in die Niederlande und nach Skandinavien; Visumsponsoring erforderlich.","jobs":[{"role":"AI-Native / Agentic Systems Engineer","company":"Part Software Group","location":"Mashhad, Iran","period":"März 2026 – heute","typeLabel":"Vollzeit","modelLabel":"vor Ort","overview":"Solo-Architektur und Auslieferung eines kommerziellen Produktionssystems im Industriemaßstab mit einem agentengetriebenen Entwicklungsworkflow — Specs schreiben, KI-Agenten durch die Implementierung orchestrieren und Verifikation/Release selbstständig Ende-zu-Ende verantworten.","achievements":["Auslieferung einer MVP zur mechanisierten Dokumentenregistrierung in 10 Tagen für eine Plattform im Dienst der iranischen Dokumentenregistrierungsbehörde — Spec geschrieben, von Agenten umgesetzt, vor Release geprüft; das MVP sicherte die offizielle Lizenzierung.","Zwei Nebenprojekte (File-Sharing-App, Todo-Liste) in jeweils 2 Tagen gebaut, um den spec-driven Workflow an realen CRUD- und zustandsbehafteten Use Cases zu benchmarken.","Sicherheits- und Usability-Audit-Agents gebaut, die eine Pre-Release-Checkliste erzeugen — haben Probleme entdeckt, bevor sie die Produktion erreichten."],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"Data Engineer","company":"Part Software Group","location":"Mashhad, Iran","period":"Sep 2022 – März 2026","typeLabel":"Vollzeit","modelLabel":"vor Ort","overview":"Entwurf und Pflege von Datenverarbeitungspipelines für Reporting- und Aggregatdatensätze über Datenbank- und Backend-Ebenen bei Hunderten von GB. Anwendung des Microkernel-Architekturmusters zum Aufbau von „Delta“, einem vielseitigen Datenverarbeitungs-Server und -Client über HTTP und gRPC.","achievements":["Aufbau skalierbarer, zuverlässiger Datenverarbeitungspipelines in Node.js und Python für Reporting- und Aggregatdaten im Hunderte-GB-Maßstab.","Anwendung des Microkernel-Architekturmusters auf Delta für vielseitige Datenerfassung und -verarbeitung über HTTP und gRPC.","Erreichte den 2. Platz bei der unternehmensinternen Data Date Challenge."],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"Full-Stack Developer","company":"TCI — Telecommunication Company of Iran","location":"Mashhad, Iran","period":"Jan 2015 – Apr 2023","typeLabel":"Vollzeit","modelLabel":"vor Ort","overview":"Entwurf, Entwicklung und Bereitstellung eines webbasierten Workflow-Management-Systems (Mini-ERP) für den technischen ISP-Support-Zweig, täglich genutzt von über 80 Mitarbeitern und Managern und Ersatz von Tausenden Papierformularen pro Monat. Kombination aus Solo-Entwicklung und 2-Personen-Team mit Projektführung parallel zum M.Sc.-Studium im flexiblen Nachtschicht-Modell.","achievements":["Entwurf und Aufbau eines webbasierten Workflow-Management-Systems (Mini-ERP) für den ISP-Techniksupport-Zweig, angenommen von über 80 täglichen Nutzern.","Optimierung der Abläufe mit 20+ Modulen (Benachrichtigungen, Archive, Mitarbeiterbewertung, Schichtmanagement) zur Reduzierung manueller Arbeit und Fehler.","Implementierung einer granularen Zugriffskontrolle mit 80+ Berechtigungsgruppen für maßgeschneiderten, sicheren Modulzugriff.","Reduzierung des Papierverbrauchs um Tausende Formulare pro Monat für einen effizienteren und umweltfreundlicheren Arbeitsplatz.","Projektführung im 2-Personen-Team parallel zum M.Sc.-Studium mit flexiblen Nachtschichten zur Balance beider Verpflichtungen."],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"File-Sharing-App","description":"Chunked-Upload, fortsetzbare Downloads und eine minimale Auth-Schicht. In 2 Tagen gebaut als CRUD-lastiger Benchmark für den spec-driven Workflow.","tech":"Next.js, Node.js, TypeScript, Docker"},{"name":"Todo-Liste","description":"Optimistische UI-Updates, tastaturgesteuerte Navigation und localStorage-Persistenz. In 2 Tagen gebaut, um den Workflow an zustandsbehafteten UI-Patterns zu testen.","tech":"Next.js, Node.js, TypeScript, Docker"}],"skills":[{"label":"Data Engineering","items":["ETL/ELT-Pipelines","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","Gigabyte-skalierte Daten"]},{"label":"AI-Agent-Engineering","items":["SDD (Spec-Driven Development)","Harness Engineering","Agenten-Frameworks"]},{"label":"Programmiersprachen","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"Frameworks & Bibliotheken","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps & Infrastruktur","items":["Linux (Kernel-Tools)","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"Architektur & Methoden","items":["Clean Architecture","Microservices","Microkernel","MVC / MTV","Saga","Event-Driven","REST-API-Design","TDD","Agile"]},{"label":"Vertraut mit","items":["Kubernetes"]}],"education":[{"degree":"M.Sc. Softwaretechnik","institution":"Imam Reza International University","location":"Mashhad, Iran","period":"Okt 2015 – Sep 2018","grade":"Note: 17,06/20 (≈ 1,7 deutsche Skala)","thesis":"Context-aware Recommendation Systems"},{"degree":"B.Sc. Softwaretechnik","institution":"Imam Reza International University","location":"Mashhad, Iran","period":"Okt 2010 – Sep 2014","grade":"Note: 16,50/20 (≈ 2,3 deutsche Skala)"}],"certificates":[{"name":"Projektorientierter Profi-Kurs: Backend-Entwicklung mit Django","issuer":"Quera.org"},{"name":"Projektorientierter Profi-Kurs: Frontend-Entwicklung mit React","issuer":"Quera.org"}],"languagesKnown":[{"name":"Persisch","level":"Muttersprache"},{"name":"Englisch","level":"Arbeitsniveau"}],"interests":["Gaming","Bau von Miniatur-Holzstrukturen","Klavier"],"award":"2. Platz — Data Date Challenge der Part Software Group"},"zh":{"dir":"ltr","langName":"中文","title":"高级数据工程师 · 智能体系统","eyebrow":"7年以上 · 数据管道 · AI智能体工作流","ui":{"print":"打印 / 另存为 PDF","language":"语言","present":"至今","awardLabel":"奖项","gpaNote":"约等于德国评分制","native":"母语","working":"工作熟练度","thesis":"毕业论文","techLabel":"技术栈"},"contact":{"email":"邮箱","phone":"电话","location":"所在地","linkedin":"LinkedIn","github":"GitHub"},"sections":{"summary":"个人简介","experience":"工作经历","projects":"项目经历","skills":"技术技能","education":"教育背景","certificates":"证书","languages":"语言能力","interests":"兴趣爱好"},"summary":"全栈开发工程师，拥有 7 年以上数据工程与系统架构经验。精通 Node.js、TypeScript、Python 与 PostgreSQL，在微服务、ETL/ELT 管道与整洁架构方面有实际项目经验。最近我开始编写规格说明，交由 AI 智能体实现——这套工作流将通常数周的构建压缩到几天。愿意赴德国、荷兰及斯堪的纳维亚工作；需要签证赞助。","jobs":[{"role":"AI-Native / 智能体系统工程师","company":"Part Software Group","location":"伊朗 马什哈德","period":"2026年3月 – 至今","typeLabel":"全职","modelLabel":"现场","overview":"独立架构并交付商业化规模的生产系统，使用智能体驱动的开发工作流——编写规格说明、编排 AI 智能体完成实现，并端到端自行负责验证与发布。","achievements":["在 10 天内为伊朗文书登记组织服务的平台交付了机械化文档登记 MVP——规格编写、智能体实现、发布前审查；该 MVP 取得了正式许可。","另外用各 2 天时间构建了两个副项目（文件共享应用、待办清单），用真实的 CRUD 与有状态场景对规格驱动工作流做基准验证。","构建安全性与可用性审计智能体，生成发布前检查清单——在问题进入生产环境前就将其捕获。"],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"数据工程师","company":"Part Software Group","location":"伊朗 马什哈德","period":"2022年9月 – 2026年3月","typeLabel":"全职","modelLabel":"现场","overview":"设计并维护用于报表与聚合数据集的数据处理管道，覆盖数据库与后端层，处理数百 GB 数据。应用微内核架构模式构建“Delta”——一个通过 HTTP 与 gRPC 通信的多功能数据处理服务端与客户端。","achievements":["使用 Node.js 与 Python 构建可扩展、可靠的数据处理管道，处理数百 GB 规模的报表与聚合数据。","将微内核架构模式应用于 Delta，实现通过 HTTP 与 gRPC 进行多功能数据采集与处理。","在公司 Data Date Challenge 中获得第二名。"],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"全栈开发工程师","company":"伊朗电信公司 (TCI)","location":"伊朗 马什哈德","period":"2015年1月 – 2023年4月","typeLabel":"全职","modelLabel":"现场","overview":"为 ISP 技术支持分部设计、开发并部署基于 Web 的工作流管理系统（小型 ERP），每日被 80+ 员工与管理层使用，每月替代数千份纸质表单。结合独立开发与 2 人团队，并在攻读硕士期间以弹性夜班方式主导项目。","achievements":["为 ISP 技术支持分部设计并构建基于 Web 的工作流管理系统（小型 ERP），被 80+ 日常用户采用。","通过 20+ 模块（通知、归档、员工评估、排班管理）优化流程，减少人工操作与错误。","实现细粒度访问控制，配置 80+ 权限组以实现定制、安全的模块访问。","每月减少数千份纸质表单的使用，打造更高效、环保的办公环境。","在 2 人团队中主导项目，同时以弹性夜班平衡硕士学业。"],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"文件共享应用","description":"分片上传、可恢复下载与最小化认证层。用 2 天构建，作为对规格驱动工作流的 CRUD 密集型基准测试。","tech":"Next.js、Node.js、TypeScript、Docker"},{"name":"待办清单","description":"乐观 UI 更新、键盘驱动导航与 localStorage 持久化。用 2 天构建，用于在状态化 UI 模式上测试该工作流。","tech":"Next.js、Node.js、TypeScript、Docker"}],"skills":[{"label":"数据工程","items":["ETL/ELT 管道","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","GB级数据处理"]},{"label":"AI智能体工程","items":["SDD（规格驱动开发）","Harness Engineering","智能体框架"]},{"label":"编程语言","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"框架与库","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps 与基础设施","items":["Linux（内核工具）","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"架构与方法论","items":["整洁架构","微服务","微内核","MVC / MTV","Saga","事件驱动","REST API 设计","TDD","敏捷"]},{"label":"了解","items":["Kubernetes"]}],"education":[{"degree":"软件工程硕士","institution":"伊玛目礼萨国际大学","location":"伊朗 马什哈德","period":"2015年10月 – 2018年9月","grade":"绩点：17.06/20（≈ 德国评分 1.7）","thesis":"上下文感知推荐系统"},{"degree":"软件工程学士","institution":"伊玛目礼萨国际大学","location":"伊朗 马什哈德","period":"2010年10月 – 2014年9月","grade":"绩点：16.50/20（≈ 德国评分 2.3）"}],"certificates":[{"name":"项目导向专业课程：使用 Django 进行后端开发","issuer":"Quera.org"},{"name":"项目导向专业课程：使用 React 进行前端开发","issuer":"Quera.org"}],"languagesKnown":[{"name":"波斯语","level":"母语"},{"name":"英语","level":"工作熟练度"}],"interests":["游戏","微缩木结构制作","钢琴"],"award":"第二名 — Part Software Group Data Date Challenge"},"ja":{"dir":"ltr","langName":"日本語","title":"シニアデータエンジニア · エージェントシステム","eyebrow":"7年以上 · データパイプライン · AIエージェントワークフロー","ui":{"print":"印刷 / PDFとして保存","language":"言語","present":"現在","awardLabel":"受賞","gpaNote":"ドイツ評価換算（概算）","native":"ネイティブ","working":"業務レベル","thesis":"修士論文","techLabel":"使用技術"},"contact":{"email":"メール","phone":"電話","location":"居住地","linkedin":"LinkedIn","github":"GitHub"},"sections":{"summary":"プロフェッショナル概要","experience":"職務経歴","projects":"プロジェクト","skills":"技術スキル","education":"学歴","certificates":"資格・認定","languages":"言語","interests":"趣味"},"summary":"フルスタック開発者として7年以上の経験、データエンジニアリングとシステムアーキテクチャを専門とする。Node.js、TypeScript、Python、PostgreSQLに熟達し、マイクロサービス、ETL/ELTパイプライン、クリーンアーキテクチャを実務で扱ってきた。最近はスペックを書き、AIエージェントに実装させるワークフローを試しており、通常数週間かかるビルドを数日に短縮できた。ドイツ、オランダ、スカンジナビアへの移住に意欲的；ビザスポンサーシップが必要。","jobs":[{"role":"AI-Native / エージェントシステムエンジニア","company":"Part Software Group","location":"イラン マシュハド","period":"2026年3月 – 現在","typeLabel":"正社員","modelLabel":"オンサイト","overview":"エージェント駆動の開発ワークフローを用い、商用規模の本番システムを単独でアーキテクトし提供——スペックを記述し、AIエージェントに実装をオーケストレーションし、検証とリリースを自身でエンドツーエンド完遂。","achievements":["イランの文書登録機関にサービスを提供するプラットフォーム向けに機械化ドキュメント登録MVPを10日でリリース——スペック記述、エージェント実装、リリース前レビュー；当該MVPは正式ライセンスを取得。","さらに2日ずつで2つのサイドプロジェクト（ファイル共有アプリ、Todoリスト）を構築し、実際のCRUDおよびステートフルなユースケースでスペック駆動ワークフローをベンチマーク。","リリース前チェックリストを生成するセキュリティおよびユーザビリティ監査エージェントを構築——本番に到達する前に問題を検出。"],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"データエンジニア","company":"Part Software Group","location":"イラン マシュハド","period":"2022年9月 – 2026年3月","typeLabel":"正社員","modelLabel":"オンサイト","overview":"データベースおよびバックエンド層を横断するレポート用・集計用データセットのデータ処理パイプラインを設計・保守し、数百GB規模のデータを処理。マイクロカーネル・アーキテクチャ・パターンを適用し、HTTPとgRPCで通信する多用途なデータ処理サーバー/クライアント「Delta」を構築。","achievements":["Node.jsとPythonで、数百GB規模のレポート・集計データ向けのスケーラブルかつ信頼性の高いデータ処理パイプラインを構築。","Deltaにマイクロカーネル・アーキテクチャ・パターンを適用し、HTTPとgRPCによる多用途なデータ取得・処理を実現。","社内Data Date Challengeで2位を獲得。"],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"フルスタック開発者","company":"イラン電気通信会社 (TCI)","location":"イラン マシュハド","period":"2015年1月 – 2023年4月","typeLabel":"正社員","modelLabel":"オンサイト","overview":"ISP技術サポート部門向けのWebベースワークフロー管理システム（ミニERP）を設計・開発・展開し、80名以上の従業員と管理職が日常的に利用、月に数千枚の紙フォームを代替。単独開発と2人チームを組み、柔軟な夜勤で修士課程と並行してプロジェクトを主導。","achievements":["ISP技術サポート部門向けWebベースワークフロー管理システム（ミニERP）を設計・構築し、80名以上の日常ユーザーに採用。","通知、アーカイブ、従業員評価、シフト管理など20以上のモジュールでプロセスを合理化し、手作業とエラーを削減。","80以上の権限グループによる細粒度アクセス制御を実装し、テーラーメードかつ安全なモジュールアクセスを実現。","月に数千枚の紙フォーム使用を削減し、効率的で環境に配慮した職場を実現。","修士課程と並行して2人チームでプロジェクトを主導し、柔軟な夜勤で両立。"],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"ファイル共有アプリ","description":"チャンクアップロード、再開可能なダウンロード、最小限の認証レイヤー。2日で構築し、スペック駆動ワークフローに対するCRUD中心のベンチマークとして使用。","tech":"Next.js、Node.js、TypeScript、Docker"},{"name":"Todoリスト","description":"楽観的UI更新、キーボード駆動ナビゲーション、localStorage永続化。2日で構築し、ステートフルなUIパターンでワークフローをテスト。","tech":"Next.js、Node.js、TypeScript、Docker"}],"skills":[{"label":"データエンジニアリング","items":["ETL/ELTパイプライン","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","ギガバイト規模データ"]},{"label":"AIエージェントエンジニアリング","items":["SDD（スペック駆動開発）","Harness Engineering","エージェント型フレームワーク"]},{"label":"プログラミング言語","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"フレームワーク・ライブラリ","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps・インフラ","items":["Linux（カーネルツール）","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"アーキテクチャ・方法論","items":["クリーンアーキテクチャ","マイクロサービス","マイクロカーネル","MVC / MTV","Saga","イベント駆動","REST API設計","TDD","アジャイル"]},{"label":"知識あり","items":["Kubernetes"]}],"education":[{"degree":"ソフトウェア工学 修士","institution":"イマーム・レザ国際大学","location":"イラン マシュハド","period":"2015年10月 – 2018年9月","grade":"GPA：17.06/20（独評価換算 ≈ 1.7）","thesis":"コンテキスト対応レコメンドシステム"},{"degree":"ソフトウェア工学 学士","institution":"イマーム・レザ国際大学","location":"イラン マシュハド","period":"2010年10月 – 2014年9月","grade":"GPA：16.50/20（独評価換算 ≈ 2.3）"}],"certificates":[{"name":"プロジェクト指向プロフェッショナルコース：Djangoによるバックエンド開発","issuer":"Quera.org"},{"name":"プロジェクト指向プロフェッショナルコース：Reactによるフロントエンド開発","issuer":"Quera.org"}],"languagesKnown":[{"name":"ペルシャ語","level":"ネイティブ"},{"name":"英語","level":"業務レベル"}],"interests":["ゲーム","ミニチュア木造構造物の製作","ピアノ"],"award":"第2位 — Part Software Group Data Date Challenge"},"es":{"dir":"ltr","langName":"Español","title":"Senior Data Engineer · Sistemas Agénticos","eyebrow":"7+ años · Pipelines de datos · Flujos de AI-Agent","ui":{"print":"Imprimir / Guardar como PDF","language":"Idioma","present":"Actualidad","awardLabel":"Premio","gpaNote":"escala alemana aprox.","native":"Nativo","working":"Nivel profesional","thesis":"Tesis","techLabel":"Tecnologías"},"contact":{"email":"Correo","phone":"Teléfono","location":"Ubicación","linkedin":"LinkedIn","github":"GitHub"},"sections":{"summary":"Resumen profesional","experience":"Experiencia profesional","projects":"Proyectos","skills":"Habilidades técnicas","education":"Educación","certificates":"Certificados","languages":"Idiomas","interests":"Intereses"},"summary":"Desarrollador Full-Stack con más de 7 años de experiencia en data engineering y arquitectura de sistemas. Dominio de Node.js, TypeScript, Python y PostgreSQL, con trabajo práctico en microservicios, pipelines ETL/ELT y clean architecture. Últimamente estoy escribiendo specs y dejando que agentes de IA los implementen — un flujo que ha reducido builds típicas de varias semanas a días. Disponible para reubicación a Alemania, Países Bajos y Escandinavia; se requiere patrocinio de visado.","jobs":[{"role":"AI-Native / Agentic Systems Engineer","company":"Part Software Group","location":"Mashhad, Irán","period":"Mar 2026 – Actualidad","typeLabel":"Jornada completa","modelLabel":"Presencial","overview":"Arquitectura en solitario y entrega de un sistema de producción a escala comercial usando un flujo de desarrollo agent-driven — escribiendo specs, orquestando agentes de IA durante la implementación y responsabilizándome de la verificación y el release de principio a fin.","achievements":["Entrega de un MVP de registro mecanizado de documentos en 10 días para una plataforma al servicio de la Organización de Registro de Documentos de Irán — spec escrito, implementado por agente, revisado antes del release; el MVP consiguió la licencia oficial.","Dos proyectos secundarios (app de file sharing, todo list) construidos en 2 días cada uno para benchmark del workflow spec-driven en casos reales CRUD y con estado.","Construcción de agentes de auditoría de seguridad y usabilidad que generan una checklist pre-lanzamiento — detectaron problemas antes de que llegaran a producción."],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"Data Engineer","company":"Part Software Group","location":"Mashhad, Irán","period":"Sep 2022 – Mar 2026","typeLabel":"Jornada completa","modelLabel":"Presencial","overview":"Diseño y mantenimiento de pipelines de procesamiento de datos para conjuntos de reportes y agregados en las capas de base de datos y backend, manejando cientos de GB. Aplicación del patrón de arquitectura microkernel para construir “Delta”, un servidor y cliente versátil de procesamiento de datos sobre HTTP y gRPC.","achievements":["Construcción de pipelines de procesamiento de datos escalables y fiables en Node.js y Python para datos de reportes y agregados a escala de cientos de GB.","Aplicación del patrón de arquitectura microkernel a Delta, permitiendo adquisición y procesamiento versátil de datos sobre HTTP y gRPC.","2º puesto en el Data Date Challenge de la empresa."],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"Desarrollador Full-Stack","company":"TCI — Telecommunication Company of Iran","location":"Mashhad, Irán","period":"Ene 2015 – Abr 2023","typeLabel":"Jornada completa","modelLabel":"Presencial","overview":"Diseño, desarrollo y despliegue de un sistema web de gestión de flujos de trabajo (mini-ERP) para la sucursal de soporte técnico ISP, usado a diario por más de 80 empleados y directivos y sustituyendo miles de formularios en papel al mes. Combinación de desarrollo individual con un equipo de 2 personas, liderando el proyecto mientras cursaba el máster con horario flexible de noche.","achievements":["Diseño y construcción de un sistema web de gestión de flujos de trabajo (mini-ERP) para la sucursal de soporte técnico ISP, adoptado por más de 80 usuarios diarios.","Optimización de procesos con más de 20 módulos (Notificaciones, Archivos, Evaluación de Empleados, Gestión de Turnos), reduciendo trabajo manual y errores.","Implementación de control de acceso granular con más de 80 grupos de permisos para un acceso a módulos a medida y seguro.","Reducción del uso de papel en miles de formularios al mes, contribuyendo a un entorno más eficiente y ecológico.","Liderazgo del proyecto en un equipo de 2 personas mientras cursaba el máster, con turnos nocturnos flexibles para equilibrar ambos."],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"App de file sharing","description":"Subida por chunks, descargas reanudables y una capa de auth mínima. Construida en 2 días como benchmark CRUD-intensivo para el workflow spec-driven.","tech":"Next.js, Node.js, TypeScript, Docker"},{"name":"Todo list","description":"Actualizaciones optimistas de UI, navegación por teclado y persistencia en localStorage. Construida en 2 días para probar el workflow en patrones de UI con estado.","tech":"Next.js, Node.js, TypeScript, Docker"}],"skills":[{"label":"Data Engineering","items":["Pipelines ETL/ELT","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","Datos a escala de gigabytes"]},{"label":"Ingeniería de AI-Agent","items":["SDD (Spec-Driven Development)","Harness Engineering","Frameworks agénticos"]},{"label":"Lenguajes de programación","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"Frameworks y librerías","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps e infraestructura","items":["Linux (herramientas del kernel)","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"Arquitectura y metodologías","items":["Clean Architecture","Microservicios","Microkernel","MVC / MTV","Saga","Event-Driven","Diseño de API REST","TDD","Agile"]},{"label":"Familiarizado con","items":["Kubernetes"]}],"education":[{"degree":"M.Sc. Ingeniería de Software","institution":"Imam Reza International University","location":"Mashhad, Irán","period":"Oct 2015 – Sep 2018","grade":"Nota: 17,06/20 (≈ 1,7 escala alemana)","thesis":"Sistemas de recomendación context-aware"},{"degree":"B.Sc. Ingeniería de Software","institution":"Imam Reza International University","location":"Mashhad, Irán","period":"Oct 2010 – Sep 2014","grade":"Nota: 16,50/20 (≈ 2,3 escala alemana)"}],"certificates":[{"name":"Curso profesional orientado a proyectos: Desarrollo backend con Django","issuer":"Quera.org"},{"name":"Curso profesional orientado a proyectos: Desarrollo frontend con React","issuer":"Quera.org"}],"languagesKnown":[{"name":"Persa","level":"Nativo"},{"name":"Inglés","level":"Nivel profesional"}],"interests":["Videojuegos","Construcción de estructuras de madera en miniatura","Piano"],"award":"2º puesto — Data Date Challenge de Part Software Group"},"ru":{"dir":"ltr","langName":"Русский","title":"Senior Data Engineer · Агентные системы","eyebrow":"7+ лет · Конвейеры данных · AI-агентные процессы","ui":{"print":"Печать / Сохранить как PDF","language":"Язык","present":"настоящее время","awardLabel":"Награда","gpaNote":"прибл. по немецкой шкале","native":"Родной","working":"Рабочий уровень","thesis":"Дипломная работа","techLabel":"Технологии"},"contact":{"email":"Эл. почта","phone":"Телефон","location":"Местоположение","linkedin":"LinkedIn","github":"GitHub"},"sections":{"summary":"Профессиональное резюме","experience":"Опыт работы","projects":"Проекты","skills":"Технические навыки","education":"Образование","certificates":"Сертификаты","languages":"Языки","interests":"Интересы"},"summary":"Full-Stack разработчик с более чем 7-летним опытом в data engineering и системной архитектуре. Уверенное владение Node.js, TypeScript, Python и PostgreSQL, практический опыт работы с микросервисами, пайплайнами ETL/ELT и чистой архитектурой. В последнее время я пишу спеки и передаю их реализацию AI-агентам — такой подход сократил типичные многонедельные разработки до нескольких дней. Готов к переезду в Германию, Нидерланды и Скандинавию; требуется визовая поддержка.","jobs":[{"role":"AI-Native / Agentic Systems Engineer","company":"Part Software Group","location":"Мешхед, Иран","period":"Мар 2026 – настоящее время","typeLabel":"Полная занятость","modelLabel":"Офис","overview":"Самостоятельное архитектурное проектирование и доставка коммерческой production-системы с использованием agent-driven процесса разработки — написание спеков, оркестрация AI-агентов в ходе реализации и личная ответственность за верификацию и релиз от начала до конца.","achievements":["За 10 дней поставлен MVP механизированной регистрации документов для платформы, обслуживающей Иранскую организацию регистрации документов — спек написан, реализован агентом, проверен перед релизом; MVP обеспечил официальную лицензию.","Два побочных проекта (приложение для обмена файлами, todo-лист), каждый за 2 дня, — для бенчмарка spec-driven подхода на реальных CRUD и stateful-сценариях.","Созданы агенты аудита безопасности и удобства, формирующие чек-лист перед релизом — проблемы отлавливались до попадания в продакшен."],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"Data Engineer","company":"Part Software Group","location":"Мешхед, Иран","period":"Сен 2022 – Мар 2026","typeLabel":"Полная занятость","modelLabel":"Офис","overview":"Проектирование и поддержка пайплайнов обработки данных для отчётных и агрегированных наборов данных на уровнях БД и бэкенда, обработка сотен ГБ данных. Применение паттерна микроядерной архитектуры для создания «Delta» — универсального сервера и клиента обработки данных по HTTP и gRPC.","achievements":["Построены масштабируемые и надёжные пайплайны обработки данных на Node.js и Python для отчётных и агрегированных данных масштаба сотен ГБ.","Применён паттерн микроядерной архитектуры в Delta для универсального сбора и обработки данных по HTTP и gRPC.","Занял 2-е место во внутреннем Data Date Challenge компании."],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"Full-Stack разработчик","company":"TCI — Телекоммуникационная компания Ирана","location":"Мешхед, Иран","period":"Янв 2015 – Апр 2023","typeLabel":"Полная занятость","modelLabel":"Офис","overview":"Проектирование, разработка и развёртывание веб-системы управления рабочими процессами (мини-ERP) для отдела техподдержки ISP, ежедневно используемой более чем 80 сотрудниками и руководителями и заменяющей тысячи бумажных форм в месяц. Сочетание индивидуальной разработки и команды из 2 человек, руководство проектом параллельно с обучением в магистратуре по гибкому графику ночных смен.","achievements":["Спроектирована и построена веб-система управления рабочими процессами (мини-ERP) для отдела техподдержки ISP, принятая более чем 80 ежедневными пользователями.","Оптимизация процессов с помощью более 20 модулей (Уведомления, Архивы, Оценка сотрудников, Управление сменами), снижение ручного труда и ошибок.","Реализован гранулярный контроль доступа с более чем 80 группами прав для безопасного и индивидуального доступа к модулям.","Сокращено использование бумаги на тысячи форм в месяц, что сделало рабочее место более эффективным и экологичным.","Руководство проектом в команде из 2 человек параллельно с обучением в магистратуре при гибких ночных сменах."],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"Приложение для обмена файлами","description":"Чанковая загрузка, возобновляемые загрузки и минимальный слой auth. Создано за 2 дня как CRUD-интенсивный бенчмарк для spec-driven подхода.","tech":"Next.js, Node.js, TypeScript, Docker"},{"name":"Todo-лист","description":"Оптимистичные обновления UI, навигация с клавиатуры и персистентность в localStorage. Создан за 2 дня для тестирования подхода на stateful UI-паттернах.","tech":"Next.js, Node.js, TypeScript, Docker"}],"skills":[{"label":"Data Engineering","items":["Конвейеры ETL/ELT","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","Данные гигабайтного масштаба"]},{"label":"AI-агентная инженерия","items":["SDD (Spec-Driven Development)","Harness Engineering","Агентные фреймворки"]},{"label":"Языки программирования","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"Фреймворки и библиотеки","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps и инфраструктура","items":["Linux (инструменты ядра)","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"Архитектура и методологии","items":["Чистая архитектура","Микросервисы","Микроядро","MVC / MTV","Saga","Событийно-ориентированная","Проектирование REST API","TDD","Agile"]},{"label":"Знаком с","items":["Kubernetes"]}],"education":[{"degree":"Магистр программной инженерии","institution":"Международный университет Имама Резы","location":"Мешхед, Иран","period":"Окт 2015 – Сен 2018","grade":"Средний балл: 17,06/20 (≈ 1,7 немецкая шкала)","thesis":"Контекстно-зависимые рекомендательные системы"},{"degree":"Бакалавр программной инженерии","institution":"Международный университет Имама Резы","location":"Мешхед, Иран","period":"Окт 2010 – Сен 2014","grade":"Средний балл: 16,50/20 (≈ 2,3 немецкая шкала)"}],"certificates":[{"name":"Профессиональный проектный курс: бэкенд-разработка на Django","issuer":"Quera.org"},{"name":"Профессиональный проектный курс: фронтенд-разработка на React","issuer":"Quera.org"}],"languagesKnown":[{"name":"Персидский","level":"Родной"},{"name":"Английский","level":"Рабочий уровень"}],"interests":["Игры","Создание миниатюрных деревянных конструкций","Фортепиано"],"award":"2-е место — Data Date Challenge Part Software Group"},"ar":{"dir":"rtl","langName":"العربية","title":"مهندس بيانات أول · أنظمة الوكلاء","eyebrow":"7+ سنوات · مسارات البيانات · تدفقات AI-Agent","ui":{"print":"طباعة / حفظ بصيغة PDF","language":"اللغة","present":"حتى الآن","awardLabel":"جائزة","gpaNote":"تقريبي وفق المقياس الألماني","native":"اللغة الأم","working":"مستوى وظيفي","thesis":"رسالة","techLabel":"التقنيات"},"contact":{"email":"البريد","phone":"الهاتف","location":"الموقع","linkedin":"لينكدإن","github":"جيت‌هاب"},"sections":{"summary":"الملخص المهني","experience":"الخبرة المهنية","projects":"المشاريع","skills":"المهارات التقنية","education":"التعليم","certificates":"الشهادات","languages":"اللغات","interests":"الاهتمامات"},"summary":"مطوّر Full-Stack بخبرة أكثر من 7 سنوات في هندسة البيانات وهندسة النظم. إتقان Node.js وTypeScript وPython وPostgreSQL، مع عمل تطبيقي في الخدمات المصغّرة وخطوط معالجة ETL/ELT والبنية النظيفة. مؤخرًا أصبحت أكتب المواصفات وأترك وكلاء الذكاء الاصطناعي ينفّذونها — منهج عمل قلّص المشاريع المعتادة متعددة الأسابيع إلى أيام. مستعد للانتقال إلى ألمانيا وهولندا وإسكندنافيا؛ مطلوب كفالة تأشيرة.","jobs":[{"role":"مهندس أنظمة AI-Native / الوكلاء","company":"Part Software Group","location":"مشهد، إيران","period":"مارس ٢٠٢٦ – حتى الآن","typeLabel":"دوام كامل","modelLabel":"حضوري","overview":"هندسة معمارية مستقلة وتسليم نظام إنتاج تجاري الحجم باستخدام تدفق تطوير موجّه بالوكلاء — كتابة المواصفات، وتنسيق وكلاء الذكاء الاصطناعي أثناء التنفيذ، وتحمّل التحقق والإصدار من البداية للنهاية بمسؤولية فردية.","achievements":["تسليم MVP لتسجيل المستندات المؤتمت خلال 10 أيام لمنصة تخدم منظمة تسجيل المستندات الإيرانية — المواصفات مكتوبة، النفيذ بالوكلاء، المراجعة قبل الإصدار؛ وقد ضمن الـMVP الترخيص الرسمي.","بناء مشروعين جانبيين (تطبيق مشاركة ملفات، قائمة مهام) في يومين لكل منهما، كمعيار لمنهج العمل الموجّه بالمواصفات على حالات CRUD وذات الحالة الحقيقية.","بناء وكلاء لتدقيق الأمان وسهولة الاستخدام ينتجون قائمة تحقق ما قبل الإصدار — التقطوا المشكلات قبل وصولها إلى الإنتاج."],"tech":["TypeScript","Next.js","Node.js","Docker","Agentic Frameworks","SDD"]},{"role":"مهندس بيانات","company":"Part Software Group","location":"مشهد، إيران","period":"سبتمبر ٢٠٢٢ – مارس ٢٠٢٦","typeLabel":"دوام كامل","modelLabel":"حضوري","overview":"تصميم وصيانة خطوط معالجة البيانات لمجموعات بيانات التقارير والتجميعية عبر طبقات قاعدة البيانات والـBackend، معالجة مئات الغيغابايت. تطبيق نمط بنية النواة المصغّرة لبناء «Delta»، خادم وعميل متعدد الاستخدامات لمعالجة البيانات عبر HTTP وgRPC.","achievements":["بناء خطوط معالجة بيانات قابلة للتوسع وموثوقة باستخدام Node.js وPython لبيانات التقارير والتجميعية بمقياس مئات الغيغابايت.","تطبيق نمط بنية النواة المصغّرة على Delta لتمكين جمع ومعالجة البيانات متعددة الاستخدامات عبر HTTP وgRPC.","احتلال المركز الثاني في تحدي Data Date Challenge الخاص بالشركة."],"tech":["Node.js","Python","PostgreSQL","MongoDB","Linux","gRPC"]},{"role":"مطوّر Full-Stack","company":"شركة الاتصالات الإيرانية (TCI)","location":"مشهد، إيران","period":"يناير 2015 – أبريل 2023","typeLabel":"دوام كامل","modelLabel":"حضوري","overview":"تصميم وتطوير ونشر نظام ويب لإدارة سير العمل (mini-ERP) لفرع الدعم الفني لمزوّد خدمة الإنترنت، يُستخدم يوميًا من قبل أكثر من 80 موظفًا ومديرًا ويُعوّض آلاف النماذج الورقية شهريًا. الجمع بين التطوير الفردي وفريق من شخصين وقيادة المشروع بالتوازي مع دراسة الماجستير بجدول مرن للعمل الليلي.","achievements":["تصميم وبناء نظام ويب لإدارة سير العمل (mini-ERP) لفرع الدعم الفني لمزوّد الإنترنت، اعتمده أكثر من 80 مستخدمًا يوميًا.","تبسيط العمليات بأكثر من 20 وحدة (الإشعارات، الأرشيف، تقييم الموظفين، إدارة الورديات)، مما قلّل العمل اليدوي والأخطاء.","تنفيذ تحكم دقيق في الوصول بأكثر من 80 مجموعة صلاحيات لوصول مخصّص وآمن للوحدات.","خفض استخدام الورق بآلاف النماذج شهريًا، مساهمةً في بيئة عمل أكثر كفاءة وصديقة للبيئة.","قيادة المشروع ضمن فريق من شخصين بالتوازي مع دراسة الماجستير بورديات ليلية مرنة لموازنة الاثنين."],"tech":["HTML5","CSS3","Bootstrap 4","JavaScript (jQuery)","PHP","MySQL"]}],"projects":[{"name":"تطبيق مشاركة الملفات","description":"رفع مقسّم إلى أجزاء، تنزيلات قابلة للاستئناف، وطبقة مصادقة مينيمالية. بُني خلال يومين كمعيار كثيف الـCRUD لمنهج العمل الموجّه بالمواصفات.","tech":"Next.js، Node.js، TypeScript، Docker"},{"name":"قائمة المهام","description":"تحديثات UI متفائلة، تنقّل بلوحة المفاتيح، والاحتفاظ في localStorage. بُنيت خلال يومين لاختبار منهج العمل على أنماط UI ذات الحالة.","tech":"Next.js، Node.js، TypeScript، Docker"}],"skills":[{"label":"هندسة البيانات","items":["مسارات ETL/ELT","PostgreSQL","MongoDB","Redis","Elasticsearch / OpenSearch","gRPC","بيانات بحجم الغيغابايت"]},{"label":"هندسة الوكلاء الذكية","items":["SDD (التطوير الموجّه بالمواصفات)","Harness Engineering","أطر العمل القائمة على الوكلاء"]},{"label":"لغات البرمجة","items":["Node.js","JavaScript","TypeScript","Python","SQL"]},{"label":"الأطر والمكتبات","items":["Next.js","Express","Django","React","Flask","HTML5","CSS3","Bootstrap 4","jQuery"]},{"label":"DevOps والبنية التحتية","items":["Linux (أدوات النواة)","Docker","GitLab CI","Grafana","OpenTelemetry"]},{"label":"الهندسة والمنهجيات","items":["البنية النظيفة","الخدمات المصغّرة","النواة المصغّرة","MVC / MTV","Saga","القيادة بالأحداث","تصميم REST API","TDD","Agile"]},{"label":"إلمان بـ","items":["Kubernetes"]}],"education":[{"degree":"ماجستير هندسة البرمجيات","institution":"جامعة الإمام الرضا الدولية","location":"مشهد، إيران","period":"أكتوبر 2015 – سبتمبر 2018","grade":"المعدل: 17.06/20 (≈ 1.7 المقياس الألماني)","thesis":"أنظمة التوصية المراعية للسياق"},{"degree":"بكالوريوس هندسة البرمجيات","institution":"جامعة الإمام الرضا الدولية","location":"مشهد، إيران","period":"أكتوبر 2010 – سبتمبر 2014","grade":"المعدل: 16.50/20 (≈ 2.3 المقياس الألماني)"}],"certificates":[{"name":"دورة مهنية موجّهة بالمشاريع: تطوير الـBackend باستخدام Django","issuer":"Quera.org"},{"name":"دورة مهنية موجّهة بالمشاريع: تطوير الـFrontend باستخدام React","issuer":"Quera.org"}],"languagesKnown":[{"name":"الفارسية","level":"اللغة الأم"},{"name":"الإنجليزية","level":"مستوى وظيفي"}],"interests":["الألعاب","بناء هياكل خشبية مصغّرة","البيانو"],"award":"المركز الثاني — Data Date Challenge في Part Software Group"}}};
+const { identity, languages, uiStrings, content } = DATA;
+
+// Pick the right name for the current language. Falls back to the
+// default identity.name when no localized variant exists.
+function displayName(lang) {
+  return (identity.nameLocalized && identity.nameLocalized[lang]) || identity.name;
+}
+
+let lang = "en";
+let dark = false;
+let menuOpen = false;
+let activeSection = "";
+
+(function init() {
+  const m = location.hash.match(/lang=([a-z]{2})/i);
+  if (m && content[m[1]]) lang = m[1];
+  else { try { const s = localStorage.getItem("rv:lang"); if (s && content[s]) lang = s; } catch(e){} }
+  try { dark = localStorage.getItem("rv:dark") === "1"; } catch(e){}
+})();
+
+const icons = {
+  mail: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+  phone: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+  pin: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
+  linkedin: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>',
+  github: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>',
+  user: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  briefcase: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+  code: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  folder: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>',
+  grad: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
+  langs: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>',
+  heart: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
+  scroll: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/></svg>',
+};
+
+function render() {
+  const c = content[lang];
+  const u = uiStrings[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = c.dir;
+  document.title = displayName(lang) + " — " + c.title;
+  document.getElementById("app").className = "rv-app" + (dark ? " rv-dark" : "");
+  const doc = document.getElementById("doc");
+  doc.setAttribute("dir", c.dir);
+  doc.setAttribute("lang", lang);
+
+  document.getElementById("atsBadgeText").textContent = u.atsBadge;
+  document.getElementById("atsBadge").title = u.atsBadgeTitle;
+  document.getElementById("printText").textContent = c.ui.print;
+  document.getElementById("langLabel").textContent = languages.find(l => l.code === lang).label;
+  document.getElementById("pfLeft").textContent = displayName(lang);
+  const darkBtn = document.getElementById("darkBtn");
+  darkBtn.setAttribute("aria-pressed", dark);
+  darkBtn.title = dark ? u.lightMode : u.darkMode;
+  document.getElementById("darkIcon").outerHTML = dark
+    ? '<svg id="darkIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>'
+    : '<svg id="darkIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+
+  const menu = document.getElementById("langMenu");
+  menu.innerHTML = languages.map(l => {
+    const active = l.code === lang;
+    return '<li role="option" aria-selected="' + active + '"><button type="button" data-lang="' + l.code + '" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;border:none;background:' + (active ? "var(--rv-accent-soft)" : "transparent") + ';border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:600;color:' + (active ? "#115e59" : "var(--rv-ink)") + ';text-align:' + (c.dir === "rtl" ? "right" : "left") + '"><span>' + l.label + '</span>' + (active ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : "") + '</button></li>';
+  }).join("");
+  menu.querySelectorAll("button[data-lang]").forEach(btn => {
+    btn.addEventListener("click", () => { setLang(btn.dataset.lang); closeMenu(); });
+  });
+
+  const navItems = [
+    { id: "summary", icon: icons.user, label: c.sections.summary },
+    { id: "experience", icon: icons.briefcase, label: c.sections.experience },
+    { id: "projects", icon: icons.folder, label: c.sections.projects },
+    { id: "skills", icon: icons.code, label: c.sections.skills },
+    { id: "education", icon: icons.grad, label: c.sections.education },
+    { id: "certificates", icon: icons.scroll, label: c.sections.certificates },
+    { id: "languages", icon: icons.langs, label: c.sections.languages },
+    { id: "interests", icon: icons.heart, label: c.sections.interests },
+  ];
+  document.getElementById("quicknav").innerHTML = navItems.map(item =>
+    '<button type="button" class="rv-quickpill' + (activeSection === item.id ? " rv-quickpill-active" : "") + '" data-jump="' + item.id + '" title="' + item.label.replace(/"/g, "&quot;") + '">' + item.icon + '<span>' + item.label + '</span></button>'
+  ).join("");
+  document.querySelectorAll(".rv-quickpill[data-jump]").forEach(btn => {
+    btn.addEventListener("click", () => jumpTo(btn.dataset.jump));
+  });
+
+  const inner = document.getElementById("docInner");
+  inner.innerHTML = renderHeader(c) + renderSummary(c) + '<div class="rv-grid">' + renderMain(c) + renderSide(c) + '</div>' +
+    '<div class="rv-printFooter" aria-hidden="true"><span class="rv-pfName">' + displayName(lang) + '</span><span class="rv-ltr">' + identity.email + ' · ' + identity.phone + '</span></div>';
+
+  document.getElementById("helpTitleText").textContent = u.keyboardHint.split(":")[0] || "Keyboard Shortcuts";
+  document.getElementById("helpList").innerHTML = [
+    { key: "P", label: c.ui.print },
+    { key: "D", label: u.download },
+    { key: "C", label: u.copyText },
+    { key: "?", label: u.keyboardHint.split(":")[0] || "Help" },
+    { key: "Esc", label: u.reset + " / Close" },
+  ].map(item => '<li class="rv-helpItem"><span>' + item.label + '</span><span class="rv-helpKeys"><span class="rv-kbd">' + item.key + '</span></span></li>').join("");
+}
+
+function renderHeader(c) {
+  return '<header class="rv-header"><div class="rv-headerText">' +
+    '<h1 class="rv-name" itemprop="name">' + displayName(lang) + '</h1>' +
+    '<p class="rv-title" itemprop="jobTitle">' + c.title + '</p>' +
+    '<p class="rv-eyebrow">' + c.eyebrow + '</p>' +
+    '<div class="rv-contact">' +
+    '<a href="mailto:' + identity.email + '" itemprop="email" class="rv-ltr">' + icons.mail + ' <span>' + identity.email + '</span></a>' +
+    '<a href="tel:' + identity.phoneHref + '" itemprop="telephone" class="rv-ltr">' + icons.phone + ' <span>' + identity.phone + '</span></a>' +
+    '<span class="rv-ltr" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">' + icons.pin + ' <span itemprop="addressLocality">' + identity.location + '</span></span>' +
+    '<a href="' + identity.linkedinHref + '" target="_blank" rel="noopener noreferrer" itemprop="sameAs" class="rv-ltr">' + icons.linkedin + ' <span>' + identity.linkedin + '</span></a>' +
+    '<a href="' + identity.githubHref + '" target="_blank" rel="noopener noreferrer" itemprop="sameAs" class="rv-ltr">' + icons.github + ' <span>' + identity.github + '</span></a>' +
+    '</div></div></header>';
+}
+
+function renderSummary(c) {
+  return '<section id="sec-summary" class="rv-section" aria-label="' + c.sections.summary + '"><h2 class="rv-h">' + icons.user + ' ' + c.sections.summary + '</h2><p class="rv-summary" dir="' + c.dir + '" itemprop="description">' + c.summary + '</p></section>';
+}
+
+function renderMain(c) {
+  let html = '<div class="rv-main">';
+  html += '<section id="sec-experience" class="rv-section" aria-label="' + c.sections.experience + '"><h2 class="rv-h">' + icons.briefcase + ' ' + c.sections.experience + '</h2><div class="rv-expList">';
+  html += c.jobs.map(job =>
+    '<article class="rv-job"><div class="rv-jobHead"><span class="rv-role">' + job.role + '</span><span class="rv-company">' + job.company + '</span></div>' +
+    '<div class="rv-meta"><span>' + icons.pin.replace('width="13"', 'width="11"') + ' ' + job.location + '</span><span>·</span><span>' + job.period + '</span>' +
+    '<span class="rv-pill">' + job.typeLabel + '</span><span class="rv-pill">' + job.modelLabel + '</span></div>' +
+    '<p class="rv-overview">' + job.overview + '</p>' +
+    '<ul class="rv-bullets">' + job.achievements.map(a => '<li>' + a + '</li>').join("") + '</ul>' +
+    '<div class="rv-tech" aria-label="' + c.ui.techLabel + '">' + job.tech.map(t => '<span class="rv-tag">' + t + '</span>').join("") + '</div></article>'
+  ).join("");
+  html += '</div></section>';
+  html += '<section id="sec-projects" class="rv-section" aria-label="' + c.sections.projects + '"><h2 class="rv-h">' + icons.folder + ' ' + c.sections.projects + '</h2>';
+  html += c.projects.map(p => '<article class="rv-proj"><div class="rv-projName">' + p.name + '</div><div class="rv-projDesc">' + p.description + '</div><div class="rv-projTech">' + p.tech + '</div></article>').join("");
+  html += '</section></div>';
+  return html;
+}
+
+function renderSide(c) {
+  let html = '<aside class="rv-side"><div class="rv-sideInner">';
+  html += '<section id="sec-skills" class="rv-section" aria-label="' + c.sections.skills + '"><h2 class="rv-h">' + icons.code + ' ' + c.sections.skills + '</h2>';
+  html += c.skills.map(g => '<div class="rv-skillGroup"><div class="rv-skillLabel">' + g.label + '</div><div class="rv-skillItems">' + g.items.map(s => '<span class="rv-skillItem">' + s + '</span>').join("") + '</div></div>').join("");
+  html += '</section>';
+  html += '<section id="sec-education" class="rv-section" aria-label="' + c.sections.education + '"><h2 class="rv-h">' + icons.grad + ' ' + c.sections.education + '</h2>';
+  html += c.education.map(e => '<article class="rv-edu"><div class="rv-eduDeg">' + e.degree + '</div><div class="rv-eduInst">' + e.institution + '</div><div class="rv-eduMeta">' + e.location + ' · ' + e.period + '</div><div class="rv-eduGrade">' + e.grade + '</div>' + (e.thesis ? '<div class="rv-eduThesis">' + c.ui.thesis + ': ' + e.thesis + '</div>' : '') + '</article>').join("");
+  html += '</section>';
+  html += '<section id="sec-certificates" class="rv-section" aria-label="' + c.sections.certificates + '"><h2 class="rv-h">' + icons.scroll + ' ' + c.sections.certificates + '</h2>';
+  html += c.certificates.map(cert => '<div class="rv-cert"><div class="rv-certName">' + cert.name + '</div><div class="rv-certIssuer">' + cert.issuer + '</div></div>').join("");
+  html += '</section>';
+  html += '<section id="sec-languages" class="rv-section" aria-label="' + c.sections.languages + '"><h2 class="rv-h">' + icons.langs + ' ' + c.sections.languages + '</h2>';
+  html += c.languagesKnown.map(l => '<div class="rv-langRow"><span class="rv-langName">' + l.name + '</span><span class="rv-langLvl">' + l.level + '</span></div>').join("");
+  html += '</section>';
+  html += '<section id="sec-interests" class="rv-section" aria-label="' + c.sections.interests + '"><h2 class="rv-h">' + icons.heart + ' ' + c.sections.interests + '</h2><div class="rv-interestList">' + c.interests.map(it => '<span class="rv-interest">' + it + '</span>').join("") + '</div></section>';
+  html += '</div></aside>';
+  return html;
+}
+
+function setLang(code) {
+  if (!content[code]) return;
+  lang = code;
+  try { localStorage.setItem("rv:lang", code); } catch(e){}
+  history.replaceState(null, "", "#lang=" + code);
+  render();
+  setupScrollspy();
+}
+
+function toggleDark() {
+  dark = !dark;
+  try { localStorage.setItem("rv:dark", dark ? "1" : "0"); } catch(e){}
+  render();
+}
+
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  document.getElementById("langMenu").style.display = menuOpen ? "block" : "none";
+  document.getElementById("langBtn").setAttribute("aria-expanded", menuOpen);
+  document.getElementById("langChevron").style.transform = menuOpen ? "rotate(180deg)" : "none";
+}
+function closeMenu() {
+  if (!menuOpen) return;
+  menuOpen = false;
+  document.getElementById("langMenu").style.display = "none";
+  document.getElementById("langBtn").setAttribute("aria-expanded", "false");
+  document.getElementById("langChevron").style.transform = "none";
+}
+
+function jumpTo(id) {
+  const el = document.getElementById("sec-" + id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  history.replaceState(null, "", "#lang=" + lang);
+}
+
+function handlePrint() { window.print(); }
+
+function handleCopyText() {
+  const c = content[lang];
+  const lines = [displayName(lang), c.title, identity.email + " | " + identity.phone + " | " + identity.location, identity.linkedinHref + " | " + identity.githubHref, "", "========================================", c.sections.summary.toUpperCase(), "========================================", c.summary, "", "========================================", c.sections.experience.toUpperCase(), "========================================"];
+  for (const job of c.jobs) { lines.push("", job.role + " — " + job.company, job.location + " | " + job.period + " | " + job.typeLabel + " | " + job.modelLabel, "", job.overview, ""); for (const a of job.achievements) lines.push("  - " + a); lines.push("", "Technologies: " + job.tech.join(", ")); }
+  lines.push("", "========================================", c.sections.projects.toUpperCase(), "========================================");
+  for (const p of c.projects) lines.push("", p.name, p.description, "Tech: " + p.tech);
+  lines.push("", "========================================", c.sections.skills.toUpperCase(), "========================================");
+  for (const g of c.skills) lines.push(g.label + ": " + g.items.join(", "));
+  lines.push("", "========================================", c.sections.education.toUpperCase(), "========================================");
+  for (const e of c.education) { lines.push("", e.degree + " — " + e.institution, e.location + " | " + e.period, e.grade, e.thesis ? c.ui.thesis + ": " + e.thesis : ""); }
+  lines.push("", "========================================", c.sections.certificates.toUpperCase(), "========================================");
+  for (const cert of c.certificates) lines.push("- " + cert.name + " (" + cert.issuer + ")");
+  lines.push("", "========================================", c.sections.languages.toUpperCase(), "========================================");
+  for (const l of c.languagesKnown) lines.push(l.name + ": " + l.level);
+  lines.push("", "========================================", c.sections.interests.toUpperCase(), "========================================", c.interests.join(", "));
+  const text = lines.join("\n");
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).catch(()=>{});
+  else { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); }
+}
+
+function handleDownload() {
+  const html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = displayName(lang).replace(/\s+/g, "_") + "_Resume_" + lang + ".html";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+let observer;
+function setupScrollspy() {
+  if (observer) observer.disconnect();
+  const ids = ["summary","experience","projects","skills","education","certificates","languages","interests"];
+  const sections = ids.map(id => document.getElementById("sec-" + id)).filter(Boolean);
+  if (!sections.length) return;
+  observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible[0]) {
+      const newActive = visible[0].target.id.replace(/^sec-/, "");
+      if (newActive !== activeSection) {
+        activeSection = newActive;
+        document.querySelectorAll(".rv-quickpill").forEach(p => p.classList.toggle("rv-quickpill-active", p.dataset.jump === activeSection));
+      }
+    }
+  }, { rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] });
+  sections.forEach(s => observer.observe(s));
+}
+
+function onScroll() {
+  const st = window.scrollY;
+  const dh = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = dh > 0 ? Math.min(100, Math.max(0, (st / dh) * 100)) : 0;
+  document.getElementById("progressFill").style.width = pct + "%";
+  document.getElementById("topBtn").classList.toggle("rv-visible", st > 400);
+}
+
+document.getElementById("darkBtn").addEventListener("click", toggleDark);
+document.getElementById("copyBtn").addEventListener("click", handleCopyText);
+document.getElementById("downloadBtn").addEventListener("click", handleDownload);
+document.getElementById("printBtn").addEventListener("click", handlePrint);
+document.getElementById("langBtn").addEventListener("click", toggleMenu);
+document.getElementById("helpBtn").addEventListener("click", () => { document.getElementById("helpOverlay").style.display = "flex"; });
+document.getElementById("helpClose").addEventListener("click", () => { document.getElementById("helpOverlay").style.display = "none"; });
+document.getElementById("helpOverlay").addEventListener("click", (e) => { if (e.target.id === "helpOverlay") e.target.style.display = "none"; });
+document.getElementById("topBtn").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+document.addEventListener("click", (e) => { if (menuOpen && !document.getElementById("langWrap").contains(e.target)) closeMenu(); });
+window.addEventListener("hashchange", () => { const m = location.hash.match(/lang=([a-z]{2})/i); if (m && content[m[1]] && m[1] !== lang) setLang(m[1]); });
+window.addEventListener("keydown", (e) => {
+  const t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if (k === "p") { e.preventDefault(); handlePrint(); }
+  else if (k === "d") { e.preventDefault(); handleDownload(); }
+  else if (k === "c") { e.preventDefault(); handleCopyText(); }
+  else if (k === "?" || (e.shiftKey && k === "/")) { e.preventDefault(); document.getElementById("helpOverlay").style.display = "flex"; }
+  else if (k === "escape") { document.getElementById("helpOverlay").style.display = "none"; closeMenu(); }
+});
+window.addEventListener("scroll", onScroll, { passive: true });
+window.addEventListener("resize", onScroll);
+
+render();
+setupScrollspy();
+onScroll();
+</script>
+</body>
+</html>

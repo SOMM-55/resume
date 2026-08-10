@@ -19,6 +19,7 @@ const ROOT = path.resolve(__dirname, "..");
 const DATA_FILE = path.join(ROOT, "data/resume.ts");
 const CSS_FILE = path.join(ROOT, "style.css");
 const OUT_FILE = path.join(ROOT, "public/resume.html");
+const INDEX_FILE = path.join(ROOT, "public/index.html");
 
 // ─── 1. Read CSS ───
 const css = fs.readFileSync(CSS_FILE, "utf8");
@@ -506,8 +507,12 @@ onScroll();
 </html>`;
 
 fs.writeFileSync(OUT_FILE, html, "utf8");
+// Also write public/index.html so the file is served at the repository
+// root when GitHub Pages or any static host is used. Same bytes.
+fs.writeFileSync(INDEX_FILE, html, "utf8");
 const size = fs.statSync(OUT_FILE).size;
 console.log(`✅ Generated ${OUT_FILE}`);
+console.log(`            ${INDEX_FILE}`);
 console.log(`   Size: ${(size / 1024).toFixed(1)} KB (${size} bytes)`);
 console.log(`   Languages: ${languages.length}`);
 console.log(`   Has CSS: ${html.includes(".rv-doc")}`);
