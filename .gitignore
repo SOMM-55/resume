@@ -1,0 +1,9 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local env files (this project has no secrets, but keep .env out by default)
+.env*

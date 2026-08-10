@@ -1,0 +1,853 @@
+/* ============================================================= */
+/*  RESUME — self-contained, ATS-friendly, print-ready           */
+/* ============================================================= */
+
+:root {
+  --rv-ink: #0f172a;        /* slate-900 — deeper, more authoritative */
+  --rv-accent: #0d9488;     /* teal-600 — refined, less saturated */
+  --rv-accent-soft: #f0fdfa;/* teal-50 — very subtle tint */
+  --rv-accent-line: #99f6e4;/* teal-200 — for borders */
+  --rv-body: #334155;       /* slate-700 (body text) */
+  --rv-muted: #64748b;      /* slate-500 (secondary) */
+  --rv-line: #e2e8f0;       /* slate-200 (borders) */
+  --rv-tint: #fafbfc;       /* near-white sidebar tint */
+  --rv-tint-2: #f1f5f9;     /* slate-100 */
+  --rv-radius: 10px;
+  --rv-shadow: 0 1px 3px rgba(15,23,42,.06), 0 8px 24px -12px rgba(15,23,42,.12);
+}
+
+/* App chrome behind the resume */
+.rv-app {
+  min-height: 100vh;
+  background: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem 3rem;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+/* All chrome elements share the exact same outer box width so the
+   toolbar, quicknav and the resume card are pixel-aligned. */
+.rv-toolbar, .rv-quicknav, .rv-doc { box-sizing: border-box; }
+
+/* Floating toolbar (hidden in print) */
+.rv-toolbar {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 50;
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--rv-radius);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--rv-line);
+  box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 12px -4px rgba(15,23,42,.08);
+}
+
+/* The resume "page" */
+.rv-doc {
+  width: 100%;
+  max-width: 820px;
+  background: #ffffff;
+  border-radius: var(--rv-radius);
+  box-shadow: var(--rv-shadow);
+  overflow: hidden;
+  color: var(--rv-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+  border: 1px solid var(--rv-line);
+}
+
+.rv-docInner {
+  padding: 32px 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* Single source of truth for the column content-area width.
+   Header, summary, section headings, jobs, projects, sidebar and the
+   colored sidebar box all size against this — keeps everything aligned. */
+.rv-docInner > .rv-header,
+.rv-docInner > .rv-section,
+.rv-docInner > .rv-grid {
+  /* No extra side padding; sit directly on .rv-docInner's content edges */
+  padding-inline: 0;
+  margin-inline: 0;
+}
+
+/* Header */
+.rv-header {
+  border-bottom: 2px solid var(--rv-ink);
+  padding-bottom: 16px;
+}
+.rv-name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--rv-ink);
+  line-height: 1.15;
+}
+.rv-title {
+  margin-top: 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--rv-accent);
+  letter-spacing: 0;
+}
+.rv-eyebrow {
+  margin-top: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--rv-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.rv-eyebrow::before {
+  content: "";
+  width: 24px; height: 1.5px;
+  background: var(--rv-accent);
+  display: inline-block;
+}
+.rv-contact {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 11.5px;
+  color: var(--rv-body);
+}
+.rv-contact a, .rv-contact span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+.rv-contact a:hover { color: var(--rv-accent); }
+/* Force LTR display for numerals and Latin-script fragments even
+   inside an RTL document (phone numbers, emails, urls). The dir="ltr"
+   attribute on the element alone isn't enough against the bidi
+   algorithm — unicode-bidi: isolate overrides the inherited rule. */
+.rv-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Section headings */
+.rv-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rv-ink);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rv-line);
+}
+.rv-h::after {
+  content: "";
+  flex: 1;
+}
+.rv-h svg { color: var(--rv-accent); flex: none; }
+
+/* Sections: scroll-margin so smooth-jump doesn't hide the heading under the sticky toolbar */
+.rv-section { scroll-margin-top: 90px; }
+
+/* ───────── Quick-jump section nav (screen only) ───────── */
+.rv-quicknav {
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--rv-line);
+  box-shadow: 0 4px 14px -8px rgba(15, 23, 42, 0.2);
+}
+.rv-app.rv-dark .rv-quicknav {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: #1e293b;
+}
+.rv-quickpill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--rv-muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.rv-quickpill svg { flex: none; }
+.rv-quickpill:hover {
+  background: var(--rv-tint-2);
+  color: var(--rv-accent);
+  border-color: var(--rv-line);
+}
+.rv-quickpill-active {
+  background: var(--rv-accent) !important;
+  color: #fff !important;
+  border-color: var(--rv-accent) !important;
+}
+.rv-quickpill-active svg { color: #fff; }
+.rv-app.rv-dark .rv-quickpill:hover { background: #1e293b; }
+
+/* ───────── Header layout (no monogram — cleaner, more senior) ───────── */
+.rv-header { display: block; }
+.rv-headerText { flex: 1; min-width: 200px; }
+.rv-name {
+  color: var(--rv-ink);
+}
+.rv-app.rv-dark .rv-name {
+  color: var(--rv-ink);
+}
+
+/* ───────── Print footer with page number ───────── */
+.rv-printFooter {
+  display: none; /* only visible in print */
+}
+/* Fixed print running footer — repeats on every printed page (browser print) */
+.rv-printRunning {
+  display: none; /* screen hidden */
+}
+@media print {
+  .rv-printFooter {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rv-line);
+    font-size: 8pt;
+    color: var(--rv-muted);
+  }
+  .rv-printFooter .rv-pfName { font-weight: 600; }
+  /* Running footer on every printed page: name left, "Page X" right via CSS counter */
+  .rv-printRunning {
+    display: flex !important;
+    position: fixed;
+    bottom: 4mm;
+    left: 12mm;
+    right: 12mm;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    color: var(--rv-muted);
+    border-top: 1px solid var(--rv-line);
+    padding-top: 2mm;
+    z-index: 999;
+  }
+  .rv-printRunning .rv-pfLeft { font-weight: 600; }
+  .rv-printRunning .rv-pfRight::before { content: counter(page); }
+  .rv-printRunning .rv-pfRight::after { content: " / " counter(pages); }
+}
+
+/* Summary */
+.rv-summary {
+  font-size: 13px;
+  color: var(--rv-body);
+  border-left: 3px solid var(--rv-accent);
+  padding: 2px 0 2px 12px;
+}
+.rv-summary[dir="rtl"] {
+  border-left: none;
+  border-right: 3px solid var(--rv-accent);
+  padding: 2px 12px 2px 0;
+}
+
+/* Two-column body grid */
+.rv-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 22px;
+}
+
+/* Mobile / narrow preview: single column — sidebar stacks below main content.
+   Breakpoint raised to 900px so preview panels and tablets also get a clean
+   single-column layout instead of a cramped two-column. */
+@media (max-width: 900px) {
+  .rv-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  /* Sidebar loses its tinted full-bleed background and becomes inline blocks */
+  .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-top: 2px solid var(--rv-line) !important;
+    padding-top: 18px !important;
+  }
+  .rv-doc[dir="rtl"] .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: 18px !important;
+    border: none !important;
+    border-top: 2px solid var(--rv-line) !important;
+  }
+  .rv-docInner { padding: 22px 20px 22px !important; gap: 14px !important; }
+  .rv-toolbar {
+    flex-wrap: wrap;
+    gap: 8px !important;
+    padding: 0.5rem 0.6rem !important;
+  }
+  .rv-name { font-size: 22px !important; }
+  .rv-contact { gap: 5px 12px !important; font-size: 11px !important; }
+  /* Compact timeline on narrow screens — smaller dots, less inset */
+  .rv-expList { padding-inline-start: 18px !important; }
+  .rv-doc[dir="rtl"] .rv-expList { padding-inline-start: 0 !important; padding-inline-end: 18px !important; }
+  .rv-job::before {
+    inset-inline-start: -18px !important;
+    width: 9px !important;
+    height: 9px !important;
+    border-width: 2px !important;
+    box-shadow: 0 0 0 2px #fff !important;
+    top: 5px !important;
+  }
+  .rv-doc[dir="rtl"] .rv-job::before { inset-inline-start: auto !important; inset-inline-end: -18px !important; }
+  .rv-expList::before { inset-inline-start: 4px !important; }
+  .rv-doc[dir="rtl"] .rv-expList::before { inset-inline-start: auto !important; inset-inline-end: 4px !important; }
+}
+.rv-main { display: flex; flex-direction: column; gap: 16px; }
+/* The Experience timeline section's heading must align with the
+   timeline-inset job content below it, not with the header above.
+   Scoped to #sec-experience so the Projects heading (no timeline)
+   keeps the original column alignment. */
+#sec-experience > .rv-h {
+  padding-inline-start: 22px;
+}
+.rv-doc[dir="rtl"] #sec-experience > .rv-h {
+  padding-inline-start: 0;
+  padding-inline-end: 22px;
+}
+.rv-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--rv-tint);
+  /* vertical padding for breathing room inside the colored box;
+     horizontal padding is 0 so the text aligns with the rest of the
+     document at the same column edge as .rv-main content. */
+  padding: 20px 0;
+  border-radius: var(--rv-radius);
+  border: 1px solid var(--rv-line);
+}
+/* An inner wrapper forces the colored box's background to span the
+   full column width while keeping its text on the same vertical line
+   as the rest of the document. Marked with a stable class so layout
+   doesn't depend on pseudo selectors. */
+.rv-sideInner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-inline: 22px;
+}
+/* RTL: sidebar sits on the left, same styling */
+.rv-doc[dir="rtl"] .rv-side {
+  border-left: 1px solid var(--rv-line);
+  border-right: 1px solid var(--rv-line);
+}
+
+/* Job entry */
+.rv-job { margin-bottom: 14px; }
+.rv-job:last-child { margin-bottom: 0; }
+.rv-jobHead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.rv-role { font-size: 14px; font-weight: 700; color: var(--rv-ink); }
+.rv-company { font-size: 13px; font-weight: 600; color: var(--rv-accent); }
+.rv-meta {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 11.5px;
+  color: var(--rv-muted);
+  margin-top: 2px;
+}
+.rv-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--rv-tint-2);
+  color: var(--rv-ink);
+  font-weight: 500;
+}
+.rv-overview { margin-top: 7px; font-size: 12.5px; }
+.rv-bullets { margin-top: 7px; padding-left: 16px; display: flex; flex-direction: column; gap: 5px; }
+.rv-doc[dir="rtl"] .rv-bullets { padding-left: 0; padding-right: 16px; }
+.rv-bullets li { font-size: 12.5px; color: var(--rv-body); position: relative; }
+.rv-bullets li::marker { color: var(--rv-accent); }
+.rv-tech {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.rv-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--rv-tint-2);
+  color: var(--rv-body);
+  border: 1px solid var(--rv-line);
+  letter-spacing: 0.01em;
+}
+
+/* Project entry */
+.rv-proj { padding: 10px 0; border-bottom: 1px solid var(--rv-line); }
+.rv-proj:last-child { border-bottom: none; padding-bottom: 0; }
+.rv-projName { font-size: 12.5px; font-weight: 700; color: var(--rv-ink); }
+.rv-projDesc { font-size: 12px; color: var(--rv-body); margin-top: 2px; line-height: 1.5; }
+.rv-projTech { font-size: 10.5px; color: var(--rv-muted); margin-top: 4px; font-weight: 500; }
+
+/* Skill group */
+.rv-skillGroup { margin-bottom: 12px; }
+.rv-skillGroup:last-child { margin-bottom: 0; }
+.rv-skillLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rv-muted);
+  margin-bottom: 6px;
+}
+.rv-skillItems { display: flex; flex-wrap: wrap; gap: 4px; }
+.rv-skillItem {
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--rv-tint-2);
+  border: 1px solid var(--rv-line);
+  color: var(--rv-body);
+  font-weight: 500;
+}
+
+/* Education */
+.rv-edu { margin-bottom: 10px; }
+.rv-edu:last-child { margin-bottom: 0; }
+.rv-eduDeg { font-size: 12.5px; font-weight: 700; color: var(--rv-ink); }
+.rv-eduInst { font-size: 12px; color: var(--rv-accent); font-weight: 600; }
+.rv-eduMeta { font-size: 11px; color: var(--rv-muted); margin-top: 1px; }
+.rv-eduGrade { font-size: 11px; color: var(--rv-body); margin-top: 2px; font-weight: 500; }
+.rv-eduThesis { font-size: 11px; color: var(--rv-muted); margin-top: 1px; font-style: italic; }
+
+/* Certificates */
+.rv-cert { margin-bottom: 6px; }
+.rv-cert:last-child { margin-bottom: 0; }
+.rv-certName { font-size: 12px; color: var(--rv-body); font-weight: 600; }
+.rv-certIssuer { font-size: 11px; color: var(--rv-muted); }
+
+/* Languages + interests inline lists */
+.rv-langRow { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px dotted var(--rv-line); }
+.rv-langRow:last-child { border-bottom: none; }
+.rv-langName { font-weight: 600; color: var(--rv-ink); }
+.rv-langLvl { color: var(--rv-muted); }
+
+.rv-interestList { display: flex; flex-wrap: wrap; gap: 6px; }
+.rv-interest {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--rv-line);
+  color: var(--rv-body);
+}
+
+/* Award callout */
+.rv-award {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+  border: 1px solid #fde68a;
+}
+.rv-award svg { color: #b45309; flex: none; margin-top: 1px; }
+.rv-awardText { font-size: 11.5px; color: #78350f; line-height: 1.4; }
+.rv-awardLabel { font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; color: #b45309; display: block; margin-bottom: 1px; }
+
+/* Lang dropdown button */
+.rv-langBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--rv-line);
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--rv-ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.rv-langBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+
+.rv-printBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 9px;
+  border: none;
+  background: var(--rv-accent);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 12px -4px rgba(15, 118, 110, 0.5);
+}
+.rv-printBtn:hover { background: #0d5f58; transform: translateY(-1px); }
+
+/* Custom scrollbar for long content on screen */
+.rv-doc::-webkit-scrollbar { width: 8px; }
+.rv-doc::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+
+/* RTL icon flip for directional icons */
+.rv-doc[dir="rtl"] .rv-flip { transform: scaleX(-1); }
+
+/* ============================================================= */
+/*  DARK MODE — applied via .rv-dark on .rv-app                  */
+/*  Print is always forced to light (see @media print).          */
+/* ============================================================= */
+.rv-app.rv-dark {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #0b3a36 0%, transparent 60%),
+    linear-gradient(180deg, #0f172a 0%, #020617 100%);
+}
+.rv-app.rv-dark .rv-toolbar {
+  background: rgba(15, 23, 42, 0.82);
+  border-color: #1e293b;
+  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.6);
+}
+.rv-app.rv-dark {
+  --rv-ink: #e2e8f0;
+  --rv-accent: #2dd4bf;
+  --rv-accent-soft: #134e4a;
+  --rv-body: #cbd5e1;
+  --rv-muted: #94a3b8;
+  --rv-line: #1e293b;
+  --rv-tint: #0f172a;
+  --rv-tint-2: #1e293b;
+}
+.rv-app.rv-dark .rv-doc {
+  background: #0b1220;
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7),
+              0 2px 6px -2px rgba(0, 0, 0, 0.4);
+}
+.rv-app.rv-dark .rv-header { border-bottom-color: #334155; }
+.rv-app.rv-dark .rv-h { color: var(--rv-ink); }
+.rv-app.rv-dark .rv-h::after { background: linear-gradient(90deg, var(--rv-accent), transparent); }
+.rv-app.rv-dark .rv-tag {
+  background: #134e4a;
+  color: #5eead4;
+  border-color: #0f766e;
+}
+.rv-app.rv-dark .rv-skillItem {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+.rv-app.rv-dark .rv-pill {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+.rv-app.rv-dark .rv-interest {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+.rv-app.rv-dark .rv-side { background: #0a0f1d; border-left-color: #1e293b; }
+.rv-app.rv-dark .rv-doc[dir="rtl"] .rv-side { border-right-color: #1e293b; }
+.rv-app.rv-dark .rv-award {
+  background: linear-gradient(135deg, #422006 0%, #451a03 100%);
+  border-color: #78350f;
+}
+.rv-app.rv-dark .rv-awardText { color: #fbbf24; }
+.rv-app.rv-dark .rv-awardLabel { color: #f59e0b; }
+.rv-app.rv-dark .rv-langBtn { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+.rv-app.rv-dark .rv-langBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-app.rv-dark .rv-iconBtn { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+.rv-app.rv-dark .rv-iconBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-app.rv-dark .rv-menu { background: #0f172a; border-color: #334155; }
+.rv-app.rv-dark .rv-menu button:hover { background: #134e4a !important; color: #5eead4 !important; }
+.rv-app.rv-dark .rv-atsBadge {
+  background: #134e4a;
+  color: #5eead4;
+  border-color: #0f766e;
+}
+.rv-app.rv-dark .rv-kbd { background: #1e293b; border-color: #334155; color: #94a3b8; }
+
+/* ============================================================= */
+/*  New controls: icon buttons, ATS badge, zoom, kbd hint        */
+/* ============================================================= */
+.rv-iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--rv-line);
+  background: #fff;
+  color: var(--rv-ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.rv-iconBtn:hover { border-color: var(--rv-accent); color: var(--rv-accent); transform: translateY(-1px); }
+.rv-iconBtn:active { transform: translateY(0); }
+.rv-iconBtn[aria-pressed="true"] { background: var(--rv-accent); color: #fff; border-color: var(--rv-accent); }
+
+.rv-atsBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--rv-accent-soft);
+  color: #115e59;
+  border: 1px solid #5eead4;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rv-zoomReadout {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--rv-muted);
+  min-width: 34px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.rv-kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  border: 1px solid var(--rv-line);
+  border-bottom-width: 2px;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: var(--rv-muted);
+  line-height: 1.2;
+}
+.rv-hintBar {
+  font-size: 10.5px;
+  color: var(--rv-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Print overlay */
+.rv-printOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 10px;
+  animation: rv-fade 0.18s ease;
+}
+@keyframes rv-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rv-spin { to { transform: rotate(360deg); } }
+.rv-spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: rv-spin 0.7s linear infinite;
+}
+
+/* ============================================================= */
+/*  Styling refinements: timeline, hover lifts, accents          */
+/* ============================================================= */
+
+/* Job timeline rail (main column experience) */
+.rv-expList { position: relative; }
+/* Reserve space at the start so the rail+dot sit outside the text
+   flow and the text aligns with header/summary/sidebar text. */
+.rv-expList { padding-inline-start: 22px; }
+.rv-doc[dir="rtl"] .rv-expList { padding-inline-start: 0; padding-inline-end: 22px; }
+.rv-expList::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  inset-inline-start: 5px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--rv-accent), var(--rv-line));
+  border-radius: 2px;
+}
+.rv-doc[dir="rtl"] .rv-expList::before { inset-inline-start: auto; inset-inline-end: 5px; }
+/* Each job lives inside the timeline list; no extra side padding
+   needed since .rv-expList already reserves the inset. */
+.rv-job { position: relative; }
+.rv-job::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -22px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid var(--rv-accent);
+  box-shadow: 0 0 0 3px #fff;
+  z-index: 1;
+}
+.rv-doc[dir="rtl"] .rv-job::before { inset-inline-start: auto; inset-inline-end: -22px; }
+
+/* Hover lifts */
+.rv-skillItem, .rv-tag, .rv-interest, .rv-pill { transition: transform .12s ease, background .12s ease, border-color .12s ease; }
+.rv-skillItem:hover { transform: translateY(-1px); border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-tag:hover { transform: translateY(-1px); }
+.rv-interest:hover { border-color: var(--rv-accent); color: var(--rv-accent); }
+.rv-proj { transition: background .12s ease, padding .12s ease; border-radius: 6px; padding-inline: 6px; }
+.rv-proj:hover { background: var(--rv-tint-2); }
+.rv-contact a { transition: color .12s ease; }
+.rv-edu, .rv-cert { transition: transform .12s ease; }
+.rv-edu:hover, .rv-cert:hover { transform: translateX(2px); }
+.rv-doc[dir="rtl"] .rv-edu:hover, .rv-doc[dir="rtl"] .rv-cert:hover { transform: translateX(-2px); }
+
+/* Skill group accent bar */
+.rv-skillLabel { display: flex; align-items: center; gap: 6px; }
+.rv-skillLabel::before {
+  content: "";
+  width: 3px; height: 11px;
+  border-radius: 2px;
+  background: var(--rv-accent);
+  display: inline-block;
+}
+
+/* Focus ring for accessibility on all interactive controls */
+.rv-iconBtn:focus-visible, .rv-langBtn:focus-visible, .rv-printBtn:focus-visible, .rv-menu button:focus-visible {
+  outline: 2px solid var(--rv-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================================= */
+/*  PRINT — A4, controlled page breaks, colors preserved         */
+/* ============================================================= */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm 12mm 12mm 12mm;
+  }
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .rv-app {
+    background: none !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    display: block !important;
+  }
+  .rv-toolbar, .rv-hintBar, .rv-printOverlay { display: none !important; }
+  /* Always print in light mode for ATS cleanliness */
+  .rv-app.rv-dark {
+    background: none !important;
+    --rv-ink: #1e293b !important;
+    --rv-accent: #0f766e !important;
+    --rv-accent-soft: #ccfbf1 !important;
+    --rv-body: #334155 !important;
+    --rv-muted: #64748b !important;
+    --rv-line: #e2e8f0 !important;
+    --rv-tint: #f8fafc !important;
+    --rv-tint-2: #f1f5f9 !important;
+  }
+  .rv-app.rv-dark .rv-doc { background: #fff !important; }
+  .rv-app.rv-dark .rv-side { background: transparent !important; }
+  .rv-app.rv-dark .rv-tag { background: #ccfbf1 !important; color: #115e59 !important; border-color: #99f6e4 !important; }
+  .rv-app.rv-dark .rv-skillItem, .rv-app.rv-dark .rv-pill, .rv-app.rv-dark .rv-interest { background: #fff !important; color: #334155 !important; border-color: #e2e8f0 !important; }
+  .rv-app.rv-dark .rv-award { background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%) !important; border-color: #fde68a !important; }
+  .rv-app.rv-dark .rv-awardText { color: #78350f !important; }
+  .rv-app.rv-dark .rv-awardLabel { color: #b45309 !important; }
+  .rv-doc {
+    max-width: none !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-size: 10.2pt !important;
+  }
+  .rv-docInner { padding: 0 !important; gap: 10px !important; }
+  .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  .rv-doc[dir="rtl"] .rv-side {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  .rv-sideInner { padding-inline: 0 !important; gap: 14px !important; }
+  .rv-grid { gap: 14px !important; grid-template-columns: 1.5fr 1fr !important; }
+  /* Print-safety: reset the gradient text-fill so the name is never invisible in PDF */
+  .rv-name {
+    font-size: 19pt !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--rv-ink) !important;
+    color: var(--rv-ink) !important;
+  }
+  .rv-title { font-size: 11pt !important; }
+  .rv-eyebrow { font-size: 8.5pt !important; }
+  .rv-h { font-size: 9.5pt !important; margin-bottom: 5px !important; }
+  .rv-summary { font-size: 9.6pt !important; }
+  .rv-role { font-size: 10.5pt !important; }
+  .rv-company { font-size: 9.8pt !important; }
+  .rv-overview, .rv-bullets li { font-size: 9.4pt !important; }
+  .rv-tag, .rv-skillItem, .rv-pill, .rv-interest { font-size: 9pt !important; }
+
+  /* keep entries together, avoid awkward breaks */
+  .rv-job, .rv-edu, .rv-proj, .rv-skillGroup, .rv-award {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .rv-h { break-after: avoid; page-break-after: avoid; }
+  .rv-side, .rv-main { break-inside: auto; }
+
+  /* force background colors to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
