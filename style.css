@@ -258,6 +258,7 @@
     z-index: 999;
   }
   .rv-printRunning .rv-pfLeft { font-weight: 600; }
+  .rv-printRunning .rv-pfUrl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 55%; text-align: center; }
   .rv-printRunning .rv-pfRight::before { content: counter(page); }
   .rv-printRunning .rv-pfRight::after { content: " / " counter(pages); }
 }

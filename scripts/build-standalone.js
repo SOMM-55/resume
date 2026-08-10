@@ -211,7 +211,7 @@ html[lang="ja"] body { font-family: var(--rv-font-ja); }
     <div class="rv-docInner" id="docInner"></div>
   </article>
 
-  <div class="rv-printRunning" aria-hidden="true"><span class="rv-pfLeft" id="pfLeft"></span><span class="rv-pfRight"></span></div>
+  <div class="rv-printRunning" aria-hidden="true"><span class="rv-pfLeft" id="pfLeft"></span><span class="rv-pfUrl" id="pfUrl"></span><span class="rv-pfRight"></span></div>
 
   <button type="button" class="rv-topBtn" id="topBtn" title="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
 
@@ -279,6 +279,7 @@ function render() {
   document.getElementById("printText").textContent = c.ui.print;
   document.getElementById("langLabel").textContent = languages.find(l => l.code === lang).label;
   document.getElementById("pfLeft").textContent = displayName(lang);
+  document.getElementById("pfUrl").textContent = location.href;
   const darkBtn = document.getElementById("darkBtn");
   darkBtn.setAttribute("aria-pressed", dark);
   darkBtn.title = dark ? u.lightMode : u.darkMode;

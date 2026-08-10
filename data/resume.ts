@@ -557,7 +557,7 @@ export const content: Record<LangCode, LangContent> = {
       interests: "علاقه‌مندی‌ها",
     },
     summary:
-      "توسعه‌دهنده فول‌استک با بیش از ۷ سال تجربه در مهندسی داده و معماری سیستم. مسلط به Node.js، TypeScript، Python و PostgreSQL، با تجربه دستی در معماری مایکروسرویس، پایپ‌لاین‌های ETL/ELT و معماری تمیز. اخیراً مشخصه می‌نویسم و پیاده‌سازی را به agentهای هوش مصنوعی می‌سپارم — رویکردی که ساخت پروژه‌های معمول چند هفته‌ای را به چند روز رسانده است. آماده مهاجرت به آلمان، هلند و اسکاندیناوی؛ نیازمند اسپانسرشیپ ویزا.",
+      "توسعه‌دهنده فول‌استک با بیش از ۷ سال تجربه در مهندسی داده و معماری سیستم. مسلط به Node.js، TypeScript، Python و PostgreSQL، با تجربه دستی در معماری مایکروسرویس، پایپ‌لاین‌های ETL/ELT و معماری تمیز. اخیراً مشخصه می‌نویسم و پیاده‌سازی را به agentهای هوش مصنوعی می‌سپارم — رویکردی که ساخت پروژه‌های معمول چند هفته‌ای را به چند روز رسانده است.",
     jobs: [
       {
         role: "مهندس سیستم‌های AI-Native / Agentic",
@@ -1009,7 +1009,7 @@ export const content: Record<LangCode, LangContent> = {
       interests: "兴趣爱好",
     },
     summary:
-      "全栈开发工程师，拥有 7 年以上数据工程与系统架构经验。精通 Node.js、TypeScript、Python 与 PostgreSQL，在微服务、ETL/ELT 管道与整洁架构方面有实际项目经验。最近我开始编写规格说明，交由 AI 智能体实现——这套工作流将通常数周的构建压缩到几天。愿意赴德国、荷兰及斯堪的纳维亚工作；需要签证赞助。",
+      "全栈开发工程师，拥有 7 年以上数据工程与系统架构经验。精通 Node.js、TypeScript、Python 与 PostgreSQL，在微服务、ETL/ELT 管道与整洁架构方面有实际项目经验。最近我开始编写规格说明，交由 AI 智能体实现——这套工作流将通常数周的构建压缩到几天。愿意赴中国工作；需要签证赞助。",
     jobs: [
       {
         role: "AI-Native / 智能体系统工程师",
@@ -1233,7 +1233,7 @@ export const content: Record<LangCode, LangContent> = {
       interests: "趣味",
     },
     summary:
-      "フルスタック開発者として7年以上の経験、データエンジニアリングとシステムアーキテクチャを専門とする。Node.js、TypeScript、Python、PostgreSQLに熟達し、マイクロサービス、ETL/ELTパイプライン、クリーンアーキテクチャを実務で扱ってきた。最近はスペックを書き、AIエージェントに実装させるワークフローを試しており、通常数週間かかるビルドを数日に短縮できた。ドイツ、オランダ、スカンジナビアへの移住に意欲的；ビザスポンサーシップが必要。",
+      "フルスタック開発者として7年以上の経験、データエンジニアリングとシステムアーキテクチャを専門とする。Node.js、TypeScript、Python、PostgreSQLに熟達し、マイクロサービス、ETL/ELTパイプライン、クリーンアーキテクチャを実務で扱ってきた。最近はスペックを書き、AIエージェントに実装させるワークフローを試しており、通常数週間かかるビルドを数日に短縮できた。日本への移住に意欲的；ビザスポンサーシップが必要。",
     jobs: [
       {
         role: "AI-Native / エージェントシステムエンジニア",
@@ -1452,7 +1452,7 @@ export const content: Record<LangCode, LangContent> = {
       interests: "Intereses",
     },
     summary:
-      "Desarrollador Full-Stack con más de 7 años de experiencia en data engineering y arquitectura de sistemas. Dominio de Node.js, TypeScript, Python y PostgreSQL, con trabajo práctico en microservicios, pipelines ETL/ELT y clean architecture. Últimamente estoy escribiendo specs y dejando que agentes de IA los implementen — un flujo que ha reducido builds típicas de varias semanas a días. Disponible para reubicación a Alemania, Países Bajos y Escandinavia; se requiere patrocinio de visado.",
+      "Desarrollador Full-Stack con más de 7 años de experiencia en data engineering y arquitectura de sistemas. Dominio de Node.js, TypeScript, Python y PostgreSQL, con trabajo práctico en microservicios, pipelines ETL/ELT y clean architecture. Últimamente estoy escribiendo specs y dejando que agentes de IA los implementen — un flujo que ha reducido builds típicas de varias semanas a días. Disponible para reubicación a España; se requiere patrocinio de visado.",
     jobs: [
       {
         role: "AI-Native / Agentic Systems Engineer",
@@ -1672,7 +1672,7 @@ export const content: Record<LangCode, LangContent> = {
       interests: "Интересы",
     },
     summary:
-      "Full-Stack разработчик с более чем 7-летним опытом в data engineering и системной архитектуре. Уверенное владение Node.js, TypeScript, Python и PostgreSQL, практический опыт работы с микросервисами, пайплайнами ETL/ELT и чистой архитектурой. В последнее время я пишу спеки и передаю их реализацию AI-агентам — такой подход сократил типичные многонедельные разработки до нескольких дней. Готов к переезду в Германию, Нидерланды и Скандинавию; требуется визовая поддержка.",
+      "Full-Stack разработчик с более чем 7-летним опытом в data engineering и системной архитектуре. Уверенное владение Node.js, TypeScript, Python и PostgreSQL, практический опыт работы с микросервисами, пайплайнами ETL/ELT и чистой архитектурой. В последнее время я пишу спеки и передаю их реализацию AI-агентам — такой подход сократил типичные многонедельные разработки до нескольких дней. Готов к переезду в Россию; требуется визовая поддержка.",
     jobs: [
       {
         role: "AI-Native / Agentic Systems Engineer",
@@ -1892,7 +1892,7 @@ export const content: Record<LangCode, LangContent> = {
       interests: "الاهتمامات",
     },
     summary:
-      "مطوّر Full-Stack بخبرة أكثر من 7 سنوات في هندسة البيانات وهندسة النظم. إتقان Node.js وTypeScript وPython وPostgreSQL، مع عمل تطبيقي في الخدمات المصغّرة وخطوط معالجة ETL/ELT والبنية النظيفة. مؤخرًا أصبحت أكتب المواصفات وأترك وكلاء الذكاء الاصطناعي ينفّذونها — منهج عمل قلّص المشاريع المعتادة متعددة الأسابيع إلى أيام. مستعد للانتقال إلى ألمانيا وهولندا وإسكندنافيا؛ مطلوب كفالة تأشيرة.",
+      "مطوّر Full-Stack بخبرة أكثر من 7 سنوات في هندسة البيانات وهندسة النظم. إتقان Node.js وTypeScript وPython وPostgreSQL، مع عمل تطبيقي في الخدمات المصغّرة وخطوط معالجة ETL/ELT والبنية النظيفة. مؤخرًا أصبحت أكتب المواصفات وأترك وكلاء الذكاء الاصطناعي ينفّذونها — منهج عمل قلّص المشاريع المعتادة متعددة الأسابيع إلى أيام. مستعد للانتقال إلى الإمارات والمملكة العربية السعودية وقطر؛ مطلوب كفالة تأشيرة.",
     jobs: [
       {
         role: "مهندس أنظمة AI-Native / الوكلاء",
