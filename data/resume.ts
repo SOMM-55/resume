@@ -344,7 +344,7 @@ export const content: Record<LangCode, LangContent> = {
           "Solo-architecting and shipping a commercial-scale production system using an agent-driven development workflow — writing specifications, orchestrating AI agents through implementation, and owning verification/release myself end-to-end.",
         achievements: [
           "Shipped a mechanized document-registration MVP in 10 days for a platform serving Iran’s Document Registration Organization — spec written, agent-implemented, reviewed before release; the MVP secured official licensing.",
-          "Built two side projects (file-sharing app, todo list) in 2 days each to benchmark the spec-driven workflow against real CRUD and stateful use cases.",
+          "Built a side project (file-sharing app) in 2 days to benchmark the spec-driven workflow against real CRUD and stateful use cases.",
           "Built security and usability audit agents that produce a pre-release checklist — caught issues before they reached production.",
         ],
         tech: [
@@ -410,12 +410,6 @@ export const content: Record<LangCode, LangContent> = {
         name: "File-Sharing App",
         description:
           "Chunked upload, resumable downloads, and a minimal auth layer. Built in 2 days as a CRUD-heavy benchmark for the spec-driven workflow.",
-        tech: "Next.js, Node.js, TypeScript, Docker",
-      },
-      {
-        name: "Todo List",
-        description:
-          "Optimistic UI updates, keyboard-driven navigation, and localStorage persistence. Built in 2 days to test the workflow on stateful UI patterns.",
         tech: "Next.js, Node.js, TypeScript, Docker",
       },
     ],
@@ -576,7 +570,7 @@ export const content: Record<LangCode, LangContent> = {
           "معماری مستقل و تحویل یک سیستم تولیدی تجاری‌مقیاس با گردش‌کار توسعه مبتنی بر agent — نوشتن مشخصه‌ها، هدایت agentهای هوش مصنوعی در پیاده‌سازی، و مالکیت کامل تأیید و انتشار از ابتدا تا انتها.",
         achievements: [
           "تحویل MVP ثبت مکانیزه اسناد در ۱۰ روز برای پلتفرمی در خدمت سازمان ثبت اسناد ایران — مشخصه نوشته شد، توسط agent پیاده‌سازی شد، قبل از انتشار بازبینی شد؛ این MVP مجوز رسمی را کسب کرد.",
-          "ساخت دو پروژه جانبی (اپ اشتراک فایل، todolist) هر کدام در ۲ روز برای راستی‌آزمایی گردش‌کار مشخصه‌محور در کاربردهای واقعی CRUD و stateful.",
+          "ساخت یک پروژه جانبی (اپ اشتراک فایل) در ۲ روز برای راستی‌آزمایی گردش‌کار مشخصه‌محور در کاربردهای واقعی CRUD و stateful.",
           "ساخت agentهای ممیزی امنیتی و کاربری که یک چک‌لیست پیش از انتشار تولید می‌کنند — مشکلات را قبل از رسیدن به تولید شناسایی کردند.",
         ],
         tech: [
@@ -642,12 +636,6 @@ export const content: Record<LangCode, LangContent> = {
         name: "اپ اشتراک‌گذاری فایل",
         description:
           "آپلود تکه‌ای، دانلود قابل‌ادامه و لایه احراز هویت مینیمال. ساخته‌شده در ۲ روز به‌عنوان معیار CRUD-محور برای گردش‌کار مشخصه‌محور.",
-        tech: "Next.js، Node.js، TypeScript، Docker",
-      },
-      {
-        name: "فهرست کارها (Todo List)",
-        description:
-          "به‌روزرسانی خوش‌بینانه رابط، ناوبری کیبوردمحور و ماندگاری در localStorage. ساخته‌شده در ۲ روز برای آزمایش گردش‌کار روی الگوهای رابط stateful.",
         tech: "Next.js، Node.js، TypeScript، Docker",
       },
     ],
@@ -808,7 +796,7 @@ export const content: Record<LangCode, LangContent> = {
           "Solo-Architektur und Auslieferung eines kommerziellen Produktionssystems im Industriemaßstab mit einem agentengetriebenen Entwicklungsworkflow — Specs schreiben, KI-Agenten durch die Implementierung orchestrieren und Verifikation/Release selbstständig Ende-zu-Ende verantworten.",
         achievements: [
           "Auslieferung einer MVP zur mechanisierten Dokumentenregistrierung in 10 Tagen für eine Plattform im Dienst der iranischen Dokumentenregistrierungsbehörde — Spec geschrieben, von Agenten umgesetzt, vor Release geprüft; das MVP sicherte die offizielle Lizenzierung.",
-          "Zwei Nebenprojekte (File-Sharing-App, Todo-Liste) in jeweils 2 Tagen gebaut, um den spec-driven Workflow an realen CRUD- und zustandsbehafteten Use Cases zu benchmarken.",
+          "Ein Nebenprojekt (File-Sharing-App) in 2 Tagen gebaut, um den spec-driven Workflow an realen CRUD- und zustandsbehafteten Use Cases zu benchmarken.",
           "Sicherheits- und Usability-Audit-Agents gebaut, die eine Pre-Release-Checkliste erzeugen — haben Probleme entdeckt, bevor sie die Produktion erreichten.",
         ],
         tech: [
@@ -874,12 +862,6 @@ export const content: Record<LangCode, LangContent> = {
         name: "File-Sharing-App",
         description:
           "Chunked-Upload, fortsetzbare Downloads und eine minimale Auth-Schicht. In 2 Tagen gebaut als CRUD-lastiger Benchmark für den spec-driven Workflow.",
-        tech: "Next.js, Node.js, TypeScript, Docker",
-      },
-      {
-        name: "Todo-Liste",
-        description:
-          "Optimistische UI-Updates, tastaturgesteuerte Navigation und localStorage-Persistenz. In 2 Tagen gebaut, um den Workflow an zustandsbehafteten UI-Patterns zu testen.",
         tech: "Next.js, Node.js, TypeScript, Docker",
       },
     ],
@@ -1264,7 +1246,7 @@ export const content: Record<LangCode, LangContent> = {
           "エージェント駆動の開発ワークフローを用い、商用規模の本番システムを単独でアーキテクトし提供——スペックを記述し、AIエージェントに実装をオーケストレーションし、検証とリリースを自身でエンドツーエンド完遂。",
         achievements: [
           "イランの文書登録機関にサービスを提供するプラットフォーム向けに機械化ドキュメント登録MVPを10日でリリース——スペック記述、エージェント実装、リリース前レビュー；当該MVPは正式ライセンスを取得。",
-          "さらに2日ずつで2つのサイドプロジェクト（ファイル共有アプリ、Todoリスト）を構築し、実際のCRUDおよびステートフルなユースケースでスペック駆動ワークフローをベンチマーク。",
+          "さらに2日で1つのサイドプロジェクト（ファイル共有アプリ）を構築し、実際のCRUDおよびステートフルなユースケースでスペック駆動ワークフローをベンチマーク。",
           "リリース前チェックリストを生成するセキュリティおよびユーザビリティ監査エージェントを構築——本番に到達する前に問題を検出。",
         ],
         tech: [
@@ -1329,11 +1311,6 @@ export const content: Record<LangCode, LangContent> = {
       {
         name: "ファイル共有アプリ",
         description: "チャンクアップロード、再開可能なダウンロード、最小限の認証レイヤー。2日で構築し、スペック駆動ワークフローに対するCRUD中心のベンチマークとして使用。",
-        tech: "Next.js、Node.js、TypeScript、Docker",
-      },
-      {
-        name: "Todoリスト",
-        description: "楽観的UI更新、キーボード駆動ナビゲーション、localStorage永続化。2日で構築し、ステートフルなUIパターンでワークフローをテスト。",
         tech: "Next.js、Node.js、TypeScript、Docker",
       },
     ],
@@ -1488,7 +1465,7 @@ export const content: Record<LangCode, LangContent> = {
           "Arquitectura en solitario y entrega de un sistema de producción a escala comercial usando un flujo de desarrollo agent-driven — escribiendo specs, orquestando agentes de IA durante la implementación y responsabilizándome de la verificación y el release de principio a fin.",
         achievements: [
           "Entrega de un MVP de registro mecanizado de documentos en 10 días para una plataforma al servicio de la Organización de Registro de Documentos de Irán — spec escrito, implementado por agente, revisado antes del release; el MVP consiguió la licencia oficial.",
-          "Dos proyectos secundarios (app de file sharing, todo list) construidos en 2 días cada uno para benchmark del workflow spec-driven en casos reales CRUD y con estado.",
+          "Un proyecto secundario (app de file sharing) construido en 2 días para benchmark del workflow spec-driven en casos reales CRUD y con estado.",
           "Construcción de agentes de auditoría de seguridad y usabilidad que generan una checklist pre-lanzamiento — detectaron problemas antes de que llegaran a producción.",
         ],
         tech: [
@@ -1554,12 +1531,6 @@ export const content: Record<LangCode, LangContent> = {
         name: "App de file sharing",
         description:
           "Subida por chunks, descargas reanudables y una capa de auth mínima. Construida en 2 días como benchmark CRUD-intensivo para el workflow spec-driven.",
-        tech: "Next.js, Node.js, TypeScript, Docker",
-      },
-      {
-        name: "Todo list",
-        description:
-          "Actualizaciones optimistas de UI, navegación por teclado y persistencia en localStorage. Construida en 2 días para probar el workflow en patrones de UI con estado.",
         tech: "Next.js, Node.js, TypeScript, Docker",
       },
     ],
@@ -1714,7 +1685,7 @@ export const content: Record<LangCode, LangContent> = {
           "Самостоятельное архитектурное проектирование и доставка коммерческой production-системы с использованием agent-driven процесса разработки — написание спеков, оркестрация AI-агентов в ходе реализации и личная ответственность за верификацию и релиз от начала до конца.",
         achievements: [
           "За 10 дней поставлен MVP механизированной регистрации документов для платформы, обслуживающей Иранскую организацию регистрации документов — спек написан, реализован агентом, проверен перед релизом; MVP обеспечил официальную лицензию.",
-          "Два побочных проекта (приложение для обмена файлами, todo-лист), каждый за 2 дня, — для бенчмарка spec-driven подхода на реальных CRUD и stateful-сценариях.",
+          "Один побочный проект (приложение для обмена файлами) за 2 дня — для бенчмарка spec-driven подхода на реальных CRUD и stateful-сценариях.",
           "Созданы агенты аудита безопасности и удобства, формирующие чек-лист перед релизом — проблемы отлавливались до попадания в продакшен.",
         ],
         tech: [
@@ -1780,12 +1751,6 @@ export const content: Record<LangCode, LangContent> = {
         name: "Приложение для обмена файлами",
         description:
           "Чанковая загрузка, возобновляемые загрузки и минимальный слой auth. Создано за 2 дня как CRUD-интенсивный бенчмарк для spec-driven подхода.",
-        tech: "Next.js, Node.js, TypeScript, Docker",
-      },
-      {
-        name: "Todo-лист",
-        description:
-          "Оптимистичные обновления UI, навигация с клавиатуры и персистентность в localStorage. Создан за 2 дня для тестирования подхода на stateful UI-паттернах.",
         tech: "Next.js, Node.js, TypeScript, Docker",
       },
     ],
