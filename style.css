@@ -133,6 +133,14 @@
   color: inherit;
 }
 .rv-contact a:hover { color: var(--rv-accent); }
+/* Force LTR display for numerals and Latin-script fragments even
+   inside an RTL document (phone numbers, emails, urls). The dir="ltr"
+   attribute on the element alone isn't enough against the bidi
+   algorithm — unicode-bidi: isolate overrides the inherited rule. */
+.rv-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
 
 /* Section headings */
 .rv-h {

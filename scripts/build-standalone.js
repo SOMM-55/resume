@@ -312,7 +312,7 @@ function render() {
 
   const inner = document.getElementById("docInner");
   inner.innerHTML = renderHeader(c) + renderSummary(c) + '<div class="rv-grid">' + renderMain(c) + renderSide(c) + '</div>' +
-    '<div class="rv-printFooter" aria-hidden="true"><span class="rv-pfName">' + displayName(lang) + '</span><span>' + identity.email + ' · ' + identity.phone + '</span></div>';
+    '<div class="rv-printFooter" aria-hidden="true"><span class="rv-pfName">' + displayName(lang) + '</span><span class="rv-ltr">' + identity.email + ' · ' + identity.phone + '</span></div>';
 
   document.getElementById("helpTitleText").textContent = u.keyboardHint.split(":")[0] || "Keyboard Shortcuts";
   document.getElementById("helpList").innerHTML = [
@@ -330,11 +330,11 @@ function renderHeader(c) {
     '<p class="rv-title" itemprop="jobTitle">' + c.title + '</p>' +
     '<p class="rv-eyebrow">' + c.eyebrow + '</p>' +
     '<div class="rv-contact">' +
-    '<a href="mailto:' + identity.email + '" itemprop="email">' + icons.mail + ' ' + identity.email + '</a>' +
-    '<a href="tel:' + identity.phoneHref + '" itemprop="telephone">' + icons.phone + ' ' + identity.phone + '</a>' +
-    '<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">' + icons.pin + ' <span itemprop="addressLocality">' + identity.location + '</span></span>' +
-    '<a href="' + identity.linkedinHref + '" target="_blank" rel="noopener noreferrer" itemprop="sameAs">' + icons.linkedin + ' ' + identity.linkedin + '</a>' +
-    '<a href="' + identity.githubHref + '" target="_blank" rel="noopener noreferrer" itemprop="sameAs">' + icons.github + ' ' + identity.github + '</a>' +
+    '<a href="mailto:' + identity.email + '" itemprop="email" class="rv-ltr">' + icons.mail + ' <span>' + identity.email + '</span></a>' +
+    '<a href="tel:' + identity.phoneHref + '" itemprop="telephone" class="rv-ltr">' + icons.phone + ' <span>' + identity.phone + '</span></a>' +
+    '<span class="rv-ltr" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">' + icons.pin + ' <span itemprop="addressLocality">' + identity.location + '</span></span>' +
+    '<a href="' + identity.linkedinHref + '" target="_blank" rel="noopener noreferrer" itemprop="sameAs" class="rv-ltr">' + icons.linkedin + ' <span>' + identity.linkedin + '</span></a>' +
+    '<a href="' + identity.githubHref + '" target="_blank" rel="noopener noreferrer" itemprop="sameAs" class="rv-ltr">' + icons.github + ' <span>' + identity.github + '</span></a>' +
     '</div></div></header>';
 }
 
