@@ -3,20 +3,25 @@
  * for GitHub Pages hosting. No server/build needed.
  *
  * Usage: node scripts/build-standalone.js
+ *
+ * Inputs:
+ *   data/resume.ts — typed resume data (identity, languages, uiStrings, content)
+ *   style.css      — the .rv-* CSS section used by the standalone page
+ *
+ * Output:
+ *   public/resume.html — single self-contained HTML file
  */
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
-const DATA_FILE = path.join(ROOT, "src/lib/resume-data.ts");
-const CSS_FILE = path.join(ROOT, "src/app/globals.css");
+const DATA_FILE = path.join(ROOT, "data/resume.ts");
+const CSS_FILE = path.join(ROOT, "style.css");
 const OUT_FILE = path.join(ROOT, "public/resume.html");
 
-// ─── 1. Extract CSS (the .rv-* section from globals.css) ───
-const cssRaw = fs.readFileSync(CSS_FILE, "utf8");
-const cssStart = cssRaw.indexOf("/* ============================================================= */\n/*  RESUME");
-const css = cssRaw.slice(cssStart);
+// ─── 1. Read CSS ───
+const css = fs.readFileSync(CSS_FILE, "utf8");
 
 // ─── 2. Extract & convert TypeScript data to plain JS ───
 const tsRaw = fs.readFileSync(DATA_FILE, "utf8");
