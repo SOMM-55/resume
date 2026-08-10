@@ -77,9 +77,21 @@ export interface LangContent {
   award: string;
 }
 
-/** Constant identity info (language-independent) */
-export const identity = {
+/** Constant identity info (language-independent unless overridden via nameLocalized) */
+export const identity: {
+  name: string;
+  nameLocalized: Record<string, string>;
+  email: string;
+  phone: string;
+  phoneHref: string;
+  location: string;
+  linkedin: string;
+  linkedinHref: string;
+  github: string;
+  githubHref: string;
+} = {
   name: "Sayyid Omid Mousavi Mehr",
+  nameLocalized: { fa: "سید امید موسوی‌مهر" },
   email: "s.omid.m.mehr@gmail.com",
   phone: "+98 915 911 3904",
   phoneHref: "+989159113904",

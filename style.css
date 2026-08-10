@@ -25,7 +25,11 @@
   align-items: center;
   padding: 1.25rem 1rem 3rem;
   gap: 1rem;
+  box-sizing: border-box;
 }
+/* All chrome elements share the exact same outer box width so the
+   toolbar, quicknav and the resume card are pixel-aligned. */
+.rv-toolbar, .rv-quicknav, .rv-doc { box-sizing: border-box; }
 
 /* Floating toolbar (hidden in print) */
 .rv-toolbar {

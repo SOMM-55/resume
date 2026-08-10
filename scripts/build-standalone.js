@@ -67,6 +67,14 @@ const fn = new Function(
 );
 const { identity, languages, uiStrings, content } = fn();
 
+// Pick the right name for the current language. Falls back to the
+// default identity.name when no localized variant exists.
+// NOTE: defined both here (Node) and inlined below the client script
+// literal so it's available inside the page's render closures too.
+function displayName(lang) {
+  return (identity.nameLocalized && identity.nameLocalized[lang]) || identity.name;
+}
+
 // ─── 3. Build the data object as a JS string ───
 const dataStr = JSON.stringify({ identity, languages, uiStrings, content });
 
@@ -219,6 +227,12 @@ html[lang="ja"] body { font-family: var(--rv-font-ja); }
 const DATA = ${dataStr};
 const { identity, languages, uiStrings, content } = DATA;
 
+// Pick the right name for the current language. Falls back to the
+// default identity.name when no localized variant exists.
+function displayName(lang) {
+  return (identity.nameLocalized && identity.nameLocalized[lang]) || identity.name;
+}
+
 let lang = "en";
 let dark = false;
 let menuOpen = false;
@@ -252,7 +266,7 @@ function render() {
   const u = uiStrings[lang];
   document.documentElement.lang = lang;
   document.documentElement.dir = c.dir;
-  document.title = identity.name + " — " + c.title;
+  document.title = displayName(lang) + " — " + c.title;
   document.getElementById("app").className = "rv-app" + (dark ? " rv-dark" : "");
   const doc = document.getElementById("doc");
   doc.setAttribute("dir", c.dir);
@@ -262,7 +276,7 @@ function render() {
   document.getElementById("atsBadge").title = u.atsBadgeTitle;
   document.getElementById("printText").textContent = c.ui.print;
   document.getElementById("langLabel").textContent = languages.find(l => l.code === lang).label;
-  document.getElementById("pfLeft").textContent = identity.name;
+  document.getElementById("pfLeft").textContent = displayName(lang);
   const darkBtn = document.getElementById("darkBtn");
   darkBtn.setAttribute("aria-pressed", dark);
   darkBtn.title = dark ? u.lightMode : u.darkMode;
@@ -298,7 +312,7 @@ function render() {
 
   const inner = document.getElementById("docInner");
   inner.innerHTML = renderHeader(c) + renderSummary(c) + '<div class="rv-grid">' + renderMain(c) + renderSide(c) + '</div>' +
-    '<div class="rv-printFooter" aria-hidden="true"><span class="rv-pfName">' + identity.name + '</span><span>' + identity.email + ' · ' + identity.phone + '</span></div>';
+    '<div class="rv-printFooter" aria-hidden="true"><span class="rv-pfName">' + displayName(lang) + '</span><span>' + identity.email + ' · ' + identity.phone + '</span></div>';
 
   document.getElementById("helpTitleText").textContent = u.keyboardHint.split(":")[0] || "Keyboard Shortcuts";
   document.getElementById("helpList").innerHTML = [
@@ -312,7 +326,7 @@ function render() {
 
 function renderHeader(c) {
   return '<header class="rv-header"><div class="rv-headerText">' +
-    '<h1 class="rv-name" itemprop="name">' + identity.name + '</h1>' +
+    '<h1 class="rv-name" itemprop="name">' + displayName(lang) + '</h1>' +
     '<p class="rv-title" itemprop="jobTitle">' + c.title + '</p>' +
     '<p class="rv-eyebrow">' + c.eyebrow + '</p>' +
     '<div class="rv-contact">' +
@@ -404,7 +418,7 @@ function handlePrint() { window.print(); }
 
 function handleCopyText() {
   const c = content[lang];
-  const lines = [identity.name, c.title, identity.email + " | " + identity.phone + " | " + identity.location, identity.linkedinHref + " | " + identity.githubHref, "", "========================================", c.sections.summary.toUpperCase(), "========================================", c.summary, "", "========================================", c.sections.experience.toUpperCase(), "========================================"];
+  const lines = [displayName(lang), c.title, identity.email + " | " + identity.phone + " | " + identity.location, identity.linkedinHref + " | " + identity.githubHref, "", "========================================", c.sections.summary.toUpperCase(), "========================================", c.summary, "", "========================================", c.sections.experience.toUpperCase(), "========================================"];
   for (const job of c.jobs) { lines.push("", job.role + " — " + job.company, job.location + " | " + job.period + " | " + job.typeLabel + " | " + job.modelLabel, "", job.overview, ""); for (const a of job.achievements) lines.push("  - " + a); lines.push("", "Technologies: " + job.tech.join(", ")); }
   lines.push("", "========================================", c.sections.projects.toUpperCase(), "========================================");
   for (const p of c.projects) lines.push("", p.name, p.description, "Tech: " + p.tech);
@@ -427,7 +441,7 @@ function handleDownload() {
   const blob = new Blob([html], { type: "text/html;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.href = url; a.download = identity.name.replace(/\\s+/g, "_") + "_Resume_" + lang + ".html";
+  a.href = url; a.download = displayName(lang).replace(/\\s+/g, "_") + "_Resume_" + lang + ".html";
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
