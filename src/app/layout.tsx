@@ -28,7 +28,7 @@ const vazirmatn = localFont({
   variable: "--font-vazirmatn",
   weight: "100 900",
   display: "optional",
-  preload: false,
+  preload: true,
   fallback: ["system-ui", "tahoma", "Arial", "sans-serif"],
 });
 

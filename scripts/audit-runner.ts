@@ -1,6 +1,6 @@
 import { chromium } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { execSync } from "node:child_process";
+import { execSync, execFileSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 
@@ -87,22 +87,27 @@ async function runLighthouse(url: string, preset: "mobile" | "desktop", runNum: 
     LIGHTHOUSE_DIR,
     `${encodeURIComponent(url.replace(/https?:\/\//, "").replace(/\//g, "_"))}_${preset}_run${runNum}.json`
   );
-  const flags = [
+  const args = [
+    "lighthouse",
     url,
-    '--chrome-flags="--headless --no-sandbox --disable-gpu"',
-    '--extra-headers=\'{"X-Audit-Bot":"1"}\'',
-    '--user-agent="Mozilla/5.0 SiteAuditBot/1.0"',
+    "--chrome-flags=--headless=new --no-sandbox --disable-gpu",
+    '--extra-headers={"X-Audit-Bot":"1"}',
+    "--user-agent=Mozilla/5.0 SiteAuditBot/1.0",
     `--output-path=${outputFile}`,
     "--output=json",
     "--quiet",
+    "--max-wait-for-load=30000",
     "--only-categories=performance,accessibility,best-practices,seo",
   ];
   if (preset === "desktop") {
-    flags.push("--preset=desktop");
+    args.push("--preset=desktop");
   }
 
-  const cmd = `npx lighthouse ${flags.join(" ")}`;
-  execSync(cmd, { stdio: "ignore" });
+  try {
+    execFileSync("npx", args, { stdio: "pipe" });
+  } catch (err: any) {
+    console.error(`Lighthouse failed for ${url} (${preset} run ${runNum}):`, err.message);
+  }
 
   const content = JSON.parse(fs.readFileSync(outputFile, "utf-8"));
   return {

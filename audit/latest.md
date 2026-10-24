@@ -1,6 +1,6 @@
 # Production Website Quality Audit Report
 
-**Overall Score:** **96 / 100** (→ (0)) | Commit: `3651320`
+**Overall Score:** **96 / 100** (→ (0)) | Commit: `53d87c6`
 **Verdict:** Outstanding production grade; visual elegance, 100% accessible, pristine security headers and sub-second desktop delivery.
 
 ---
@@ -10,7 +10,7 @@
 | Category | Weight | Score | Delta | Trend | Status |
 | :--- | :---: | :---: | :---: | :---: | :--- |
 | **Visual Design & Aesthetics** | 20% | **95** | +0 | → (0) | Minimal layout, strong hierarchy, telemetry HUD & pipeline DAG |
-| **Performance** | 20% | **89** | +0 | → (0) | Mobile Perf 92/100; Desktop Perf 100/100 |
+| **Performance** | 20% | **89** | +0 | → (0) | Mobile Perf 93/100; Desktop Perf 100/100 |
 | **Accessibility (a11y)** | 15% | **100** | +0 | → (0) | 0 axe violations across all 4 pages x 2 themes |
 | **UX & Interaction** | 10% | **96** | +0 | → (0) | Cmd+K palette, shortcuts modal, theme toggle, mobile ergonomics |
 | **Content & Effectiveness** | 10% | **98** | +0 | → (0) | Quantified outcomes, clear value proposition, perfect bilingual parity |
@@ -46,10 +46,10 @@
 
 ## 4. Key Metrics (Lighthouse 3-Run Medians)
 
-- **LCP (Largest Contentful Paint):** 3.21 s (Mobile) | 0.67 s (Desktop)
-- **TBT (Total Blocking Time):** 110 ms (Mobile) | 0 ms (Desktop)
+- **LCP (Largest Contentful Paint):** 3.17 s (Mobile) | 0.66 s (Desktop)
+- **TBT (Total Blocking Time):** 83 ms (Mobile) | 0 ms (Desktop)
 - **CLS (Cumulative Layout Shift):** 0.000 (Mobile) | 0.000 (Desktop)
-- **FCP (First Contentful Paint):** 1.37 s (Mobile) | 0.35 s (Desktop)
+- **FCP (First Contentful Paint):** 1.37 s (Mobile) | 0.34 s (Desktop)
 - **Total Static JS Weight:** 1215.1 KB across chunks
 - **Axe Violations:** 0 across all tested pages and themes
 
