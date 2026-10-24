@@ -87,8 +87,8 @@ export function ContactSection({ content }: ContactSectionProps) {
   return (
     <section id="contact" className="py-12 border-b border-border/40 scroll-mt-20">
       <div className="flex items-center gap-2 mb-8">
-        <span className="font-mono text-xs uppercase tracking-wider text-primary font-bold">
-          [06]
+        <span className="font-mono text-xs text-primary font-bold">
+          sys://comms/dispatch
         </span>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
           <Mail className="w-5 h-5 text-primary" />

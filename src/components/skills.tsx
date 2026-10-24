@@ -1,49 +1,75 @@
 import * as React from "react";
 import type { ResumeContent } from "@/content";
-import { Code2, Terminal } from "lucide-react";
+import { Code2, Cpu, Database, Server, Workflow, Terminal } from "lucide-react";
 
 interface SkillsProps {
   content: ResumeContent;
 }
 
+const CATEGORY_META: Record<string, { badge: string; icon: React.ComponentType<{ className?: string }> }> = {
+  "Data Engineering": { badge: "CORE DOMAIN // ETL & STREAMING", icon: Database },
+  "AI-Agent Engineering": { badge: "AGENTIC // SDD HARNESSES", icon: Cpu },
+  "Programming Languages": { badge: "RUNTIMES & TYPES", icon: Terminal },
+  "Frameworks & Libraries": { badge: "BACKEND & FRONTEND", icon: Server },
+  "DevOps & Infrastructure": { badge: "OPERATIONS & CONTAINERIZATION", icon: Server },
+  "Architecture & Methodologies": { badge: "DESIGN PATTERNS", icon: Workflow },
+};
+
 export function Skills({ content }: SkillsProps) {
   return (
-    <section id="skills" className="py-12 border-b border-border/40 scroll-mt-20">
-      <div className="flex items-center gap-2 mb-8">
-        <span className="font-mono text-xs uppercase tracking-wider text-primary font-bold">
-          [04]
-        </span>
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-          <Code2 className="w-5 h-5 text-primary" />
-          <span>{content.sections.skills}</span>
-        </h2>
+    <section id="skills" className="py-14 border-b border-border/50 scroll-mt-20">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-8">
+        <div>
+          <div className="font-mono text-xs text-primary font-bold">
+            sys://stack/capability-matrix
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+            {content.sections.skills}
+          </h2>
+        </div>
+        <div className="font-mono text-[11px] text-muted-foreground">
+          Categorized technical competency & production tools
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {content.skills.map((group, idx) => (
-          <div
-            key={idx}
-            className="p-4 rounded-lg bg-card border border-border/70 space-y-3"
-          >
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-3 rounded-full bg-primary" />
-              <h3 className="font-mono text-xs uppercase font-bold tracking-wider text-foreground">
-                {group.label}
-              </h3>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {content.skills.map((group, idx) => {
+          const meta = CATEGORY_META[group.label] || {
+            badge: "SYSTEMS LAYER",
+            icon: Code2,
+          };
+          const Icon = meta.icon;
 
-            <div className="flex flex-wrap gap-1.5">
-              {group.items.map((item) => (
-                <span
-                  key={item}
-                  className="font-mono text-xs px-2 py-0.5 rounded-md bg-secondary/80 border border-border/50 text-foreground/80 hover:border-primary/50 hover:text-primary transition-colors"
-                >
-                  {item}
-                </span>
-              ))}
+          return (
+            <div
+              key={idx}
+              className="p-5 rounded-xl bg-card border border-border/70 space-y-3 hover:border-primary/50 transition-colors"
+            >
+              <div className="space-y-1">
+                <div className="font-mono text-[10px] text-primary font-semibold tracking-wider">
+                  {meta.badge}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 text-primary" />
+                  <h3 className="font-bold text-sm text-foreground">
+                    {group.label}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="font-mono text-xs px-2.5 py-1 rounded-md bg-secondary/70 border border-border/60 text-foreground/80 hover:text-primary hover:border-primary/50 transition-colors"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

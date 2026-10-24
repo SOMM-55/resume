@@ -34,50 +34,52 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.99 0.002 90);
-  --foreground: oklch(0.18 0.01 250);
+  --background: oklch(0.985 0.003 240);
+  --foreground: oklch(0.16 0.015 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 250);
+  --card-foreground: oklch(0.16 0.015 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.01 250);
-  --primary: oklch(0.48 0.12 185); /* Refined data-teal */
+  --popover-foreground: oklch(0.16 0.015 250);
+  --primary: oklch(0.46 0.14 185); /* Deep authoritative teal */
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.005 240);
-  --secondary-foreground: oklch(0.25 0.01 250);
-  --muted: oklch(0.95 0.005 240);
-  --muted-foreground: oklch(0.5 0.015 250);
-  --accent: oklch(0.94 0.01 185);
+  --secondary: oklch(0.95 0.006 240);
+  --secondary-foreground: oklch(0.25 0.015 250);
+  --muted: oklch(0.94 0.006 240);
+  --muted-foreground: oklch(0.48 0.02 250);
+  --accent: oklch(0.93 0.015 185);
   --accent-foreground: oklch(0.3 0.08 185);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.9 0.005 240);
-  --input: oklch(0.9 0.005 240);
-  --ring: oklch(0.48 0.12 185);
+  --border: oklch(0.89 0.008 240);
+  --input: oklch(0.89 0.008 240);
+  --ring: oklch(0.46 0.14 185);
+  --grid-line: rgba(15, 23, 42, 0.04);
 }
 
 .dark {
-  --background: oklch(0.13 0.01 250);
-  --foreground: oklch(0.94 0.005 240);
-  --card: oklch(0.16 0.012 250);
-  --card-foreground: oklch(0.94 0.005 240);
-  --popover: oklch(0.16 0.012 250);
-  --popover-foreground: oklch(0.94 0.005 240);
-  --primary: oklch(0.68 0.14 185); /* Luminous teal accent in dark */
-  --primary-foreground: oklch(0.12 0.01 250);
-  --secondary: oklch(0.2 0.015 250);
-  --secondary-foreground: oklch(0.94 0.005 240);
-  --muted: oklch(0.2 0.015 250);
-  --muted-foreground: oklch(0.65 0.01 250);
-  --accent: oklch(0.22 0.03 185);
-  --accent-foreground: oklch(0.85 0.08 185);
+  --background: oklch(0.11 0.018 255); /* Deep slate-carbon */
+  --foreground: oklch(0.95 0.006 240);
+  --card: oklch(0.145 0.016 255);
+  --card-foreground: oklch(0.95 0.006 240);
+  --popover: oklch(0.145 0.016 255);
+  --popover-foreground: oklch(0.95 0.006 240);
+  --primary: oklch(0.72 0.16 182); /* Phosphor console teal/cyan */
+  --primary-foreground: oklch(0.1 0.015 255);
+  --secondary: oklch(0.18 0.018 255);
+  --secondary-foreground: oklch(0.92 0.006 240);
+  --muted: oklch(0.18 0.018 255);
+  --muted-foreground: oklch(0.65 0.015 250);
+  --accent: oklch(0.22 0.035 185);
+  --accent-foreground: oklch(0.88 0.1 182);
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.24 0.015 250);
-  --input: oklch(0.24 0.015 250);
-  --ring: oklch(0.68 0.14 185);
+  --border: oklch(0.22 0.018 255);
+  --input: oklch(0.22 0.018 255);
+  --ring: oklch(0.72 0.16 182);
+  --grid-line: rgba(255, 255, 255, 0.035);
 }
 
-/* RTL Typography: apply Vazirmatn automatically when dir="rtl" */
+/* RTL Typography */
 [dir="rtl"] {
   font-family: var(--font-vazirmatn), system-ui, sans-serif;
 }
@@ -88,6 +90,69 @@
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   direction: ltr;
   display: inline-block;
+}
+
+/* Subtle Engineering Blueprint Background Grid */
+.bg-grid-pattern {
+  background-size: 28px 28px;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+}
+
+/* Phosphor Glow and Laser Hairlines */
+.glow-primary {
+  box-shadow: 0 0 24px -6px oklch(var(--primary) / 0.35);
+}
+
+.glow-border {
+  border-color: var(--primary);
+  box-shadow: 0 0 12px -2px oklch(var(--primary) / 0.25);
+}
+
+.hero-ambient-glow {
+  background: radial-gradient(circle at 50% -20%, oklch(var(--primary) / 0.12), transparent 70%);
+}
+
+.terminal-header {
+  background: linear-gradient(90deg, var(--card) 0%, var(--secondary) 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+/* High-Precision Pipeline Rail */
+.pipeline-track {
+  position: relative;
+}
+.pipeline-track::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  bottom: 0.5rem;
+  inset-inline-start: 1rem;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--primary) 0%,
+    var(--border) 60%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+/* Pulse animation for data flow nodes */
+@keyframes signalPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.15);
+  }
+}
+
+.signal-live {
+  animation: signalPulse 2s ease-in-out infinite;
 }
 
 /* Accessibility: Visible Skip Link */
@@ -108,39 +173,6 @@
   outline: 2px solid var(--ring);
 }
 
-/* Subtle pipeline rail connecting timeline nodes */
-.pipeline-rail {
-  position: relative;
-}
-.pipeline-rail::before {
-  content: "";
-  position: absolute;
-  top: 1.5rem;
-  bottom: 0.5rem;
-  inset-inline-start: 0.875rem;
-  width: 2px;
-  background: linear-gradient(
-    180deg,
-    var(--primary) 0%,
-    var(--border) 80%,
-    transparent 100%
-  );
-  opacity: 0.45;
-}
-
-/* Hairline dividers preferred over heavy boxes */
-.hairline-divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--border) 20%,
-    var(--border) 80%,
-    transparent 100%
-  );
-}
-
-/* Smooth anchor scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -156,7 +188,7 @@ html {
   }
 }
 
-/* Print Stylesheet: ATS-friendly, clean, A4 paginated */
+/* Print Stylesheet */
 @media print {
   @page {
     size: A4 portrait;
@@ -166,11 +198,14 @@ html {
   html, body {
     background: #ffffff !important;
     color: #0f172a !important;
-    font-size: 10pt !important;
+    font-size: 9.8pt !important;
     line-height: 1.4 !important;
   }
 
-  /* Hide screen-only interactive elements */
+  .bg-grid-pattern {
+    background-image: none !important;
+  }
+
   .no-print,
   nav,
   button,
@@ -178,16 +213,15 @@ html {
   .theme-toggle,
   .language-toggle,
   .contact-form,
-  .skip-link {
+  .skip-link,
+  .interactive-only {
     display: none !important;
   }
 
-  /* Show print footer */
   .print-only {
     display: block !important;
   }
 
-  /* Avoid awkward page breaks */
   .break-inside-avoid {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
@@ -204,7 +238,6 @@ html {
     text-decoration: none !important;
   }
 
-  /* High contrast borders and reset shadows */
   * {
     box-shadow: none !important;
     text-shadow: none !important;
