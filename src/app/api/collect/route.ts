@@ -52,6 +52,13 @@ export async function POST(req: NextRequest) {
       return new NextResponse(null, { status: 204 });
     }
 
+    // Never pollute analytics from automated quality audit bot runs
+    const auditBot = req.headers.get("x-audit-bot");
+    const userAgent = req.headers.get("user-agent") || "";
+    if (auditBot === "1" || userAgent.toLowerCase().includes("siteauditbot")) {
+      return new NextResponse(null, { status: 204 });
+    }
+
     const rawBody = await req.json().catch(() => null);
     if (!rawBody) {
       return new NextResponse(null, { status: 400 });
@@ -64,7 +71,6 @@ export async function POST(req: NextRequest) {
 
     const data = parsed.data;
     const ip = getClientIp(req);
-    const userAgent = req.headers.get("user-agent") || "";
 
     // Check exclusion settings (e.g. owner IPs or test UAs)
     const [excludedIpsSetting, excludedUasSetting] = await Promise.all([

@@ -42,6 +42,27 @@ export default async function PrintResumePage({ params }: PageProps) {
 
   return (
     <div dir={content.dir} lang={content.locale} className="min-h-screen bg-background text-foreground print:bg-white print:text-black">
+      {/* Locale-specific critical font preload */}
+      {content.locale === "fa" ? (
+        <link
+          rel="preload"
+          href="/fonts/Vazirmatn-Variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          fetchPriority="high"
+        />
+      ) : (
+        <link
+          rel="preload"
+          href="/fonts/Geist-Variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          fetchPriority="high"
+        />
+      )}
+
       <header className="no-print p-4 bg-secondary border-b border-border text-center text-xs space-y-2">
         <p className="font-medium text-foreground">
           Print Preview Mode. Press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono font-bold">Ctrl+P</kbd> or <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono font-bold">⌘P</kbd> to print to PDF.

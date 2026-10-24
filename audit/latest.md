@@ -1,6 +1,6 @@
 # Production Website Quality Audit Report
 
-**Overall Score:** **96.2 / 100** (↑ (+0.2)) | Commit: `39a1456`
+**Overall Score:** **96.6 / 100** (↓ (-0.2)) | Commit: `b4bb03d`
 **Verdict:** Outstanding production grade; visual elegance, 100% accessible, pristine security headers and sub-second desktop delivery.
 
 ---
@@ -10,7 +10,7 @@
 | Category | Weight | Score | Delta | Trend | Status |
 | :--- | :---: | :---: | :---: | :---: | :--- |
 | **Visual Design & Aesthetics** | 20% | **95** | +0 | → (0) | Minimal layout, strong hierarchy, telemetry HUD & pipeline DAG |
-| **Performance** | 20% | **90** | +1 | ↑ (+1) | Mobile Perf 93/100; Desktop Perf 100/100 |
+| **Performance** | 20% | **92** | -1 | ↓ (-1) | Mobile Perf 93/100; Desktop Perf 100/100 |
 | **Accessibility (a11y)** | 15% | **100** | +0 | → (0) | 0 axe violations across all 4 pages x 2 themes |
 | **UX & Interaction** | 10% | **96** | +0 | → (0) | Cmd+K palette, shortcuts modal, theme toggle, mobile ergonomics |
 | **Content & Effectiveness** | 10% | **98** | +0 | → (0) | Quantified outcomes, clear value proposition, perfect bilingual parity |
@@ -30,7 +30,7 @@
 
 ### 1. [MEDIUM] perf-lcp-mobile (performance) — *unchanged*
 - **Location:** `src/app/[locale]/page.tsx:1` (Page: `/fa`, Viewport: `mobile`)
-- **Evidence:** Mobile LCP 3.92 s (median of 3 runs) exceeds good threshold (2.5s)
+- **Evidence:** Mobile LCP 3.46 s (median of 3 runs) exceeds good threshold (2.5s)
 - **Impact:** Hurts perceived loading speed and mobile Core Web Vitals rating
 - **Recommendation:** Optimize critical rendering path, preload key fonts, and reduce render-blocking resources
 - **Effort:** M | **Expected Gain:** +6 performance points, LCP < 2.5s
@@ -47,7 +47,7 @@
 ## 4. Key Metrics (Lighthouse 3-Run Medians)
 
 - **LCP (Largest Contentful Paint):** 3.17 s (Mobile) | 0.66 s (Desktop)
-- **TBT (Total Blocking Time):** 89 ms (Mobile) | 0 ms (Desktop)
+- **TBT (Total Blocking Time):** 88 ms (Mobile) | 0 ms (Desktop)
 - **CLS (Cumulative Layout Shift):** 0.000 (Mobile) | 0.000 (Desktop)
 - **FCP (First Contentful Paint):** 1.37 s (Mobile) | 0.34 s (Desktop)
 - **Total Static JS Weight:** 1215.1 KB across chunks

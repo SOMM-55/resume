@@ -298,5 +298,105 @@
       "a11y_mobile": 100,
       "total_js_kb": 1215
     }
+  },
+  {
+    "timestamp": "2026-10-24T21:36:53.496Z",
+    "commit": "b4bb03dee0b87bb4bed43b58aef6455ffbba03d9",
+    "run_type": "deep",
+    "overall": 96.4,
+    "categories": {
+      "visual": 95,
+      "performance": 91,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 96.4
+    },
+    "metric_summary": {
+      "lcp_mobile": "3.17 s",
+      "tbt_mobile": "89 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 93,
+      "a11y_mobile": 100,
+      "total_js_kb": 1215
+    }
+  },
+  {
+    "timestamp": "2026-10-24T21:59:12.933Z",
+    "commit": "b4bb03dee0b87bb4bed43b58aef6455ffbba03d9",
+    "run_type": "deep",
+    "overall": 96.4,
+    "categories": {
+      "visual": 95,
+      "performance": 91,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 96.4
+    },
+    "metric_summary": {
+      "lcp_mobile": "2.88 s",
+      "tbt_mobile": "90 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 95,
+      "a11y_mobile": 100,
+      "total_js_kb": 1215
+    }
+  },
+  {
+    "timestamp": "2026-10-24T22:08:04.759Z",
+    "commit": "b4bb03dee0b87bb4bed43b58aef6455ffbba03d9",
+    "run_type": "deep",
+    "overall": 96.8,
+    "categories": {
+      "visual": 95,
+      "performance": 93,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 96.8
+    },
+    "metric_summary": {
+      "lcp_mobile": "3.17 s",
+      "tbt_mobile": "93 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 92,
+      "a11y_mobile": 100,
+      "total_js_kb": 1215
+    }
+  },
+  {
+    "timestamp": "2026-10-24T22:16:18.801Z",
+    "commit": "b4bb03dee0b87bb4bed43b58aef6455ffbba03d9",
+    "run_type": "deep",
+    "overall": 96.6,
+    "categories": {
+      "visual": 95,
+      "performance": 92,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 96.6
+    },
+    "metric_summary": {
+      "lcp_mobile": "3.17 s",
+      "tbt_mobile": "88 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 93,
+      "a11y_mobile": 100,
+      "total_js_kb": 1215
+    }
   }
 ]

@@ -1,36 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-
-// Self-hosted fonts with zero external Google Fonts network calls
-const geistSans = localFont({
-  src: "../fonts/Geist-Variable.woff2",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-  display: "optional",
-  preload: true,
-  fallback: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-});
-
-const geistMono = localFont({
-  src: "../fonts/GeistMono-Variable.woff2",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-  display: "optional",
-  preload: false,
-  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
-});
-
-const vazirmatn = localFont({
-  src: "../fonts/Vazirmatn-Variable.woff2",
-  variable: "--font-vazirmatn",
-  weight: "100 900",
-  display: "optional",
-  preload: false,
-  fallback: ["system-ui", "tahoma", "Arial", "sans-serif"],
-});
 
 let currentCommitSha: string = process.env.GIT_COMMIT_SHA || "2abee3f";
 try {
@@ -84,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} antialiased bg-background text-foreground min-h-screen selection:bg-teal-500/20 selection:text-teal-600 dark:selection:text-teal-300`}
+        className="antialiased bg-background text-foreground min-h-screen selection:bg-teal-500/20 selection:text-teal-600 dark:selection:text-teal-300"
       >
         <ThemeProvider
           attribute="class"

@@ -86,6 +86,27 @@ export default async function ResumePage({ params }: PageProps) {
 
   return (
     <div dir={content.dir} lang={content.locale} className="min-h-screen flex flex-col bg-background print:bg-white print:text-black">
+      {/* Locale-specific critical font preload */}
+      {content.locale === "fa" ? (
+        <link
+          rel="preload"
+          href="/fonts/Vazirmatn-Variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          fetchPriority="high"
+        />
+      ) : (
+        <link
+          rel="preload"
+          href="/fonts/Geist-Variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          fetchPriority="high"
+        />
+      )}
+
       {/* Structured data */}
       <script
         type="application/ld+json"
