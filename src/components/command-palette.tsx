@@ -94,11 +94,10 @@ export function CommandPalette({ content }: CommandPaletteProps) {
       <button
         onClick={() => setOpen(true)}
         className="command-palette-trigger hidden sm:inline-flex items-center gap-2 px-2.5 py-1 text-xs text-muted-foreground hover:text-foreground bg-secondary/60 hover:bg-secondary rounded-md border border-border transition-colors font-mono"
-        aria-label={content.ui.commandPalette}
         title={content.ui.commandPaletteHint}
       >
         <span>⌘K</span>
-        <span className="text-[10px] opacity-70">
+        <span className="text-[10px] text-muted-foreground/90 font-medium">
           {content.ui.commandPaletteHint}
         </span>
       </button>

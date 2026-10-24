@@ -1,0 +1,52 @@
+[
+  {
+    "timestamp": "2026-10-24T14:56:51.572Z",
+    "commit": "fa296053ed20a663e94d7586bcf661ebe03e8556",
+    "run_type": "deep",
+    "overall": 86.3,
+    "categories": {
+      "visual": 94,
+      "performance": 87,
+      "accessibility": 50,
+      "ux": 95,
+      "content": 98,
+      "seo": 100,
+      "security": 85,
+      "i18n": 95,
+      "overall": 86.3
+    },
+    "metric_summary": {
+      "lcp_mobile": "4.07 s",
+      "tbt_mobile": "83 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 87,
+      "a11y_mobile": 88,
+      "total_js_kb": 1175
+    }
+  },
+  {
+    "timestamp": "2026-10-24T16:21:47.275Z",
+    "commit": "e660fed1d66d127478d5085bde4c312e53dff778",
+    "run_type": "deep",
+    "overall": 95.6,
+    "categories": {
+      "visual": 95,
+      "performance": 87,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 95.6
+    },
+    "metric_summary": {
+      "lcp_mobile": "3.47 s",
+      "tbt_mobile": "46 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 91,
+      "a11y_mobile": 100,
+      "total_js_kb": 1219
+    }
+  }
+]

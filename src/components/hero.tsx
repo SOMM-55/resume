@@ -105,11 +105,8 @@ export function Hero({ content }: HeroProps) {
         </div>
       </div>
 
-      {/* Interactive Architecture DAG Visualizer */}
-      <PipelineDag isRtl={isRtl} />
-
       {/* Action Buttons & Outbound Channels */}
-      <div className="flex flex-wrap items-center gap-3 pt-2">
+      <div className="flex flex-wrap items-center gap-3 pt-1">
         <a
           href="#contact"
           className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs glow-primary"
@@ -154,6 +151,9 @@ export function Hero({ content }: HeroProps) {
           <span>{content.contact.location}</span>
         </span>
       </div>
+
+      {/* Interactive Architecture DAG Visualizer */}
+      <PipelineDag isRtl={isRtl} />
     </section>
   );
 }

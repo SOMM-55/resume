@@ -83,8 +83,7 @@ export function Navbar({ content }: NavbarProps) {
           <Link
             href={`/${otherLocale}`}
             className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md border border-border/70 hover:border-primary/50 hover:bg-secondary/70 transition-all font-mono"
-            aria-label={content.ui.toggleLanguage}
-            title={content.ui.toggleLanguage}
+            title={`${content.ui.toggleLanguage} (${otherLocaleLabel})`}
           >
             <Globe className="w-3.5 h-3.5 text-muted-foreground" />
             <span>{otherLocaleLabel}</span>

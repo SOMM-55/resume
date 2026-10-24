@@ -85,7 +85,7 @@ export default async function ResumePage({ params }: PageProps) {
   };
 
   return (
-    <div dir={content.dir} lang={content.locale} className="min-h-screen flex flex-col bg-background">
+    <div dir={content.dir} lang={content.locale} className="min-h-screen flex flex-col bg-background print:bg-white print:text-black">
       {/* Structured data */}
       <script
         type="application/ld+json"

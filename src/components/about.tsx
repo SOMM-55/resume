@@ -93,7 +93,7 @@ export function About({ content }: AboutProps) {
                   # Spec-Driven Development (SDD) Workflow
                 </div>
                 <div className="p-2.5 rounded bg-secondary/50 text-[11px] space-y-1 text-foreground/90">
-                  <div className="text-emerald-500">$ spec-harness init --strict</div>
+                  <div className="text-emerald-700 dark:text-emerald-400 font-semibold">$ spec-harness init --strict</div>
                   <div>1. Formal technical specification authoring</div>
                   <div>2. Multi-agent implementation swarm</div>
                   <div>3. Usability & security pre-release audits</div>
@@ -108,7 +108,7 @@ export function About({ content }: AboutProps) {
                   # Delta Microkernel Data Processing Engine
                 </div>
                 <div className="p-2.5 rounded bg-secondary/50 text-[11px] space-y-1 text-foreground/90">
-                  <div className="text-emerald-500">$ delta-kernel --protocol=grpc</div>
+                  <div className="text-emerald-700 dark:text-emerald-400 font-semibold">$ delta-kernel --protocol=grpc</div>
                   <div>- Core: Lightweight acquisition & stream router</div>
                   <div>- Plugins: Dynamic parsers, aggregators, sinks</div>
                   <div>- Protocols: Asynchronous gRPC + HTTP/2</div>
@@ -123,7 +123,7 @@ export function About({ content }: AboutProps) {
                   # Domain Decoupling & Enterprise Reliability
                 </div>
                 <div className="p-2.5 rounded bg-secondary/50 text-[11px] space-y-1 text-foreground/90">
-                  <div className="text-emerald-500">$ verify-arch --pattern=ports-adapters</div>
+                  <div className="text-emerald-700 dark:text-emerald-400 font-semibold">$ verify-arch --pattern=ports-adapters</div>
                   <div>- Isolated domain logic from DB/framework layers</div>
                   <div>- Granular RBAC (80+ permission groups)</div>
                   <div>- Comprehensive TDD coverage</div>

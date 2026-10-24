@@ -47,12 +47,20 @@ export function Projects({ content }: ProjectsProps) {
 
         {/* Filter Pills */}
         <div className="flex items-center gap-1 p-1 rounded-lg bg-secondary/50 border border-border text-xs font-mono">
-          {[
-            { key: "all", label: "All" },
-            { key: "sdd", label: "SDD & Agents" },
-            { key: "data", label: "Data & ETL" },
-            { key: "systems", label: "Core Systems" },
-          ].map((item) => (
+          {(content.locale === "fa"
+            ? [
+                { key: "all", label: "همه" },
+                { key: "sdd", label: "معماری SDD و ایجنت‌ها" },
+                { key: "data", label: "داده و ETL" },
+                { key: "systems", label: "سیستم‌های پایه" },
+              ]
+            : [
+                { key: "all", label: "All" },
+                { key: "sdd", label: "SDD & Agents" },
+                { key: "data", label: "Data & ETL" },
+                { key: "systems", label: "Core Systems" },
+              ]
+          ).map((item) => (
             <button
               key={item.key}
               type="button"
@@ -77,9 +85,11 @@ export function Projects({ content }: ProjectsProps) {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/15 text-primary border border-primary/30 uppercase tracking-wider">
-                    FLAGSHIP SYSTEM // SDD BENCHMARK
+                    {content.locale === "fa" ? "سیستم شاخص // استاندارد SDD" : "FLAGSHIP SYSTEM // SDD BENCHMARK"}
                   </span>
-                  <span className="font-mono text-xs text-muted-foreground">10-Day Commercial Delivery</span>
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {content.locale === "fa" ? "تحویل تجاری در ۱۰ روز" : "10-Day Commercial Delivery"}
+                  </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-foreground tracking-tight">
                   {flagship.name}
@@ -98,7 +108,8 @@ export function Projects({ content }: ProjectsProps) {
                   rel="noopener noreferrer"
                   onClick={() => handleOutbound(flagship.github!)}
                   className="p-2 rounded-lg bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                  title="View on GitHub"
+                  aria-label={`View ${flagship.name} repository on GitHub`}
+                  title={`View ${flagship.name} on GitHub`}
                 >
                   <Github className="w-4 h-4" />
                 </a>
@@ -122,7 +133,7 @@ export function Projects({ content }: ProjectsProps) {
               </div>
 
               <div className="p-3.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 space-y-1">
-                <div className="font-mono text-[10px] uppercase font-bold text-emerald-600 dark:text-emerald-400">
+                <div className="font-mono text-[10px] uppercase font-bold text-emerald-700 dark:text-emerald-400">
                   {content.ui.outcome}
                 </div>
                 <p className="text-foreground font-semibold leading-relaxed">{flagship.outcome}</p>
@@ -168,6 +179,8 @@ export function Projects({ content }: ProjectsProps) {
                       rel="noopener noreferrer"
                       onClick={() => handleOutbound(p.github!)}
                       className="p-1 rounded text-muted-foreground hover:text-foreground"
+                      aria-label={`View ${p.name} repository on GitHub`}
+                      title={`View ${p.name} on GitHub`}
                     >
                       <Github className="w-3.5 h-3.5" />
                     </a>
@@ -183,7 +196,7 @@ export function Projects({ content }: ProjectsProps) {
                   </div>
 
                   <div>
-                    <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 block uppercase">
+                    <span className="font-mono text-[10px] font-bold text-emerald-700 dark:text-emerald-400 block uppercase">
                       {content.ui.outcome}:
                     </span>
                     <span className="text-foreground font-medium">{p.outcome}</span>

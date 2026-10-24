@@ -181,6 +181,8 @@ export function ContactSection({ content }: ContactSectionProps) {
             className="hidden"
             tabIndex={-1}
             autoComplete="off"
+            aria-hidden="true"
+            aria-label="Leave this field blank"
           />
 
           <div className="space-y-1.5">

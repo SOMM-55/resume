@@ -7,7 +7,7 @@ interface ExperienceProps {
 }
 
 const ROLE_STATUS_TAGS: Record<number, { label: string; color: string }> = {
-  0: { label: "ACTIVE PRODUCTION // SDD", color: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30" },
+  0: { label: "ACTIVE PRODUCTION // SDD", color: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/30" },
   1: { label: "HUNDREDS-OF-GB PIPELINES", color: "bg-primary/10 text-primary border-primary/30" },
   2: { label: "8+ YRS PRODUCTION ADOPTION", color: "bg-secondary text-muted-foreground border-border/80" },
 };

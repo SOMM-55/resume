@@ -14,7 +14,8 @@ node_modules
 /coverage
 /test-results
 /playwright-report
-/audit
+/audit/screenshots/
+/audit/lighthouse/
 
 # next.js
 /.next/

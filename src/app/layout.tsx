@@ -10,6 +10,7 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
   display: "swap",
+  preload: true,
 });
 
 const geistMono = localFont({
@@ -17,6 +18,7 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
   display: "swap",
+  preload: false,
 });
 
 const vazirmatn = localFont({
@@ -24,6 +26,7 @@ const vazirmatn = localFont({
   variable: "--font-vazirmatn",
   weight: "100 900",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -55,6 +58,10 @@ export const metadata: Metadata = {
   creator: "Sayyid Omid Mousavi Mehr",
   icons: {
     icon: "/favicon.ico",
+  },
+  other: {
+    "build-version": "0.1.0",
+    "commit-sha": process.env.GIT_COMMIT_SHA || "e660fed",
   },
 };
 

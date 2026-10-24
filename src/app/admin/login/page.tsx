@@ -104,7 +104,7 @@ function LoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-4 bg-background text-foreground">
+    <main className="min-h-screen flex flex-col justify-center items-center px-4 bg-background text-foreground">
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center space-y-2">
           <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary mx-auto flex items-center justify-center border border-primary/20">
@@ -129,6 +129,6 @@ export default function AdminLoginPage() {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
