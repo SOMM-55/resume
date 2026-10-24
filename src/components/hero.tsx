@@ -1,8 +1,12 @@
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { Terminal, Clock } from "lucide-react";
-import { PipelineDag } from "./pipeline-dag";
 import { HeroActions } from "./hero-actions";
 import type { ResumeContent } from "@/content";
+
+const PipelineDag = dynamic(
+  () => import("./pipeline-dag").then((mod) => mod.PipelineDag)
+);
 
 interface HeroProps {
   content: ResumeContent;

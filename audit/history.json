@@ -398,5 +398,55 @@
       "a11y_mobile": 100,
       "total_js_kb": 1215
     }
+  },
+  {
+    "timestamp": "2026-10-24T22:36:09.741Z",
+    "commit": "25f41bd4bfd97a693461a275caeb911949dff20e",
+    "run_type": "deep",
+    "overall": 96.6,
+    "categories": {
+      "visual": 95,
+      "performance": 92,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 96.6
+    },
+    "metric_summary": {
+      "lcp_mobile": "3.17 s",
+      "tbt_mobile": "90 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 93,
+      "a11y_mobile": 100,
+      "total_js_kb": 1215
+    }
+  },
+  {
+    "timestamp": "2026-10-24T22:57:28.852Z",
+    "commit": "25f41bd4bfd97a693461a275caeb911949dff20e",
+    "run_type": "deep",
+    "overall": 97.4,
+    "categories": {
+      "visual": 95,
+      "performance": 96,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 97.4
+    },
+    "metric_summary": {
+      "lcp_mobile": "2.70 s",
+      "tbt_mobile": "87 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 96,
+      "a11y_mobile": 100,
+      "total_js_kb": 1194
+    }
   }
 ]

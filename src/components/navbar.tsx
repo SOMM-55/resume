@@ -5,8 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Printer, FileDown, Globe } from "lucide-react";
-import { CommandPalette } from "./command-palette";
+import dynamic from "next/dynamic";
 import type { ResumeContent } from "@/content";
+
+const CommandPalette = dynamic(
+  () => import("./command-palette").then((mod) => mod.CommandPalette),
+  { ssr: false }
+);
 
 interface NavbarProps {
   content: ResumeContent;
