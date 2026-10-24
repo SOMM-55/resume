@@ -273,5 +273,30 @@
       "a11y_mobile": 100,
       "total_js_kb": 1215
     }
+  },
+  {
+    "timestamp": "2026-10-24T21:31:26.441Z",
+    "commit": "39a145693d676cbb1a9a5452c6e7ff32d322c1cd",
+    "run_type": "deep",
+    "overall": 96.2,
+    "categories": {
+      "visual": 95,
+      "performance": 90,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 96.2
+    },
+    "metric_summary": {
+      "lcp_mobile": "3.17 s",
+      "tbt_mobile": "89 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 93,
+      "a11y_mobile": 100,
+      "total_js_kb": 1215
+    }
   }
 ]
