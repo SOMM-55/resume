@@ -25,28 +25,53 @@
     }
   },
   {
-    "timestamp": "2026-10-24T16:21:47.275Z",
+    "timestamp": "2026-10-24T15:28:47.721Z",
     "commit": "e660fed1d66d127478d5085bde4c312e53dff778",
     "run_type": "deep",
-    "overall": 95.6,
+    "overall": 90.8,
+    "categories": {
+      "visual": 94,
+      "performance": 86,
+      "accessibility": 75,
+      "ux": 95,
+      "content": 98,
+      "seo": 100,
+      "security": 95,
+      "i18n": 95,
+      "overall": 90.8
+    },
+    "metric_summary": {
+      "lcp_mobile": "4.21 s",
+      "tbt_mobile": "91 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 86,
+      "a11y_mobile": 96,
+      "total_js_kb": 1219
+    }
+  },
+  {
+    "timestamp": "2026-10-24T16:34:18.882Z",
+    "commit": "0edd7352e0046ef4b0bce04d3cc7486368ada84b",
+    "run_type": "deep",
+    "overall": 95.8,
     "categories": {
       "visual": 95,
-      "performance": 87,
+      "performance": 88,
       "accessibility": 100,
       "ux": 96,
       "content": 98,
       "seo": 100,
       "security": 100,
       "i18n": 96,
-      "overall": 95.6
+      "overall": 95.8
     },
     "metric_summary": {
-      "lcp_mobile": "3.47 s",
-      "tbt_mobile": "46 ms",
+      "lcp_mobile": "3.33 s",
+      "tbt_mobile": "47 ms",
       "cls_mobile": "0.000",
       "perf_mobile": 91,
       "a11y_mobile": 100,
-      "total_js_kb": 1219
+      "total_js_kb": 1225
     }
   }
 ]
