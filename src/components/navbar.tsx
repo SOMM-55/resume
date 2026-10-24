@@ -45,6 +45,7 @@ export function Navbar({ content }: NavbarProps) {
         {/* Brand / Name monogram */}
         <Link
           href={`/${content.locale}`}
+          prefetch={false}
           className="flex items-center gap-2 text-sm font-semibold tracking-tight hover:text-primary transition-colors"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Available for relocation" />
@@ -82,6 +83,7 @@ export function Navbar({ content }: NavbarProps) {
           {/* Language Switcher */}
           <Link
             href={`/${otherLocale}`}
+            prefetch={false}
             className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md border border-border/70 hover:border-primary/50 hover:bg-secondary/70 transition-all font-mono"
             title={`${content.ui.toggleLanguage} (${otherLocaleLabel})`}
           >

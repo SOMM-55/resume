@@ -96,7 +96,7 @@ export function AnalyticsTracker({ locale }: AnalyticsTrackerProps) {
   return (
     <Script
       src="/analytics.js"
-      strategy="afterInteractive"
+      strategy="lazyOnload"
       data-locale={locale}
     />
   );

@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
+  experimental: {
+    optimizePackageImports: ["lucide-react", "date-fns"],
+  },
   allowedDevOrigins: [
     "127.0.0.1",
     "localhost",
