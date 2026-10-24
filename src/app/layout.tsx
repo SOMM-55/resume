@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   },
   other: {
     "build-version": "0.1.0",
-    "commit-sha": process.env.GIT_COMMIT_SHA || "53a9d32",
+    "commit-sha": process.env.GIT_COMMIT_SHA || "3651320",
   },
 };
 
