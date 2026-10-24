@@ -84,7 +84,7 @@ export function Navbar({ content }: NavbarProps) {
           <Link
             href={`/${otherLocale}`}
             prefetch={false}
-            className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md border border-border/70 hover:border-primary/50 hover:bg-secondary/70 transition-all font-mono"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 sm:py-1 min-h-[36px] sm:min-h-0 text-xs font-medium rounded-md border border-border/70 hover:border-primary/50 hover:bg-secondary/70 transition-all font-mono"
             title={`${content.ui.toggleLanguage} (${otherLocaleLabel})`}
           >
             <Globe className="w-3.5 h-3.5 text-muted-foreground" />
@@ -95,7 +95,7 @@ export function Navbar({ content }: NavbarProps) {
           <button
             type="button"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-1.5 rounded-md border border-border/70 hover:border-primary/50 hover:bg-secondary/70 text-muted-foreground hover:text-foreground transition-all"
+            className="h-9 w-9 sm:h-8 sm:w-8 flex items-center justify-center rounded-md border border-border/70 hover:border-primary/50 hover:bg-secondary/70 text-muted-foreground hover:text-foreground transition-all"
             aria-label={content.ui.toggleTheme}
             title={content.ui.toggleTheme}
           >

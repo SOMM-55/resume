@@ -198,6 +198,11 @@ export function CommandPalette({ content }: CommandPaletteProps) {
             </CommandItem>
           </CommandGroup>
         </CommandList>
+
+        <div className="border-t border-border px-3 py-2 text-[10px] font-mono text-muted-foreground flex items-center justify-between">
+          <span>{content.locale === "fa" ? "میانبرهای صفحه‌کلید (Keyboard Shortcuts):" : "Keyboard Shortcuts:"} ⌘K / ?</span>
+          <span>Esc {content.locale === "fa" ? "بستن" : "to close"}</span>
+        </div>
       </CommandDialog>
     </>
   );

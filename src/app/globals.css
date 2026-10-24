@@ -79,6 +79,11 @@
   --grid-line: rgba(255, 255, 255, 0.035);
 }
 
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
 /* RTL Typography */
 [dir="rtl"] {
   font-family: var(--font-vazirmatn), system-ui, sans-serif;
@@ -107,16 +112,16 @@
 
 /* Phosphor Glow and Laser Hairlines */
 .glow-primary {
-  box-shadow: 0 0 24px -6px oklch(var(--primary) / 0.35);
+  box-shadow: 0 0 24px -6px color-mix(in oklch, var(--primary) 35%, transparent);
 }
 
 .glow-border {
   border-color: var(--primary);
-  box-shadow: 0 0 12px -2px oklch(var(--primary) / 0.25);
+  box-shadow: 0 0 12px -2px color-mix(in oklch, var(--primary) 25%, transparent);
 }
 
 .hero-ambient-glow {
-  background: radial-gradient(circle at 50% -20%, oklch(var(--primary) / 0.12), transparent 70%);
+  background: radial-gradient(circle at 50% -20%, color-mix(in oklch, var(--primary) 12%, transparent), transparent 70%);
 }
 
 .terminal-header {

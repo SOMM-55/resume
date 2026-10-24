@@ -9,8 +9,19 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: false,
   experimental: {
-    optimizePackageImports: ["lucide-react", "date-fns"],
+    optimizePackageImports: ["lucide-react", "date-fns", "cmdk"],
   },
+  headers: async () => [
+    {
+      source: "/fonts/:path*",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=31536000, immutable",
+        },
+      ],
+    },
+  ],
   allowedDevOrigins: [
     "127.0.0.1",
     "localhost",

@@ -363,32 +363,34 @@ async function main() {
   try {
     await testPage.keyboard.press("Control+k");
     await testPage.waitForTimeout(300);
-    const cmdkVisible = await testPage.locator('[cmdk-root], [role="dialog"]').isVisible();
+    const cmdkVisible = await testPage.locator('[cmdk-root], [role="dialog"]').first().isVisible();
     if (cmdkVisible) {
       interactionResults["command_palette"] = { pass: true, details: "Opens via Ctrl+K and mounts dialog" };
-      await testPage.keyboard.press("Escape");
-      await testPage.waitForTimeout(200);
     } else {
       interactionResults["command_palette"] = { pass: false, details: "Dialog not visible after Ctrl+K" };
     }
   } catch (e: any) {
     interactionResults["command_palette"] = { pass: false, details: e.message };
+  } finally {
+    await testPage.keyboard.press("Escape");
+    await testPage.locator('[role="dialog"]').waitFor({ state: "detached", timeout: 2000 }).catch(() => {});
   }
 
   // 3b. Shortcuts dialog (?)
   try {
     await testPage.keyboard.press("?");
     await testPage.waitForTimeout(300);
-    const shortcutsVisible = await testPage.getByText(/Keyboard Shortcuts|Shortcuts/i).isVisible();
+    const shortcutsVisible = await testPage.getByText(/Keyboard Shortcuts|Shortcuts/i).first().isVisible();
     if (shortcutsVisible) {
       interactionResults["shortcuts_dialog"] = { pass: true, details: "Opens via '?' key" };
-      await testPage.keyboard.press("Escape");
-      await testPage.waitForTimeout(200);
     } else {
       interactionResults["shortcuts_dialog"] = { pass: false, details: "Shortcuts dialog not visible after '?' key" };
     }
   } catch (e: any) {
     interactionResults["shortcuts_dialog"] = { pass: false, details: e.message };
+  } finally {
+    await testPage.keyboard.press("Escape");
+    await testPage.locator('[role="dialog"]').waitFor({ state: "detached", timeout: 2000 }).catch(() => {});
   }
 
   // 3c. Theme Toggle
@@ -583,17 +585,20 @@ async function main() {
   }
 
   // Lighthouse LCP finding
-  if (enMobileMedian.lcp > 2500) {
+  if (enMobileMedian.lcp > 2500 || faMobileMedian.lcp > 2500) {
+    const worstLcp = Math.max(enMobileMedian.lcp, faMobileMedian.lcp);
+    const worstLocale = enMobileMedian.lcp >= faMobileMedian.lcp ? "en" : "fa";
+    const worstDisplay = enMobileMedian.lcp >= faMobileMedian.lcp ? enMobileMedian.lcpDisplay : faMobileMedian.lcpDisplay;
     rawFindings.push({
       id: "perf-lcp-mobile",
       category: "performance",
-      severity: enMobileMedian.lcp > 4000 ? "high" : "medium",
+      severity: worstLcp > 4000 ? "high" : "medium",
       status: "new",
-      page: "/en",
+      page: `/${worstLocale}`,
       viewport: "mobile",
       theme: "light",
-      locale: "en",
-      evidence: `Mobile LCP ${enMobileMedian.lcpDisplay} (median of 3 runs) exceeds good threshold (2.5s)`,
+      locale: worstLocale as any,
+      evidence: `Mobile LCP ${worstDisplay} (median of 3 runs) exceeds good threshold (2.5s)`,
       impact: "Hurts perceived loading speed and mobile Core Web Vitals rating",
       recommendation: "Optimize critical rendering path, preload key fonts, and reduce render-blocking resources",
       where: "src/app/[locale]/page.tsx:1",
@@ -866,7 +871,7 @@ ${
 - **CLS (Cumulative Layout Shift):** ${enMobileMedian.clsDisplay} (Mobile) | ${enDesktopMedian.clsDisplay} (Desktop)
 - **FCP (First Contentful Paint):** ${enMobileMedian.fcpDisplay} (Mobile) | ${enDesktopMedian.fcpDisplay} (Desktop)
 - **Total Static JS Weight:** ${(totalJsBytes / 1024).toFixed(1)} KB across chunks
-- **Axe Violations:** 0 across all tested pages and themes
+- **Axe Violations:** ${axeViolationsMap.reduce((acc, cur) => acc + cur.violations.length, 0)} across all tested pages and themes
 
 ---
 
