@@ -1,57 +1,60 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
-// Geist served locally from /public/fonts to avoid Google Fonts network dependency.
-// Variable TTF covers weights 100..900 in a single file.
+// Self-hosted fonts with zero external Google Fonts network calls
 const geistSans = localFont({
-  src: "../../public/fonts/Geist-Variable.ttf",
+  src: "../fonts/Geist-Variable.ttf",
   variable: "--font-geist-sans",
   weight: "100 900",
   display: "swap",
 });
 
 const geistMono = localFont({
-  src: "../../public/fonts/GeistMono-Variable.ttf",
+  src: "../fonts/GeistMono-Variable.ttf",
   variable: "--font-geist-mono",
   weight: "100 900",
   display: "swap",
 });
 
+const vazirmatn = localFont({
+  src: "../fonts/Vazirmatn-Variable.woff2",
+  variable: "--font-vazirmatn",
+  weight: "100 900",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Sayyid Omid Mousavi Mehr — Senior Data Engineer · Agentic Systems",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+  title: {
+    default: "Sayyid Omid Mousavi Mehr — Senior Data Engineer · Agentic Systems",
+    template: "%s | Sayyid Omid Mousavi Mehr",
+  },
   description:
-    "Full-Stack Developer | Data Engineer with 7+ years of experience in data engineering, system architecture, Node.js, TypeScript, Python, PostgreSQL, microservices, ETL, and agentic / Spec-Driven Development.",
+    "Senior Data Engineer · Agentic Systems. 7+ years in data engineering, system architecture, ETL/ELT pipelines, Node.js, TypeScript, Python, PostgreSQL, microservices, and AI-agent / Spec-Driven Development workflows.",
   keywords: [
-    "Full-Stack Developer",
-    "Data Engineer",
-    "Node.js",
-    "TypeScript",
-    "Python",
-    "PostgreSQL",
-    "Microservices",
-    "ETL",
+    "Senior Data Engineer",
+    "Agentic Systems",
     "Spec-Driven Development",
     "SDD",
-    "Agentic Development",
+    "ETL Pipelines",
+    "ELT",
+    "TypeScript",
+    "Python",
+    "Node.js",
+    "PostgreSQL",
+    "Microkernel",
+    "Microservices",
     "Sayyid Omid Mousavi Mehr",
   ],
-  authors: [{ name: "Sayyid Omid Mousavi Mehr" }],
+  authors: [{ name: "Sayyid Omid Mousavi Mehr", url: "https://github.com/SOMM-55" }],
+  creator: "Sayyid Omid Mousavi Mehr",
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
-  },
-  openGraph: {
-    title: "Sayyid Omid Mousavi Mehr — Full-Stack Developer",
-    description:
-      "Full-Stack Developer | Data Engineering & System Architecture | 7 years experience",
-    type: "profile",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sayyid Omid Mousavi Mehr — Full-Stack Developer",
-    description:
-      "Full-Stack Developer | Data Engineering & System Architecture | 7 years experience",
+    icon: "/favicon.ico",
   },
 };
 
@@ -63,10 +66,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} antialiased bg-background text-foreground min-h-screen selection:bg-teal-500/20 selection:text-teal-600 dark:selection:text-teal-300`}
       >
-        {children}
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster richColors position="bottom-right" />
+        </ThemeProvider>
       </body>
     </html>
   );

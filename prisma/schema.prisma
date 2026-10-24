@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,20 +7,94 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model VisitorEvent {
+  id           String   @id @default(cuid())
+  visitorId    String   // HMAC-SHA256(IP + UA + daily_salt), no raw IP stored
+  sessionId    String
+  type         String   // pageview, section_view, pdf_download, outbound_link, palette_open, theme_toggle, language_toggle, contact_submit
+  path         String
+  section      String?
+  target       String?  // link URL or download name
+  referrer     String?
+  referrerHost String?
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  country      String?  // derived from edge geo header
+  device       String?  // desktop, mobile, tablet
+  browser      String?
+  os           String?
+  locale       String?  // en, fa
+  isBot        Boolean  @default(false)
+  duration     Int?     // engagement seconds
+  scrollDepth  Int?     // 0..100
+  timestamp    DateTime @default(now())
+
+  @@index([timestamp])
+  @@index([visitorId, timestamp])
+  @@index([type, timestamp])
+  @@index([path, timestamp])
+  @@index([isBot, timestamp])
+  @@index([country])
 }
 
-model Post {
+model RequestLog {
+  id         String   @id @default(cuid())
+  path       String
+  method     String
+  status     Int
+  durationMs Int
+  country    String?
+  device     String?
+  isBot      Boolean  @default(false)
+  botName    String?
+  timestamp  DateTime @default(now())
+
+  @@index([timestamp])
+  @@index([status, timestamp])
+  @@index([isBot, timestamp])
+  @@index([durationMs])
+}
+
+model DailyRollup {
   id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
+  date      String   // YYYY-MM-DD
+  metric    String   // pageviews, visitors, sessions, bounces, duration_sum, event:<type>, section:<name>, country:<code>, device:<type>, source:<utm>, referrer:<host>
+  dimension String   @default("")
+  count     Int      @default(0)
+
+  @@unique([date, metric, dimension])
+  @@index([date, metric])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  locale    String?
+  country   String?
+  read      Boolean  @default(false)
+  archived  Boolean  @default(false)
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([read, archived])
+}
+
+model LoginAttempt {
+  id         String   @id @default(cuid())
+  identifier String
+  success    Boolean
+  ipHash     String
+  timestamp  DateTime @default(now())
+
+  @@index([identifier, timestamp])
+}
+
+model Setting {
+  key       String   @id
+  value     String
   updatedAt DateTime @updatedAt
 }
