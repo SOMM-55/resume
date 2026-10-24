@@ -1,0 +1,41 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resume-web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-resume_user}:${POSTGRES_PASSWORD:-resume_pass}@postgres:5432/${POSTGRES_DB:-resume_db}?schema=public
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:-$2b$10$ORSv/dndRutBWh61UpoC.uJMoxbZbw.BnpMeY04oqSdEQEzSeMx0K}
+      - AUTH_SECRET=${AUTH_SECRET:-super_secret_production_auth_key_min_32_chars}
+      - ANALYTICS_SALT_SECRET=${ANALYTICS_SALT_SECRET:-daily_salt_secret_change_in_production_32_chars}
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      - RESEND_API_KEY=${RESEND_API_KEY:-}
+      - CONTACT_FORWARD_EMAIL=${CONTACT_FORWARD_EMAIL:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: resume-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-resume_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-resume_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-resume_db}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-resume_user} -d ${POSTGRES_DB:-resume_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:

@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  test-and-build:
+    name: Lint, Typecheck, Unit Tests & Production Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: pnpm db:generate
+
+      - name: Run ESLint
+        run: pnpm lint
+
+      - name: Run TypeScript typecheck
+        run: pnpm typecheck
+
+      - name: Run Vitest unit tests
+        run: pnpm test
+
+      - name: Build Next.js application
+        env:
+          DATABASE_URL: "file:./dev.db"
+          ADMIN_USERNAME: "admin"
+          ADMIN_PASSWORD_HASH: "$2b$10$ORSv/dndRutBWh61UpoC.uJMoxbZbw.BnpMeY04oqSdEQEzSeMx0K"
+          AUTH_SECRET: "test_secret_32_characters_long_for_ci_pipeline"
+          ANALYTICS_SALT_SECRET: "test_salt_secret_32_chars_for_ci_pipeline"
+          NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+        run: pnpm build
