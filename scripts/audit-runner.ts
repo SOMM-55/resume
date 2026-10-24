@@ -215,6 +215,15 @@ async function main() {
     }
   }
 
+  const enRes = await fetch(`${BASE_URL}/en`, {
+    headers: { "X-Audit-Bot": "1", "User-Agent": "SiteAuditBot/1.0" },
+  });
+  for (const [k, v] of enRes.headers.entries()) {
+    if (k.toLowerCase().startsWith("x-") || ["content-security-policy", "strict-transport-security", "referrer-policy", "permissions-policy"].includes(k.toLowerCase())) {
+      secHeaders[k] = v;
+    }
+  }
+
   // Check health endpoint
   const healthApiRes = await fetch(`${BASE_URL}/api/health`, {
     headers: { "X-Audit-Bot": "1", "User-Agent": "SiteAuditBot/1.0" },

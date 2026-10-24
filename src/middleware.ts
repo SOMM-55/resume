@@ -6,31 +6,6 @@ const ADMIN_COOKIE_NAME = "admin_session";
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // 1. Root redirect: / -> /en or /fa based on accept-language
-  if (pathname === "/") {
-    const acceptLang = request.headers.get("accept-language") || "";
-    const preferredLocale = acceptLang.toLowerCase().includes("fa") ? "fa" : "en";
-    return NextResponse.redirect(new URL(`/${preferredLocale}`, request.url));
-  }
-
-  // 2. Security headers for all responses
-  const response = NextResponse.next();
-
-  response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("X-Frame-Options", "DENY");
-  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  response.headers.set(
-    "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=(), browsing-topics=()"
-  );
-
-  if (process.env.NODE_ENV === "production") {
-    response.headers.set(
-      "Strict-Transport-Security",
-      "max-age=63072000; includeSubDomains; preload"
-    );
-  }
-
   // Content Security Policy
   const cspHeader = [
     "default-src 'self'",
@@ -43,7 +18,33 @@ export async function middleware(request: NextRequest) {
     "base-uri 'self'",
     "form-action 'self'",
   ].join("; ");
-  response.headers.set("Content-Security-Policy", cspHeader);
+
+  function applySecurityHeaders(res: NextResponse): NextResponse {
+    res.headers.set("X-Content-Type-Options", "nosniff");
+    res.headers.set("X-Frame-Options", "DENY");
+    res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.headers.set(
+      "Permissions-Policy",
+      "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+    );
+    res.headers.set(
+      "Strict-Transport-Security",
+      "max-age=63072000; includeSubDomains; preload"
+    );
+    res.headers.set("Content-Security-Policy", cspHeader);
+    return res;
+  }
+
+  // 1. Root redirect: / -> /en or /fa based on accept-language
+  if (pathname === "/") {
+    const acceptLang = request.headers.get("accept-language") || "";
+    const preferredLocale = acceptLang.toLowerCase().includes("fa") ? "fa" : "en";
+    const redirectRes = NextResponse.redirect(new URL(`/${preferredLocale}`, request.url));
+    return applySecurityHeaders(redirectRes);
+  }
+
+  // 2. Security headers for all responses
+  const response = applySecurityHeaders(NextResponse.next());
 
   // 3. Admin routes gating and noindex protection
   if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {

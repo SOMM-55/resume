@@ -28,9 +28,17 @@ const vazirmatn = localFont({
   variable: "--font-vazirmatn",
   weight: "100 900",
   display: "optional",
-  preload: true,
+  preload: false,
   fallback: ["system-ui", "tahoma", "Arial", "sans-serif"],
 });
+
+let currentCommitSha: string = process.env.GIT_COMMIT_SHA || "2abee3f";
+try {
+  const { execSync } = require("node:child_process");
+  currentCommitSha = execSync("git rev-parse --short HEAD", { timeout: 1000 }).toString().trim() || "2abee3f";
+} catch {
+  // Use fallback
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -64,7 +72,7 @@ export const metadata: Metadata = {
   },
   other: {
     "build-version": "0.1.0",
-    "commit-sha": process.env.GIT_COMMIT_SHA || "3651320",
+    "commit-sha": currentCommitSha,
   },
 };
 
