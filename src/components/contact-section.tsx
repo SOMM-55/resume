@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { ResumeContent } from "@/content";
+import type { ResumeContent, Locale } from "@/content";
 import {
   Mail,
   Phone,
@@ -17,10 +17,29 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
 interface ContactSectionProps {
-  content: ResumeContent;
+  sectionTitle?: string;
+  locale?: Locale;
+  contact?: ResumeContent["contact"];
+  ui?: {
+    copiedToClipboard: string;
+    contactFormSuccess: string;
+    contactFormError: string;
+    contactFormName: string;
+    contactFormEmail: string;
+    contactFormMessage: string;
+    contactFormSending: string;
+    contactFormSend: string;
+  };
+  content?: ResumeContent;
 }
 
-export function ContactSection({ content }: ContactSectionProps) {
+export function ContactSection({
+  sectionTitle,
+  locale,
+  contact,
+  ui,
+  content,
+}: ContactSectionProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
@@ -28,11 +47,32 @@ export function ContactSection({ content }: ContactSectionProps) {
   const [sending, setSending] = React.useState(false);
   const [copiedEmail, setCopiedEmail] = React.useState(false);
 
+  const loc = locale ?? content?.locale ?? "en";
+  const title = sectionTitle ?? content?.sections.contact ?? "Contact";
+  const contactInfo = contact ?? content?.contact ?? {
+    email: "omid.mousavimehr@gmail.com",
+    phone: "+98 935 838 5283",
+    phoneHref: "+989358385283",
+    location: "Mashhad, Iran",
+    githubHref: "https://github.com/SOMM-55",
+    linkedinHref: "https://linkedin.com/in/sommehr",
+  };
+  const uiLabels = ui ?? {
+    copiedToClipboard: content?.ui.copiedToClipboard ?? "Copied to clipboard",
+    contactFormSuccess: content?.ui.contactFormSuccess ?? "Message sent successfully!",
+    contactFormError: content?.ui.contactFormError ?? "Failed to send message",
+    contactFormName: content?.ui.contactFormName ?? "Name",
+    contactFormEmail: content?.ui.contactFormEmail ?? "Email",
+    contactFormMessage: content?.ui.contactFormMessage ?? "Message",
+    contactFormSending: content?.ui.contactFormSending ?? "Sending...",
+    contactFormSend: content?.ui.contactFormSend ?? "Send Message",
+  };
+
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(content.contact.email);
+      await navigator.clipboard.writeText(contactInfo.email);
       setCopiedEmail(true);
-      toast.success(content.ui.copiedToClipboard);
+      toast.success(uiLabels.copiedToClipboard);
       setTimeout(() => setCopiedEmail(false), 2000);
     } catch {
       toast.error("Failed to copy");
@@ -57,7 +97,7 @@ export function ContactSection({ content }: ContactSectionProps) {
           email: email.trim(),
           message: message.trim(),
           honeypot: honeypot,
-          locale: content.locale,
+          locale: loc,
         }),
       });
 
@@ -66,7 +106,7 @@ export function ContactSection({ content }: ContactSectionProps) {
         throw new Error(data.error || "Submission failed");
       }
 
-      toast.success(content.ui.contactFormSuccess);
+      toast.success(uiLabels.contactFormSuccess);
       setName("");
       setEmail("");
       setMessage("");
@@ -74,11 +114,11 @@ export function ContactSection({ content }: ContactSectionProps) {
       // Track contact event
       if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
         (window as unknown as { trackEvent: (name: string, data?: unknown) => void }).trackEvent("contact_submit", {
-          locale: content.locale,
+          locale: loc,
         });
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : content.ui.contactFormError;
+      const msg = err instanceof Error ? err.message : uiLabels.contactFormError;
       toast.error(msg);
     } finally {
       setSending(false);
@@ -93,7 +133,7 @@ export function ContactSection({ content }: ContactSectionProps) {
         </span>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
           <Mail className="w-5 h-5 text-primary" />
-          <span>{content.sections.contact}</span>
+          <span>{title}</span>
         </h2>
       </div>
 
@@ -108,11 +148,11 @@ export function ContactSection({ content }: ContactSectionProps) {
             {/* Email with copy button */}
             <div className="flex items-center justify-between p-3 rounded-lg bg-card border border-border/70">
               <a
-                href={`mailto:${content.contact.email}`}
+                href={`mailto:${contactInfo.email}`}
                 className="flex items-center gap-2.5 text-foreground hover:text-primary transition-colors truncate"
               >
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="truncate">{content.contact.email}</span>
+                <span className="truncate">{contactInfo.email}</span>
               </a>
               <button
                 type="button"
@@ -132,24 +172,24 @@ export function ContactSection({ content }: ContactSectionProps) {
             {/* Phone */}
             <div className="flex items-center p-3 rounded-lg bg-card border border-border/70">
               <a
-                href={`tel:${content.contact.phoneHref}`}
+                href={`tel:${contactInfo.phoneHref}`}
                 className="flex items-center gap-2.5 text-foreground hover:text-primary transition-colors"
               >
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>{content.contact.phone}</span>
+                <span>{contactInfo.phone}</span>
               </a>
             </div>
 
             {/* Location */}
             <div className="flex items-center gap-2.5 p-3 rounded-lg bg-card border border-border/70 text-muted-foreground">
               <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-              <span>{content.contact.location}</span>
+              <span>{contactInfo.location}</span>
             </div>
 
             {/* Social links */}
             <div className="grid grid-cols-2 gap-2 pt-1">
               <a
-                href={content.contact.githubHref}
+                href={contactInfo.githubHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 p-3 rounded-lg bg-card border border-border/70 hover:border-primary/50 text-foreground transition-colors"
@@ -159,7 +199,7 @@ export function ContactSection({ content }: ContactSectionProps) {
               </a>
 
               <a
-                href={content.contact.linkedinHref}
+                href={contactInfo.linkedinHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 p-3 rounded-lg bg-card border border-border/70 hover:border-primary/50 text-foreground transition-colors"
@@ -188,7 +228,7 @@ export function ContactSection({ content }: ContactSectionProps) {
 
           <div className="space-y-1.5">
             <label htmlFor="contact-name" className="text-xs font-semibold text-foreground">
-              {content.ui.contactFormName}
+              {uiLabels.contactFormName}
             </label>
             <input
               id="contact-name"
@@ -203,7 +243,7 @@ export function ContactSection({ content }: ContactSectionProps) {
 
           <div className="space-y-1.5">
             <label htmlFor="contact-email" className="text-xs font-semibold text-foreground">
-              {content.ui.contactFormEmail}
+              {uiLabels.contactFormEmail}
             </label>
             <input
               id="contact-email"
@@ -218,7 +258,7 @@ export function ContactSection({ content }: ContactSectionProps) {
 
           <div className="space-y-1.5">
             <label htmlFor="contact-message" className="text-xs font-semibold text-foreground">
-              {content.ui.contactFormMessage}
+              {uiLabels.contactFormMessage}
             </label>
             <textarea
               id="contact-message"
@@ -239,12 +279,12 @@ export function ContactSection({ content }: ContactSectionProps) {
             {sending ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                <span>{content.ui.contactFormSending}</span>
+                <span>{uiLabels.contactFormSending}</span>
               </>
             ) : (
               <>
                 <Send className="w-4 h-4" />
-                <span>{content.ui.contactFormSend}</span>
+                <span>{uiLabels.contactFormSend}</span>
               </>
             )}
           </button>

@@ -84,7 +84,17 @@ export function Hero({ content }: HeroProps) {
       </div>
 
       {/* Action Buttons & Outbound Channels */}
-      <HeroActions content={content} />
+      <HeroActions
+        locale={content.locale}
+        contactCta={content.ui.contactCta}
+        downloadPdf={content.ui.downloadPdf}
+        contact={{
+          email: content.contact.email,
+          githubHref: content.contact.githubHref,
+          linkedinHref: content.contact.linkedinHref,
+          location: content.contact.location,
+        }}
+      />
 
       {/* Interactive Architecture DAG Visualizer */}
       <div className="section-deferred">

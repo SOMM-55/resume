@@ -125,10 +125,33 @@ export default async function ResumePage({ params }: PageProps) {
         <Hero content={content} />
         <About content={content} />
         <Experience content={content} />
-        <Projects content={content} />
+        <Projects
+          projects={content.projects}
+          sectionTitle={content.sections.projects}
+          locale={content.locale}
+          ui={{
+            problem: content.ui.problem,
+            approach: content.ui.approach,
+            outcome: content.ui.outcome,
+          }}
+        />
         <Skills content={content} />
         <Education content={content} />
-        <ContactSection content={content} />
+        <ContactSection
+          sectionTitle={content.sections.contact}
+          locale={content.locale}
+          contact={content.contact}
+          ui={{
+            copiedToClipboard: content.ui.copiedToClipboard,
+            contactFormSuccess: content.ui.contactFormSuccess,
+            contactFormError: content.ui.contactFormError,
+            contactFormName: content.ui.contactFormName,
+            contactFormEmail: content.ui.contactFormEmail,
+            contactFormMessage: content.ui.contactFormMessage,
+            contactFormSending: content.ui.contactFormSending,
+            contactFormSend: content.ui.contactFormSend,
+          }}
+        />
         <Footer content={content} />
       </main>
 

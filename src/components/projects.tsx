@@ -1,17 +1,40 @@
 "use client";
 
 import * as React from "react";
-import type { ResumeContent } from "@/content";
-import { FolderGit2, ExternalLink, Github, Zap, Shield, Sparkles, Filter } from "lucide-react";
+import type { ResumeContent, Project, Locale } from "@/content";
+import { Github } from "lucide-react";
 
 interface ProjectsProps {
-  content: ResumeContent;
+  projects?: Project[];
+  sectionTitle?: string;
+  locale?: Locale;
+  ui?: {
+    problem: string;
+    approach: string;
+    outcome: string;
+  };
+  content?: ResumeContent;
 }
 
 type FilterCategory = "all" | "sdd" | "data" | "systems";
 
-export function Projects({ content }: ProjectsProps) {
+export function Projects({
+  projects,
+  sectionTitle,
+  locale,
+  ui,
+  content,
+}: ProjectsProps) {
   const [filter, setFilter] = React.useState<FilterCategory>("all");
+
+  const projectList = projects ?? content?.projects ?? [];
+  const title = sectionTitle ?? content?.sections.projects ?? "Projects";
+  const loc = locale ?? content?.locale ?? "en";
+  const uiLabels = ui ?? {
+    problem: content?.ui.problem ?? "Problem",
+    approach: content?.ui.approach ?? "Approach",
+    outcome: content?.ui.outcome ?? "Outcome",
+  };
 
   const handleOutbound = (target: string) => {
     if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
@@ -22,8 +45,8 @@ export function Projects({ content }: ProjectsProps) {
     }
   };
 
-  const flagship = content.projects[0]; // Mechanized Document Registration
-  const otherProjects = content.projects.slice(1);
+  const flagship = projectList[0];
+  const otherProjects = projectList.slice(1);
 
   const filteredOthers = otherProjects.filter((p) => {
     if (filter === "all") return true;
@@ -41,13 +64,13 @@ export function Projects({ content }: ProjectsProps) {
             sys://artifacts/case-studies
           </div>
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            {content.sections.projects}
+            {title}
           </h2>
         </div>
 
         {/* Filter Pills */}
         <div className="flex items-center gap-1 p-1 rounded-lg bg-secondary/50 border border-border text-xs font-mono">
-          {(content.locale === "fa"
+          {(loc === "fa"
             ? [
                 { key: "all", label: "همه" },
                 { key: "sdd", label: "معماری SDD و ایجنت‌ها" },
@@ -79,16 +102,16 @@ export function Projects({ content }: ProjectsProps) {
 
       <div className="space-y-6">
         {/* Flagship Feature Card (Mechanized Document Registration) */}
-        {(filter === "all" || filter === "sdd") && (
+        {flagship && (filter === "all" || filter === "sdd") && (
           <article className="p-6 sm:p-7 rounded-xl bg-card border-2 border-primary/30 hover:border-primary/60 transition-all shadow-xs relative overflow-hidden space-y-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-primary/15 text-primary border border-primary/30 uppercase tracking-wider">
-                    {content.locale === "fa" ? "سیستم شاخص // استاندارد SDD" : "FLAGSHIP SYSTEM // SDD BENCHMARK"}
+                    {loc === "fa" ? "سیستم شاخص // استاندارد SDD" : "FLAGSHIP SYSTEM // SDD BENCHMARK"}
                   </span>
                   <span className="font-mono text-xs text-muted-foreground">
-                    {content.locale === "fa" ? "تحویل تجاری در ۱۰ روز" : "10-Day Commercial Delivery"}
+                    {loc === "fa" ? "تحویل تجاری در ۱۰ روز" : "10-Day Commercial Delivery"}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-foreground tracking-tight">
@@ -120,21 +143,21 @@ export function Projects({ content }: ProjectsProps) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
               <div className="p-3.5 rounded-lg bg-secondary/30 border border-border/50 space-y-1">
                 <div className="font-mono text-[10px] uppercase font-bold text-muted-foreground">
-                  {content.ui.problem}
+                  {uiLabels.problem}
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{flagship.problem}</p>
               </div>
 
               <div className="p-3.5 rounded-lg bg-secondary/30 border border-border/50 space-y-1">
                 <div className="font-mono text-[10px] uppercase font-bold text-primary">
-                  {content.ui.approach}
+                  {uiLabels.approach}
                 </div>
                 <p className="text-foreground/90 leading-relaxed">{flagship.approach}</p>
               </div>
 
               <div className="p-3.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 space-y-1">
                 <div className="font-mono text-[10px] uppercase font-bold text-emerald-700 dark:text-emerald-400">
-                  {content.ui.outcome}
+                  {uiLabels.outcome}
                 </div>
                 <p className="text-foreground font-semibold leading-relaxed">{flagship.outcome}</p>
               </div>
@@ -190,14 +213,14 @@ export function Projects({ content }: ProjectsProps) {
                 <div className="space-y-2 text-xs leading-relaxed text-muted-foreground">
                   <div>
                     <span className="font-mono text-[10px] font-bold text-primary block uppercase">
-                      {content.ui.approach}:
+                      {uiLabels.approach}:
                     </span>
                     <span>{p.approach}</span>
                   </div>
 
                   <div>
                     <span className="font-mono text-[10px] font-bold text-emerald-700 dark:text-emerald-400 block uppercase">
-                      {content.ui.outcome}:
+                      {uiLabels.outcome}:
                     </span>
                     <span className="text-foreground font-medium">{p.outcome}</span>
                   </div>

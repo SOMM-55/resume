@@ -1,44 +1,34 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
-import { Sun, Moon, FileDown, Globe } from "lucide-react";
-import dynamic from "next/dynamic";
+import { Globe } from "lucide-react";
 import type { ResumeContent } from "@/content";
-
-const CommandPalette = dynamic(
-  () => import("./command-palette").then((mod) => mod.CommandPalette),
-  { ssr: false }
-);
+import { CommandPalette } from "./command-palette";
+import { ThemeToggle } from "./theme-toggle";
+import { PdfDownloadButton } from "./pdf-download-button";
 
 interface NavbarProps {
   content: ResumeContent;
 }
 
 export function Navbar({ content }: NavbarProps) {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const handlePrint = () => {
-    if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
-      (window as unknown as { trackEvent: (name: string, data?: unknown) => void }).trackEvent("pdf_download", {
-        target: `resume-${content.locale}.pdf`,
-        source: "navbar_button",
-      });
-    }
-    setTimeout(() => {
-      window.print();
-    }, 100);
-  };
-
   const otherLocale = content.locale === "en" ? "fa" : "en";
   const otherLocaleLabel = content.locale === "en" ? "فارسی" : "EN";
+
+  const commandPaletteData = {
+    locale: content.locale,
+    sections: content.sections,
+    ui: {
+      commandPaletteHint: content.ui.commandPaletteHint,
+      printResume: content.ui.printResume,
+      downloadPdf: content.ui.downloadPdf,
+      toggleTheme: content.ui.toggleTheme,
+    },
+    contact: {
+      githubHref: content.contact.githubHref,
+      linkedinHref: content.contact.linkedinHref,
+      email: content.contact.email,
+    },
+  };
 
   return (
     <header className="no-print sticky top-0 z-40 w-full border-b border-border/50 bg-background/85 backdrop-blur-md">
@@ -83,7 +73,7 @@ export function Navbar({ content }: NavbarProps) {
         {/* Actions Cluster */}
         <div className="flex items-center gap-2">
           {/* Command Palette */}
-          <CommandPalette content={content} />
+          <CommandPalette content={commandPaletteData} />
 
           {/* Language Switcher */}
           <Link
@@ -97,31 +87,10 @@ export function Navbar({ content }: NavbarProps) {
           </Link>
 
           {/* Dark / Light Toggle */}
-          <button
-            type="button"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="h-11 w-11 sm:h-8 sm:w-8 flex items-center justify-center rounded-md border border-border/70 hover:border-primary/50 hover:bg-secondary/70 text-muted-foreground hover:text-foreground transition-all"
-            aria-label={content.ui.toggleTheme}
-            title={content.ui.toggleTheme}
-          >
-            {mounted && theme === "dark" ? (
-              <Sun className="w-4 h-4 text-amber-400" />
-            ) : (
-              <Moon className="w-4 h-4" />
-            )}
-          </button>
+          <ThemeToggle label={content.ui.toggleTheme} />
 
           {/* Download PDF / Print */}
-          <button
-            type="button"
-            onClick={handlePrint}
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 min-h-[44px] sm:min-h-0 text-xs font-semibold rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs"
-            aria-label={content.ui.downloadPdf}
-            title={content.ui.downloadPdf}
-          >
-            <FileDown className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{content.ui.downloadPdf}</span>
-          </button>
+          <PdfDownloadButton label={content.ui.downloadPdf} locale={content.locale} />
         </div>
       </div>
     </header>

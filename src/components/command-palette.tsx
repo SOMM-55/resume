@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import type { ResumeContent } from "@/content";
+import type { CommandPaletteData } from "./command-palette-dialog";
 
 const CommandPaletteDialog = React.lazy(() =>
   import("./command-palette-dialog").then((mod) => ({
@@ -10,7 +11,7 @@ const CommandPaletteDialog = React.lazy(() =>
 );
 
 interface CommandPaletteProps {
-  content: ResumeContent;
+  content: CommandPaletteData | ResumeContent;
 }
 
 export function CommandPalette({ content }: CommandPaletteProps) {

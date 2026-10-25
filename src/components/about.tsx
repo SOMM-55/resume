@@ -1,6 +1,10 @@
 import * as React from "react";
+import dynamic from "next/dynamic";
 import type { ResumeContent } from "@/content";
-import { ArchitectureTerminal } from "./architecture-terminal";
+
+const ArchitectureTerminal = dynamic(
+  () => import("./architecture-terminal").then((mod) => mod.ArchitectureTerminal)
+);
 
 interface AboutProps {
   content: ResumeContent;

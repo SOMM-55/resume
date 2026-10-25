@@ -28,10 +28,33 @@ import {
 } from "lucide-react";
 import type { ResumeContent } from "@/content";
 
+export interface CommandPaletteData {
+  locale: "en" | "fa";
+  sections: {
+    about: string;
+    experience: string;
+    projects: string;
+    skills: string;
+    education: string;
+    contact: string;
+  };
+  ui: {
+    commandPaletteHint: string;
+    printResume: string;
+    downloadPdf: string;
+    toggleTheme: string;
+  };
+  contact: {
+    githubHref: string;
+    linkedinHref: string;
+    email: string;
+  };
+}
+
 interface CommandPaletteDialogProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  content: ResumeContent;
+  content: CommandPaletteData;
 }
 
 export function CommandPaletteDialog({ open, setOpen, content }: CommandPaletteDialogProps) {
