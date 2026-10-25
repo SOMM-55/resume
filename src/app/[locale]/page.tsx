@@ -92,7 +92,7 @@ export default async function ResumePage({ params }: PageProps) {
 
   return (
     <div dir={content.dir} lang={content.locale} className="min-h-screen flex flex-col bg-background print:bg-white print:text-black">
-      {/* Locale-specific critical font preload */}
+      {/* Locale-specific critical font preload with high priority */}
       {content.locale === "fa" ? (
         <link
           rel="preload"

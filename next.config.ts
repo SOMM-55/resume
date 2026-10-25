@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
       headers: [
         {
           key: "Link",
-          value: "</fonts/Geist-Variable.woff2>; rel=preload; as=font; type=font/woff2; crossorigin=anonymous",
+          value: "</fonts/Geist-Variable.woff2>; rel=preload; as=font; type=font/woff2; crossorigin=anonymous; fetchpriority=high",
         },
       ],
     },
@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
       headers: [
         {
           key: "Link",
-          value: "</fonts/Vazirmatn-Variable.woff2>; rel=preload; as=font; type=font/woff2; crossorigin=anonymous",
+          value: "</fonts/Vazirmatn-Variable.woff2>; rel=preload; as=font; type=font/woff2; crossorigin=anonymous; fetchpriority=high",
         },
       ],
     },

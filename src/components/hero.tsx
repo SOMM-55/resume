@@ -1,12 +1,8 @@
 import * as React from "react";
-import dynamic from "next/dynamic";
 import { Terminal, Clock } from "lucide-react";
 import { HeroActions } from "./hero-actions";
+import { PipelineDagWrapper } from "./pipeline-dag-wrapper";
 import type { ResumeContent } from "@/content";
-
-const PipelineDag = dynamic(
-  () => import("./pipeline-dag").then((mod) => mod.PipelineDag)
-);
 
 interface HeroProps {
   content: ResumeContent;
@@ -92,7 +88,7 @@ export function Hero({ content }: HeroProps) {
 
       {/* Interactive Architecture DAG Visualizer */}
       <div className="section-deferred">
-        <PipelineDag isRtl={isRtl} />
+        <PipelineDagWrapper isRtl={isRtl} />
       </div>
     </section>
   );
