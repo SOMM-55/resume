@@ -191,6 +191,18 @@ body:has([dir="rtl"]),
   animation: signalPulse 2s ease-in-out infinite;
 }
 
+/* Optimization: content-visibility for offscreen sections */
+.section-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
+
+@media print {
+  .section-deferred {
+    content-visibility: visible !important;
+  }
+}
+
 /* Accessibility: Visible Skip Link */
 .skip-link {
   position: absolute;

@@ -14,7 +14,7 @@ const ROLE_STATUS_TAGS: Record<number, { label: string; color: string }> = {
 
 export function Experience({ content }: ExperienceProps) {
   return (
-    <section id="experience" className="py-14 border-b border-border/50 scroll-mt-20">
+    <section id="experience" className="py-14 border-b border-border/50 scroll-mt-20 section-deferred">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-10">
         <div className="flex items-center gap-2">
           <span className="font-mono text-xs text-primary font-bold">

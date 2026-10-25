@@ -1,30 +1,5 @@
 [
   {
-    "timestamp": "2026-10-24T14:56:51.572Z",
-    "commit": "fa296053ed20a663e94d7586bcf661ebe03e8556",
-    "run_type": "deep",
-    "overall": 86.3,
-    "categories": {
-      "visual": 94,
-      "performance": 87,
-      "accessibility": 50,
-      "ux": 95,
-      "content": 98,
-      "seo": 100,
-      "security": 85,
-      "i18n": 95,
-      "overall": 86.3
-    },
-    "metric_summary": {
-      "lcp_mobile": "4.07 s",
-      "tbt_mobile": "83 ms",
-      "cls_mobile": "0.000",
-      "perf_mobile": 87,
-      "a11y_mobile": 88,
-      "total_js_kb": 1175
-    }
-  },
-  {
     "timestamp": "2026-10-24T15:28:47.721Z",
     "commit": "e660fed1d66d127478d5085bde4c312e53dff778",
     "run_type": "deep",
@@ -443,6 +418,81 @@
     "metric_summary": {
       "lcp_mobile": "2.70 s",
       "tbt_mobile": "87 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 96,
+      "a11y_mobile": 100,
+      "total_js_kb": 1194
+    }
+  },
+  {
+    "timestamp": "2026-10-24T23:53:21.560Z",
+    "commit": "348ed9f42bb7a59c10dcf56c8dd3cda1e3992f85",
+    "run_type": "deep",
+    "overall": 97.4,
+    "categories": {
+      "visual": 95,
+      "performance": 96,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 97.4
+    },
+    "metric_summary": {
+      "lcp_mobile": "2.70 s",
+      "tbt_mobile": "94 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 96,
+      "a11y_mobile": 100,
+      "total_js_kb": 1194
+    }
+  },
+  {
+    "timestamp": "2026-10-25T00:09:28.653Z",
+    "commit": "348ed9f42bb7a59c10dcf56c8dd3cda1e3992f85",
+    "run_type": "deep",
+    "overall": 97.4,
+    "categories": {
+      "visual": 95,
+      "performance": 96,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 97.4
+    },
+    "metric_summary": {
+      "lcp_mobile": "2.70 s",
+      "tbt_mobile": "88 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 96,
+      "a11y_mobile": 100,
+      "total_js_kb": 1194
+    }
+  },
+  {
+    "timestamp": "2026-10-25T00:14:13.442Z",
+    "commit": "348ed9f42bb7a59c10dcf56c8dd3cda1e3992f85",
+    "run_type": "deep",
+    "overall": 97.4,
+    "categories": {
+      "visual": 95,
+      "performance": 96,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 97.4
+    },
+    "metric_summary": {
+      "lcp_mobile": "2.70 s",
+      "tbt_mobile": "86 ms",
       "cls_mobile": "0.000",
       "perf_mobile": 96,
       "a11y_mobile": 100,

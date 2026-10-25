@@ -85,7 +85,7 @@ export function ContactSection({ content }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" className="py-12 border-b border-border/40 scroll-mt-20">
+    <section id="contact" className="py-12 border-b border-border/40 scroll-mt-20 section-deferred">
       <div className="flex items-center gap-2 mb-8">
         <span className="font-mono text-xs text-primary font-bold">
           sys://comms/dispatch

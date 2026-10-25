@@ -37,7 +37,7 @@ export function Skills({ content }: SkillsProps) {
   const isFa = content.locale === "fa";
 
   return (
-    <section id="skills" className="py-14 border-b border-border/50 scroll-mt-20">
+    <section id="skills" className="py-14 border-b border-border/50 scroll-mt-20 section-deferred">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-8">
         <div>
           <div className="font-mono text-xs text-primary font-bold">

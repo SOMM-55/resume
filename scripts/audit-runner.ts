@@ -533,7 +533,8 @@ async function main() {
     function walkDir(dir: string) {
       for (const f of fs.readdirSync(dir)) {
         const full = path.join(dir, f);
-        const stat = fs.statSync(full);
+        const stat = fs.lstatSync(full);
+        if (stat.isSymbolicLink()) continue;
         if (stat.isDirectory()) {
           walkDir(full);
         } else if (f.endsWith(".js")) {

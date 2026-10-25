@@ -8,7 +8,7 @@ interface AboutProps {
 
 export function About({ content }: AboutProps) {
   return (
-    <section id="about" className="py-14 border-b border-border/50 scroll-mt-20">
+    <section id="about" className="py-14 border-b border-border/50 scroll-mt-20 section-deferred">
       <div className="flex items-center gap-2 mb-8">
         <span className="font-mono text-xs text-primary font-bold">
           sys://dossier/about

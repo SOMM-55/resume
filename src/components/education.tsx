@@ -8,7 +8,7 @@ interface EducationProps {
 
 export function Education({ content }: EducationProps) {
   return (
-    <section id="education" className="py-12 border-b border-border/40 scroll-mt-20">
+    <section id="education" className="py-12 border-b border-border/40 scroll-mt-20 section-deferred">
       <div className="flex items-center gap-2 mb-8">
         <span className="font-mono text-xs text-primary font-bold">
           sys://credentials/education

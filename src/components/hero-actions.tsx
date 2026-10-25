@@ -34,7 +34,7 @@ export function HeroActions({ content }: HeroActionsProps) {
     <div className="flex flex-wrap items-center gap-3 pt-1">
       <a
         href="#contact"
-        className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs glow-primary"
+        className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] text-sm font-semibold rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs glow-primary"
       >
         <Mail className="w-4 h-4" />
         <span>{content.ui.contactCta}</span>
@@ -43,7 +43,7 @@ export function HeroActions({ content }: HeroActionsProps) {
       <button
         type="button"
         onClick={handlePrint}
-        className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-md border border-border/80 hover:bg-secondary/70 transition-all font-mono text-xs"
+        className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] text-sm font-semibold rounded-md border border-border/80 hover:bg-secondary/70 transition-all font-mono text-xs"
       >
         <FileDown className="w-4 h-4 text-primary" />
         <span>{content.ui.downloadPdf}</span>
@@ -54,7 +54,7 @@ export function HeroActions({ content }: HeroActionsProps) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => handleOutbound(content.contact.githubHref)}
-        className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono text-muted-foreground hover:text-foreground rounded-md hover:bg-secondary/50 transition-colors"
+        className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] sm:min-h-0 text-xs font-mono text-muted-foreground hover:text-foreground rounded-md hover:bg-secondary/50 transition-colors"
       >
         <Github className="w-4 h-4" />
         <span>github.com/SOMM-55</span>
@@ -65,7 +65,7 @@ export function HeroActions({ content }: HeroActionsProps) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => handleOutbound(content.contact.linkedinHref)}
-        className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono text-muted-foreground hover:text-foreground rounded-md hover:bg-secondary/50 transition-colors"
+        className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] sm:min-h-0 text-xs font-mono text-muted-foreground hover:text-foreground rounded-md hover:bg-secondary/50 transition-colors"
       >
         <Linkedin className="w-4 h-4" />
         <span>linkedin.com/in/sommehr</span>
