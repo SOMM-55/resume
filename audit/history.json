@@ -773,5 +773,30 @@
       "a11y_mobile": 100,
       "total_js_kb": 1246
     }
+  },
+  {
+    "timestamp": "2026-10-25T05:14:00.233Z",
+    "commit": "0affc9dca52e76969cefefb0cd37d46fdfe449a3",
+    "run_type": "deep",
+    "overall": 97.8,
+    "categories": {
+      "visual": 96,
+      "performance": 97,
+      "accessibility": 100,
+      "ux": 96,
+      "content": 98,
+      "seo": 100,
+      "security": 100,
+      "i18n": 96,
+      "overall": 97.8
+    },
+    "metric_summary": {
+      "lcp_mobile": "2.48 s",
+      "tbt_mobile": "116 ms",
+      "cls_mobile": "0.000",
+      "perf_mobile": 97,
+      "a11y_mobile": 100,
+      "total_js_kb": 1246
+    }
   }
 ]
