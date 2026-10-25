@@ -56,14 +56,7 @@ export default function RootLayout({
       <body
         className="antialiased bg-background text-foreground min-h-screen selection:bg-teal-500/20 selection:text-teal-600 dark:selection:text-teal-300"
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

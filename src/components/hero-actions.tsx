@@ -1,7 +1,6 @@
-"use client";
-
 import * as React from "react";
-import { Mail, Github, Linkedin, MapPin, FileDown } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin } from "lucide-react";
+import { PdfDownloadButton } from "./pdf-download-button";
 import type { ResumeContent } from "@/content";
 
 interface HeroActionsProps {
@@ -34,27 +33,6 @@ export function HeroActions({
     location: "Mashhad, Iran",
   };
 
-  const handlePrint = () => {
-    if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
-      (window as unknown as { trackEvent: (name: string, data?: unknown) => void }).trackEvent("pdf_download", {
-        target: `resume-${loc}.pdf`,
-        source: "hero_cta",
-      });
-    }
-    setTimeout(() => {
-      window.print();
-    }, 100);
-  };
-
-  const handleOutbound = (target: string) => {
-    if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
-      (window as unknown as { trackEvent: (name: string, data?: unknown) => void }).trackEvent("outbound_link", {
-        target,
-        source: "hero",
-      });
-    }
-  };
-
   return (
     <div className="flex flex-wrap items-center gap-3 pt-1">
       <a
@@ -65,20 +43,17 @@ export function HeroActions({
         <span>{cta}</span>
       </a>
 
-      <button
-        type="button"
-        onClick={handlePrint}
-        className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] text-sm font-semibold rounded-md border border-border/80 hover:bg-secondary/70 transition-all font-mono text-xs"
-      >
-        <FileDown className="w-4 h-4 text-primary" />
-        <span>{dlPdf}</span>
-      </button>
+      <PdfDownloadButton
+        label={dlPdf}
+        locale={loc}
+        source="hero_cta"
+        className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] text-sm font-semibold rounded-md border border-border/80 hover:bg-secondary/70 transition-all font-mono text-xs text-foreground cursor-pointer"
+      />
 
       <a
         href={contactInfo.githubHref}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => handleOutbound(contactInfo.githubHref)}
         className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] sm:min-h-0 text-xs font-mono text-muted-foreground hover:text-foreground rounded-md hover:bg-secondary/50 transition-colors"
       >
         <Github className="w-4 h-4" />
@@ -89,7 +64,6 @@ export function HeroActions({
         href={contactInfo.linkedinHref}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => handleOutbound(contactInfo.linkedinHref)}
         className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] sm:min-h-0 text-xs font-mono text-muted-foreground hover:text-foreground rounded-md hover:bg-secondary/50 transition-colors"
       >
         <Linkedin className="w-4 h-4" />

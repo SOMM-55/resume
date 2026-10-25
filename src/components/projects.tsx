@@ -1,8 +1,7 @@
-"use client";
-
 import * as React from "react";
 import type { ResumeContent, Project, Locale } from "@/content";
 import { Github } from "lucide-react";
+import { ProjectFilter, type FilterCategory } from "./project-filter";
 
 interface ProjectsProps {
   projects?: Project[];
@@ -16,7 +15,19 @@ interface ProjectsProps {
   content?: ResumeContent;
 }
 
-type FilterCategory = "all" | "sdd" | "data" | "systems";
+function getProjectCategory(p: Project): string {
+  const cats: string[] = [];
+  if (p.tech.includes("SDD") || p.name.includes("File-Sharing") || p.name.includes("Document Registration")) {
+    cats.push("sdd");
+  }
+  if (p.tech.includes("gRPC") || p.tech.includes("PostgreSQL") || p.tech.includes("ETL") || p.tech.includes("Kafka")) {
+    cats.push("data");
+  }
+  if (p.tech.includes("PHP") || p.tech.includes("MySQL") || p.tech.includes("Microservices")) {
+    cats.push("systems");
+  }
+  return cats.length > 0 ? cats.join(" ") : "systems";
+}
 
 export function Projects({
   projects,
@@ -25,8 +36,6 @@ export function Projects({
   ui,
   content,
 }: ProjectsProps) {
-  const [filter, setFilter] = React.useState<FilterCategory>("all");
-
   const projectList = projects ?? content?.projects ?? [];
   const title = sectionTitle ?? content?.sections.projects ?? "Projects";
   const loc = locale ?? content?.locale ?? "en";
@@ -36,28 +45,30 @@ export function Projects({
     outcome: content?.ui.outcome ?? "Outcome",
   };
 
-  const handleOutbound = (target: string) => {
-    if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
-      (window as unknown as { trackEvent: (name: string, data?: unknown) => void }).trackEvent("outbound_link", {
-        target,
-        source: "projects",
-      });
-    }
-  };
-
   const flagship = projectList[0];
   const otherProjects = projectList.slice(1);
 
-  const filteredOthers = otherProjects.filter((p) => {
-    if (filter === "all") return true;
-    if (filter === "sdd") return p.tech.includes("SDD") || p.name.includes("File-Sharing");
-    if (filter === "data") return p.tech.includes("gRPC") || p.tech.includes("PostgreSQL");
-    if (filter === "systems") return p.tech.includes("PHP") || p.tech.includes("MySQL");
-    return true;
-  });
+  const categories: Array<{ key: FilterCategory; label: string }> =
+    loc === "fa"
+      ? [
+          { key: "all", label: "همه" },
+          { key: "sdd", label: "معماری SDD و ایجنت‌ها" },
+          { key: "data", label: "داده و ETL" },
+          { key: "systems", label: "سیستم‌های پایه" },
+        ]
+      : [
+          { key: "all", label: "All" },
+          { key: "sdd", label: "SDD & Agents" },
+          { key: "data", label: "Data & ETL" },
+          { key: "systems", label: "Core Systems" },
+        ];
 
   return (
-    <section id="projects" className="py-14 border-b border-border/50 scroll-mt-20 section-deferred">
+    <section
+      id="projects"
+      data-active-filter="all"
+      className="py-14 border-b border-border/50 scroll-mt-20 section-deferred"
+    >
       <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
         <div>
           <div className="font-mono text-xs text-primary font-bold">
@@ -69,41 +80,16 @@ export function Projects({
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-1 p-1 rounded-lg bg-secondary/50 border border-border text-xs font-mono">
-          {(loc === "fa"
-            ? [
-                { key: "all", label: "همه" },
-                { key: "sdd", label: "معماری SDD و ایجنت‌ها" },
-                { key: "data", label: "داده و ETL" },
-                { key: "systems", label: "سیستم‌های پایه" },
-              ]
-            : [
-                { key: "all", label: "All" },
-                { key: "sdd", label: "SDD & Agents" },
-                { key: "data", label: "Data & ETL" },
-                { key: "systems", label: "Core Systems" },
-              ]
-          ).map((item) => (
-            <button
-              key={item.key}
-              type="button"
-              onClick={() => setFilter(item.key as FilterCategory)}
-              className={`px-2.5 py-1 rounded-md transition-colors ${
-                filter === item.key
-                  ? "bg-primary text-primary-foreground font-semibold"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+        <ProjectFilter categories={categories} defaultCategory="all" />
       </div>
 
       <div className="space-y-6">
         {/* Flagship Feature Card (Mechanized Document Registration) */}
-        {flagship && (filter === "all" || filter === "sdd") && (
-          <article className="p-6 sm:p-7 rounded-xl bg-card border-2 border-primary/30 hover:border-primary/60 transition-all shadow-xs relative overflow-hidden space-y-5">
+        {flagship && (
+          <article
+            data-category="sdd"
+            className="p-6 sm:p-7 rounded-xl bg-card border-2 border-primary/30 hover:border-primary/60 transition-all shadow-xs relative overflow-hidden space-y-5"
+          >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -129,7 +115,6 @@ export function Projects({
                   href={flagship.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => handleOutbound(flagship.github!)}
                   className="p-2 rounded-lg bg-secondary text-muted-foreground hover:text-foreground transition-colors"
                   aria-label={`View ${flagship.name} repository on GitHub`}
                   title={`View ${flagship.name} on GitHub`}
@@ -179,9 +164,10 @@ export function Projects({
 
         {/* Secondary Systems Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {filteredOthers.map((p, idx) => (
+          {otherProjects.map((p, idx) => (
             <article
               key={idx}
+              data-category={getProjectCategory(p)}
               className="p-5 rounded-xl bg-card border border-border/70 hover:border-primary/50 transition-colors flex flex-col justify-between space-y-4"
             >
               <div className="space-y-3">
@@ -200,7 +186,6 @@ export function Projects({
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => handleOutbound(p.github!)}
                       className="p-1 rounded text-muted-foreground hover:text-foreground"
                       aria-label={`View ${p.name} repository on GitHub`}
                       title={`View ${p.name} on GitHub`}

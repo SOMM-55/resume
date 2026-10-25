@@ -10,10 +10,9 @@ import { Skills } from "@/components/skills";
 import { Education } from "@/components/education";
 import { Footer } from "@/components/footer";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
+import { Projects } from "@/components/projects";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const Projects = dynamic(() =>
-  import("@/components/projects").then((mod) => mod.Projects)
-);
 const ContactSection = dynamic(() =>
   import("@/components/contact-section").then((mod) => mod.ContactSection)
 );
@@ -119,7 +118,14 @@ export default async function ResumePage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navbar content={content} />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Navbar content={content} />
+      </ThemeProvider>
 
       <main id="main" className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6">
         <Hero content={content} />
