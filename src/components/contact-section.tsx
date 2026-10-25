@@ -14,6 +14,7 @@ import {
   Check,
 } from "lucide-react";
 import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 
 interface ContactSectionProps {
   content: ResumeContent;
@@ -249,6 +250,7 @@ export function ContactSection({ content }: ContactSectionProps) {
           </button>
         </form>
       </div>
+      <Toaster richColors position="bottom-right" />
     </section>
   );
 }

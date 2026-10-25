@@ -1,34 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from "@/components/ui/command";
-import {
-  User,
-  Briefcase,
-  FolderGit2,
-  Code2,
-  GraduationCap,
-  Mail,
-  Printer,
-  Moon,
-  Sun,
-  Laptop,
-  Github,
-  Linkedin,
-  Languages,
-  FileDown,
-} from "lucide-react";
 import type { ResumeContent } from "@/content";
+
+const CommandPaletteDialog = React.lazy(() =>
+  import("./command-palette-dialog").then((mod) => ({
+    default: mod.CommandPaletteDialog,
+  }))
+);
 
 interface CommandPaletteProps {
   content: ResumeContent;
@@ -36,17 +15,21 @@ interface CommandPaletteProps {
 
 export function CommandPalette({ content }: CommandPaletteProps) {
   const [open, setOpen] = React.useState(false);
-  const router = useRouter();
-  const { setTheme, theme } = useTheme();
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       // Don't trigger inside inputs or textareas unless it's Escape
       const target = e.target as HTMLElement | null;
       const isInput =
-        target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
 
-      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (!isInput && e.key === "?")) {
+      if (
+        (e.key === "k" && (e.metaKey || e.ctrlKey)) ||
+        (!isInput && e.key === "?")
+      ) {
         e.preventDefault();
         setOpen((prev) => !prev);
       }
@@ -55,39 +38,6 @@ export function CommandPalette({ content }: CommandPaletteProps) {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-
-  const jumpTo = (sectionId: string) => {
-    setOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  const handlePrint = () => {
-    setOpen(false);
-    // Track print / PDF event
-    if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
-      (window as unknown as { trackEvent: (name: string, data?: unknown) => void }).trackEvent("pdf_download", {
-        target: `resume-${content.locale}.pdf`,
-        source: "command_palette",
-      });
-    }
-    setTimeout(() => {
-      window.print();
-    }, 150);
-  };
-
-  const switchLanguage = (newLocale: "en" | "fa") => {
-    setOpen(false);
-    if (typeof window !== "undefined" && (window as unknown as { trackEvent?: (name: string, data?: unknown) => void }).trackEvent) {
-      (window as unknown as { trackEvent: (name: string, data?: unknown) => void }).trackEvent("language_toggle", {
-        locale: newLocale,
-        source: "command_palette",
-      });
-    }
-    router.push(`/${newLocale}`);
-  };
 
   return (
     <>
@@ -102,108 +52,11 @@ export function CommandPalette({ content }: CommandPaletteProps) {
         </span>
       </button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder={content.ui.commandPaletteHint} />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-
-          <CommandGroup heading={content.sections.about}>
-            <CommandItem onSelect={() => jumpTo("about")}>
-              <User className="me-2 h-4 w-4 text-primary" />
-              <span>{content.sections.about}</span>
-            </CommandItem>
-            <CommandItem onSelect={() => jumpTo("experience")}>
-              <Briefcase className="me-2 h-4 w-4 text-primary" />
-              <span>{content.sections.experience}</span>
-            </CommandItem>
-            <CommandItem onSelect={() => jumpTo("projects")}>
-              <FolderGit2 className="me-2 h-4 w-4 text-primary" />
-              <span>{content.sections.projects}</span>
-            </CommandItem>
-            <CommandItem onSelect={() => jumpTo("skills")}>
-              <Code2 className="me-2 h-4 w-4 text-primary" />
-              <span>{content.sections.skills}</span>
-            </CommandItem>
-            <CommandItem onSelect={() => jumpTo("education")}>
-              <GraduationCap className="me-2 h-4 w-4 text-primary" />
-              <span>{content.sections.education}</span>
-            </CommandItem>
-            <CommandItem onSelect={() => jumpTo("contact")}>
-              <Mail className="me-2 h-4 w-4 text-primary" />
-              <span>{content.sections.contact}</span>
-            </CommandItem>
-          </CommandGroup>
-
-          <CommandSeparator />
-
-          <CommandGroup heading="Actions">
-            <CommandItem onSelect={handlePrint}>
-              <Printer className="me-2 h-4 w-4" />
-              <span>{content.ui.printResume} / {content.ui.downloadPdf}</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                switchLanguage(content.locale === "en" ? "fa" : "en");
-              }}
-            >
-              <Languages className="me-2 h-4 w-4" />
-              <span>
-                {content.locale === "en" ? "تغییر زبان به فارسی (فارسی)" : "Switch to English"}
-              </span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                setTheme(theme === "dark" ? "light" : "dark");
-                setOpen(false);
-              }}
-            >
-              {theme === "dark" ? (
-                <Sun className="me-2 h-4 w-4" />
-              ) : (
-                <Moon className="me-2 h-4 w-4" />
-              )}
-              <span>{content.ui.toggleTheme}</span>
-            </CommandItem>
-          </CommandGroup>
-
-          <CommandSeparator />
-
-          <CommandGroup heading="Links">
-            <CommandItem
-              onSelect={() => {
-                setOpen(false);
-                window.open(content.contact.githubHref, "_blank", "noopener,noreferrer");
-              }}
-            >
-              <Github className="me-2 h-4 w-4" />
-              <span>GitHub (SOMM-55)</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                setOpen(false);
-                window.open(content.contact.linkedinHref, "_blank", "noopener,noreferrer");
-              }}
-            >
-              <Linkedin className="me-2 h-4 w-4" />
-              <span>LinkedIn</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                setOpen(false);
-                window.location.href = `mailto:${content.contact.email}`;
-              }}
-            >
-              <Mail className="me-2 h-4 w-4" />
-              <span>Email: {content.contact.email}</span>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-
-        <div className="border-t border-border px-3 py-2 text-[10px] font-mono text-muted-foreground flex items-center justify-between">
-          <span>{content.locale === "fa" ? "میانبرهای صفحه‌کلید (Keyboard Shortcuts):" : "Keyboard Shortcuts:"} ⌘K / ?</span>
-          <span>Esc {content.locale === "fa" ? "بستن" : "to close"}</span>
-        </div>
-      </CommandDialog>
+      {open && (
+        <React.Suspense fallback={null}>
+          <CommandPaletteDialog open={open} setOpen={setOpen} content={content} />
+        </React.Suspense>
+      )}
     </>
   );
 }

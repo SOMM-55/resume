@@ -4,6 +4,10 @@ import { execSync, execFileSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 
+// Ensure local audit traffic bypasses local debugging proxies
+process.env.NO_PROXY = "localhost,127.0.0.1,::1";
+process.env.no_proxy = "localhost,127.0.0.1,::1";
+
 const BASE_URL = process.env.SITE_URL || "http://localhost:3000";
 const AUDIT_DIR = path.resolve(process.cwd(), "audit");
 const SCREENSHOTS_DIR = path.join(AUDIT_DIR, "screenshots");
@@ -90,7 +94,7 @@ async function runLighthouse(url: string, preset: "mobile" | "desktop", runNum: 
   const args = [
     "lighthouse",
     url,
-    "--chrome-flags=--headless=new --no-sandbox --disable-gpu",
+    "--chrome-flags=--headless=new --no-sandbox --disable-gpu --proxy-bypass-list=<-loopback>,localhost,127.0.0.1",
     '--extra-headers={"X-Audit-Bot":"1"}',
     "--user-agent=Mozilla/5.0 SiteAuditBot/1.0",
     `--output-path=${outputFile}`,
@@ -251,7 +255,7 @@ async function main() {
   console.log("\n--- 2. Playwright Matrix Capture, Accessibility & Interactions ---");
   const browser = await chromium.launch({
     headless: true,
-    args: ["--no-sandbox", "--disable-gpu"],
+    args: ["--no-sandbox", "--disable-gpu", "--proxy-bypass-list=<-loopback>,localhost,127.0.0.1"],
   });
 
   const viewports: Record<"mobile" | "tablet" | "desktop" | "wide", { width: number; height: number }> = {

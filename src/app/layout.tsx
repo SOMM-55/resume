@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { execSync } from "node:child_process";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
 
 let currentCommitSha: string = process.env.GIT_COMMIT_SHA || "2abee3f";
 try {
@@ -64,7 +63,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <Toaster richColors position="bottom-right" />
         </ThemeProvider>
       </body>
     </html>

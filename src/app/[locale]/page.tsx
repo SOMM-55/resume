@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import dynamic from "next/dynamic";
 import { getContent, isValidLocale, LOCALES, type Locale } from "@/content";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Experience } from "@/components/experience";
-import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Education } from "@/components/education";
-import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
+
+const Projects = dynamic(() =>
+  import("@/components/projects").then((mod) => mod.Projects)
+);
+const ContactSection = dynamic(() =>
+  import("@/components/contact-section").then((mod) => mod.ContactSection)
+);
 
 interface PageProps {
   params: Promise<{ locale: string }>;

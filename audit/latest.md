@@ -1,6 +1,6 @@
 # Production Website Quality Audit Report
 
-**Overall Score:** **97.4 / 100** (→ (0)) | Commit: `e483908`
+**Overall Score:** **97.4 / 100** (→ (0)) | Commit: `04b3a76`
 **Verdict:** Outstanding production grade; visual elegance, 100% accessible, pristine security headers and sub-second desktop delivery.
 
 ---
@@ -30,7 +30,7 @@
 
 ### 1. [MEDIUM] perf-lcp-mobile (performance) — *unchanged*
 - **Location:** `src/app/[locale]/page.tsx:1` (Page: `/fa`, Viewport: `mobile`)
-- **Evidence:** Mobile LCP 2.86 s (median of 3 runs) exceeds good threshold (2.5s)
+- **Evidence:** Mobile LCP 2.70 s (median of 3 runs) exceeds good threshold (2.5s)
 - **Impact:** Hurts perceived loading speed and mobile Core Web Vitals rating
 - **Recommendation:** Optimize critical rendering path, preload key fonts, and reduce render-blocking resources
 - **Effort:** M | **Expected Gain:** +6 performance points, LCP < 2.5s
@@ -46,11 +46,11 @@
 
 ## 4. Key Metrics (Lighthouse 3-Run Medians)
 
-- **LCP (Largest Contentful Paint):** 2.70 s (Mobile) | 0.62 s (Desktop)
+- **LCP (Largest Contentful Paint):** 2.70 s (Mobile) | 0.57 s (Desktop)
 - **TBT (Total Blocking Time):** 87 ms (Mobile) | 0 ms (Desktop)
 - **CLS (Cumulative Layout Shift):** 0.000 (Mobile) | 0.003 (Desktop)
-- **FCP (First Contentful Paint):** 0.91 s (Mobile) | 0.26 s (Desktop)
-- **Total Static JS Weight:** 1194.1 KB across chunks
+- **FCP (First Contentful Paint):** 0.91 s (Mobile) | 0.25 s (Desktop)
+- **Total Static JS Weight:** 1252.0 KB across chunks
 - **Axe Violations:** 0 across all tested pages and themes
 
 ---
