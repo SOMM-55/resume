@@ -6,7 +6,7 @@ export const revalidate = 86400; // Cache 24 hours
 const clientScript = `(function(){
   try {
     var d = document, w = window, n = navigator;
-    if (n.doNotTrack === "1" || n.doNotTrack === "yes" || n.globalPrivacyControl) return;
+    if (n.doNotTrack === "1" || n.doNotTrack === "yes" || n.globalPrivacyControl || (n.userAgent && n.userAgent.indexOf("SiteAuditBot") !== -1)) return;
 
     var scriptEl = d.currentScript || d.querySelector('script[src*="analytics.js"]');
     var defaultLocale = (scriptEl && scriptEl.getAttribute('data-locale')) || 'en';

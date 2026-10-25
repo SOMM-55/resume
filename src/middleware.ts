@@ -71,7 +71,9 @@ export async function middleware(request: NextRequest) {
         }
         const loginUrl = new URL("/admin/login", request.url);
         loginUrl.searchParams.set("from", pathname);
-        return NextResponse.redirect(loginUrl);
+        const loginRedirect = NextResponse.redirect(loginUrl);
+        loginRedirect.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet");
+        return applySecurityHeaders(loginRedirect);
       }
     }
   }

@@ -257,7 +257,6 @@ html {
   .no-print,
   nav,
   button,
-  .hero-ambient-glow,
   .pipeline-dag-container,
   a[href^="#"],
   .command-palette-trigger,
@@ -267,6 +266,10 @@ html {
   .skip-link,
   .interactive-only {
     display: none !important;
+  }
+
+  .hero-ambient-glow {
+    background: none !important;
   }
 
   .print-only {

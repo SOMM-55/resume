@@ -91,7 +91,9 @@ export function Hero({ content }: HeroProps) {
       <HeroActions content={content} />
 
       {/* Interactive Architecture DAG Visualizer */}
-      <PipelineDag isRtl={isRtl} />
+      <div className="section-deferred">
+        <PipelineDag isRtl={isRtl} />
+      </div>
     </section>
   );
 }

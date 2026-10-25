@@ -26,6 +26,24 @@ const nextConfig: NextConfig = {
   },
   headers: async () => [
     {
+      source: "/en",
+      headers: [
+        {
+          key: "Link",
+          value: "</fonts/Geist-Variable.woff2>; rel=preload; as=font; type=font/woff2; crossorigin=anonymous",
+        },
+      ],
+    },
+    {
+      source: "/fa",
+      headers: [
+        {
+          key: "Link",
+          value: "</fonts/Vazirmatn-Variable.woff2>; rel=preload; as=font; type=font/woff2; crossorigin=anonymous",
+        },
+      ],
+    },
+    {
       source: "/fonts/:path*",
       headers: [
         {

@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Sun, Moon, Printer, FileDown, Globe } from "lucide-react";
+import { Sun, Moon, FileDown, Globe } from "lucide-react";
 import dynamic from "next/dynamic";
 import type { ResumeContent } from "@/content";
 
